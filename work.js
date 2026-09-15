@@ -1,5 +1,5 @@
 const workTabs = document.querySelectorAll(".work-tabs button");
-const workProjects = document.querySelectorAll(".work-content");
+const workProjects = document.querySelectorAll(".work-content article");
 
 function filterProjects(category) {
   workProjects.forEach((project) => {
@@ -8,6 +8,7 @@ function filterProjects(category) {
     project.classList.toggle("is-hidden", !show);
   });
 }
+
 
 workTabs.forEach((btn) => {
   btn.addEventListener("click", () => {

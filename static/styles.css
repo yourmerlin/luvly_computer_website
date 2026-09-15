@@ -6,12 +6,23 @@ html {
   color: white;
 }
 
+#ditherCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
 body {
   width: 75%;
   margin: 0 auto;
 }
 
 nav {
+  backdrop-filter: blur(10px);
+  background-color: transparent;
   display: flex;
   font-family: "Roboto Mono", monospace;
   justify-content: center;
@@ -63,6 +74,8 @@ nav ul li a:hover {
   padding-left: 1rem;
 }
 .home-content p {
+  backdrop-filter: blur(10px);
+  background-color: transparent;
   font-size: 24px;
   text-align: justify;
   text-align-last: justify;
@@ -220,6 +233,9 @@ aside ul {
   box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.244);
   padding: 1rem 0.5rem;
   box-sizing: border-box;
+}
+.work-content article.is-hidden {
+  display: none;
 }
 .work-content article h3 {
   padding: 0.5rem 0.5rem;
