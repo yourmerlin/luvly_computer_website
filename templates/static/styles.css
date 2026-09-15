@@ -1,0 +1,265 @@
+@import url(reset.css);
+
+html {
+  font-family: "Roboto Mono", monospace;
+  background-color: #ff0077;
+  color: white;
+}
+
+body {
+  width: 75%;
+  margin: 0 auto;
+}
+
+nav {
+  display: flex;
+  font-family: "Roboto Mono", monospace;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+nav ul {
+  font-size: 32px;
+  color: rgb(255, 255, 255);
+  font-weight: 300;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+nav ul li {
+  text-align: center;
+}
+
+nav ul li a {
+  padding: 14px 28px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: all 0.2s;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+  text-decoration-color: whitesmoke;
+}
+
+/* home html css */
+.stars-border {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.home-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home-content pre {
+  width: 60%;
+  padding-left: 1rem;
+}
+.home-content p {
+  font-size: 24px;
+  text-align: justify;
+  text-align-last: justify;
+  width: 30%;
+}
+
+/* about page layout: nav on top, main + aside side by side below */
+body:has(main.about-main) {
+  display: grid;
+  grid-template-columns: 1fr 20%;
+  grid-template-areas:
+    "nav nav"
+    "main aside";
+  gap: 2rem;
+}
+body:has(main.about-main) > nav {
+  grid-area: nav;
+}
+body:has(main.about-main) > main.about-main {
+  grid-area: main;
+}
+body:has(main.about-main) > aside {
+  grid-area: aside;
+}
+
+/* about page: headshot+name | bio, side by side */
+main.about-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 2%;
+}
+
+main.about-main > section:first-child {
+  flex: 0 0 30%;
+  min-width: 0;
+}
+
+main.about-main > section:first-child img {
+  width: 100%;
+  height: auto;
+}
+
+main.about-main > section:first-child h2 {
+  font-family: "bd-micronfont", sans-serif;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  font-weight: 200;
+}
+
+main.about-main > section:first-child p {
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+main.about-main > section:last-child {
+  flex: 1;
+  min-width: 0;
+  color: white;
+}
+
+main.about-main > section:last-child p {
+  text-align: justify;
+  font-size: 12px;
+}
+
+main.about-main > section:last-child ul {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+main.about-main > section:last-child ul a {
+  color: white;
+  text-decoration: none;
+}
+
+main.about-main > section:last-child ul a:hover {
+  text-decoration: underline;
+}
+
+/* about page sidebar: showcases/awards/talks/publications */
+aside {
+  width: 100%;
+  border-left: 1px solid #fff;
+  color: white;
+  padding: 0.5rem 0.5rem;
+}
+
+aside h2 {
+  font-family: "Roboto Mono", monospace;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+aside ul {
+  font-size: 12px;
+  font-weight: normal;
+  padding: 0.5rem 2rem;
+}
+
+/* work page meow */
+.work-main {
+  display: flex;
+}
+.work-header {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.work-header h2 {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 0.5rem 0.5rem;
+}
+
+.work-header p {
+  padding: 0.5rem 0.5rem;
+  font-size: 14px;
+}
+.work-header ul {
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  list-style: none;
+  padding: 0.5rem 0.5rem;
+}
+.work-header ul li {
+  gap: 5px;
+}
+.work-header button {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 4px 8px;
+}
+.work-header button:hover,
+.work-header button.is-active {
+  background-color: white;
+  color: #ff0077;
+}
+
+.work-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.work-content article {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid #fff;
+  backdrop-filter: blur(10px);
+  background-color: transparent;
+  box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.244);
+  padding: 1rem 0.5rem;
+  box-sizing: border-box;
+}
+.work-content article h3 {
+  padding: 0.5rem 0.5rem;
+  font-size: 32px;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.status {
+  padding: 0.5rem 0.5rem;
+  color: #fff;
+  opacity: 75%;
+  font-size: 12px;
+  font-weight: thin;
+  font-style: italic;
+}
+.tags {
+  display: flex;
+  gap: 10px;
+  padding: 0 0.5rem;
+  flex-wrap: wrap;
+}
+.tag {
+  border: 1.5px solid #dcced5;
+  color: #ffffff;
+  padding: 4px 14px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: "Roboto Mono", monospace;
+}
+.work-content article p {
+  text-align: justify;
+  text-wrap-style: balance;
+}
+
+.work-content article img,
+.work-content article video {
+  width: 100%;
+  height: auto;
+}
