@@ -288,3 +288,17 @@ aside ul {
   width: 100%;
   height: auto;
 }
+
+/* experiments page */
+.experiments-main {
+  display: flex;
+}
+.experiments-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.experiments-content article {
+  width: auto;
+}
