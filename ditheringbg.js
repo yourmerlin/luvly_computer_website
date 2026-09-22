@@ -23,6 +23,7 @@
       precision highp float;
       uniform vec2  uResolution;
       uniform float uTime;
+      uniform vec3  uColor;
       out vec4 fragColor;
 
       float Bayer2(vec2 a) {
@@ -66,8 +67,8 @@
         float bayer = Bayer8(fc/ps) - 0.5;
         float bw = step(0.5, feed+bayer);
         float t = (gl_FragCoord.y / uResolution.y);
-        vec3 primary = vec3(1.0, 1.0, 1.0);
-        vec3 accent  = vec3(1.0,  1.0, 1.0);
+        vec3 primary = uColor;
+        vec3 accent  = uColor;
         vec3 col = mix(accent, primary, t);
         fragColor = vec4(col, bw);
       }
@@ -112,6 +113,17 @@
 
   const uRes = gl.getUniformLocation(prog, "uResolution");
   const uTime = gl.getUniformLocation(prog, "uTime");
+  const uColor = gl.getUniformLocation(prog, "uColor");
+
+  function colorForTheme(isLight) {
+    return isLight ? [1.0, 0.0, 0.467] : [1.0, 1.0, 1.0];
+  }
+  function setTheme(isLight) {
+    const [r, g, b] = colorForTheme(isLight);
+    gl.uniform3f(uColor, r, g, b);
+  }
+  setTheme(localStorage.getItem("theme") === "light");
+  window.addEventListener("themechange", (e) => setTheme(e.detail.light));
 
   gl.enable(gl.BLEND);
   gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);

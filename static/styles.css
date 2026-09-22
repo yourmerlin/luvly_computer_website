@@ -2,8 +2,15 @@
 
 html {
   font-family: "Roboto Mono", monospace;
-  background-color: #ff0077;
-  color: white;
+  --bg-color: #ff0077;
+  --text-color: white;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+html.light-mode {
+  --bg-color: white;
+  --text-color: #ff0077;
 }
 
 #ditherCanvas {
@@ -31,7 +38,7 @@ nav {
 }
 nav ul {
   font-size: 32px;
-  color: rgb(255, 255, 255);
+  color: var(--text-color);
   font-weight: 300;
   display: flex;
   gap: 30px;
@@ -45,7 +52,7 @@ nav ul li {
 
 nav ul li a {
   padding: 14px 28px;
-  color: rgb(255, 255, 255);
+  color: var(--text-color);
   text-decoration: none;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -54,7 +61,25 @@ nav ul li a {
 
 nav ul li a:hover {
   text-decoration: underline;
-  text-decoration-color: whitesmoke;
+  text-decoration-color: var(--text-color);
+}
+
+/* light/dark toggle */
+nav ul li button {
+  background: transparent;
+  border: none;
+  padding: 14px 28px;
+  color: var(--text-color);
+  font-family: "Roboto Mono", monospace;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+nav ul li button:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--text-color);
 }
 
 /* home html css */
@@ -78,9 +103,9 @@ nav ul li a:hover {
   flex-direction: column;
 }
 .home-description p {
-  background-color: #ff0077;
+  background-color: var(--bg-color);
   backdrop-filter: blur(10px);
-  border: 2px solid #ff0077;
+  border: 2px solid var(--bg-color);
   /* background-color: transparent; */
   font-size: 24px;
   font-weight: thin;
@@ -129,14 +154,14 @@ main.about-main {
 
 .about-headshot h2 {
   font-family: "bd-micronfont", sans-serif;
-  color: white;
+  color: var(--text-color);
   font-size: 32px;
   font-weight: bold;
   font-weight: 200;
 }
 
 .about-headshot p {
-  color: white;
+  color: var(--text-color);
   font-weight: bold;
   font-size: 14px;
 }
@@ -144,7 +169,7 @@ main.about-main {
 .about-bio {
   flex: 1;
   min-width: 0;
-  color: white;
+  color: var(--text-color);
 }
 
 .about-bio p {
@@ -158,7 +183,7 @@ main.about-main {
 }
 
 .about-bio ul a {
-  color: white;
+  color: var(--text-color);
   text-decoration: none;
 }
 
@@ -169,8 +194,8 @@ main.about-main {
 /* about page sidebar: showcases/awards/talks/publications */
 aside {
   width: 100%;
-  border-left: 1px solid #fff;
-  color: white;
+  border-left: 1px solid var(--text-color);
+  color: var(--text-color);
   padding: 0.5rem 0.5rem;
 }
 
@@ -217,14 +242,14 @@ aside ul {
 }
 .work-header button {
   background-color: transparent;
-  color: white;
-  border: 1px solid white;
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
   padding: 4px 8px;
 }
 .work-header button:hover,
 .work-header button.is-active {
-  background-color: white;
-  color: #ff0077;
+  background-color: var(--text-color);
+  color: var(--bg-color);
 }
 
 .work-content {
@@ -236,7 +261,7 @@ aside ul {
   display: inline-block;
   width: 100%;
   margin-bottom: 20px;
-  border: 1px solid #fff;
+  border: 1px solid var(--text-color);
   backdrop-filter: blur(10px);
   background-color: transparent;
   box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.244);
@@ -249,7 +274,7 @@ aside ul {
 .work-content article h3 {
   padding: 0.5rem 0.5rem;
   font-size: 32px;
-  color: #ffffff;
+  color: var(--text-color);
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -257,7 +282,7 @@ aside ul {
 }
 .status {
   padding: 0.5rem 0.5rem;
-  color: #fff;
+  color: var(--text-color);
   opacity: 75%;
   font-size: 12px;
   font-weight: thin;
