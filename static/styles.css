@@ -6,11 +6,32 @@ html {
   --text-color: white;
   background-color: var(--bg-color);
   color: var(--text-color);
+  cursor: none;
 }
 
 html.light-mode {
   --bg-color: white;
   --text-color: #ff0077;
+}
+
+a,
+button {
+  cursor: none;
+}
+
+/* custom wand cursor */
+#customCursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 64px;
+  height: 64px;
+  background-image: url("../magic_wand_64.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-37px, -20px);
 }
 
 #ditherCanvas {
@@ -74,7 +95,6 @@ nav ul li button {
   font-size: 32px;
   font-weight: 600;
   letter-spacing: 0.04em;
-  cursor: pointer;
   transition: all 0.2s;
 }
 nav ul li button:hover {
