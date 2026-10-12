@@ -17,4 +17,4 @@ npm run build    # makes the final site in dist/
 - pages live in `src/pages/`, shared bits (nav, footer, cursor, dither bg) in `src/components/`
 - projects on the work page are in `src/data/work.json`, images go in `public/work_imgs/`
 - anything in `public/` (images, pdfs) is served as-is
-- pushing to main builds + deploys to github pages automatically (`.github/workflows/deploy.yml`)
+- pushing to main deploys to netlify automatically (settings in `netlify.toml`)

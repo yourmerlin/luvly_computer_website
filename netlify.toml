@@ -1,0 +1,13 @@
+# tells netlify how to build the react site
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# every url (like /work) loads the react app, which then shows the right page
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
