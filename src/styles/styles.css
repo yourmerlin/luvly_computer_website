@@ -26,7 +26,7 @@ button {
   left: 0;
   width: 64px;
   height: 64px;
-  background-image: url("../magic_wand_64.png");
+  background-image: url("../assets/magic_wand_64.png");
   background-size: contain;
   background-repeat: no-repeat;
   pointer-events: none;
@@ -42,6 +42,7 @@ button {
   height: 100%;
   z-index: 0;
   pointer-events: none;
+  image-rendering: pixelated; /* keep the blocks crisp when scaled up */
 }
 body {
   width: 75%;
