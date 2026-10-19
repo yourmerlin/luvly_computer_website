@@ -34,6 +34,13 @@ button {
   transform: translate(-2.3125rem, -1.25rem);
 }
 
+/* touch screens have no mouse to follow, so the wand would just sit there */
+@media (hover: none) {
+  #customCursor {
+    display: none;
+  }
+}
+
 /* pixel trail behind the wand */
 .cursor-trail {
   position: fixed;
@@ -123,12 +130,12 @@ nav ul li button:hover {
 }
 .home-content {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+  justify-content: center;
 }
+/* the box shrinks to the drawing's own width, so centering the box centers the drawing */
 .home-content pre {
-  width: 60%;
+  width: fit-content;
+  max-width: 100%;
 }
 .about-main h2 {
   font-family: "bd-micronfont", sans-serif;
@@ -346,12 +353,7 @@ main.about-main {
   .stars-border pre {
     font-size: 2vw;
   }
-  .home-content {
-    flex-direction: column;
-    gap: 1rem;
-  }
   .home-content pre {
-    width: 100%;
     font-size: 1.5vw;
   }
 
