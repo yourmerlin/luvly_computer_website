@@ -38,20 +38,33 @@ export default function CursorTrail() {
       if (pixels.length > MAX_PIXELS) pixels.shift(); // drop the oldest
     }
 
-    function onMove(e) {
+    function addPoint(x, y) {
       const now = performance.now();
       if (last) {
-        const dx = e.clientX - last.x;
-        const dy = e.clientY - last.y;
+        const dx = x - last.x;
+        const dy = y - last.y;
         const steps = Math.ceil(Math.hypot(dx, dy) / PIXEL);
         for (let i = 1; i < steps; i++) {
           addPixel(last.x + (dx * i) / steps, last.y + (dy * i) / steps, now);
         }
       }
-      addPixel(e.clientX, e.clientY, now);
-      last = { x: e.clientX, y: e.clientY };
+      addPixel(x, y, now);
+      last = { x, y };
 
       if (frameId === null) frameId = requestAnimationFrame(draw);
+    }
+
+    function onMove(e) {
+      // on touch screens the browser stops sending pointer events as soon as
+      // the page starts scrolling, so touches are handled by onTouchMove instead
+      if (e.pointerType === "touch") return;
+      addPoint(e.clientX, e.clientY);
+    }
+
+    // touchmove keeps firing the whole time a finger drags, even while scrolling
+    function onTouchMove(e) {
+      const t = e.touches[0];
+      addPoint(t.clientX, t.clientY);
     }
 
     function draw() {
@@ -77,12 +90,16 @@ export default function CursorTrail() {
     resize();
     window.addEventListener("resize", resize);
     window.addEventListener("pointermove", onMove);
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("touchend", onLeave); // each swipe starts a new trail
     document.documentElement.addEventListener("pointerleave", onLeave);
 
     return () => {
       if (frameId !== null) cancelAnimationFrame(frameId);
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onLeave);
       document.documentElement.removeEventListener("pointerleave", onLeave);
     };
   }, []);

@@ -5,6 +5,7 @@ import asset from "../asset.js";
 const LINKS = [
   { label: "linkedin", href: "https://www.linkedin.com/in/senrique/" },
   { label: "resume", href: asset("enriquezMerlin_Resume.pdf") },
+  { label: "github", href: "https://github.com/yourmerlin" },
   { label: "instagram", href: "https://www.instagram.com/luvlycomputer/" },
   { label: "substack", href: "https://substack.com/@iluvmycomputer" },
 ];
