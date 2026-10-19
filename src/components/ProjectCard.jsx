@@ -1,13 +1,15 @@
 import asset from "../asset.js";
 
 // one project on the work page (data comes from src/data/work.json)
-export default function ProjectCard({ project, hidden }) {
+// `order` keeps the original project order when the columns collapse to one on phones
+export default function ProjectCard({ project, order }) {
   const isVideo = /\.(webm|mp4)$/i.test(project.media);
 
   return (
-    <article className={hidden ? "is-hidden" : undefined}>
+    <article style={{ order }}>
       {isVideo ? (
-        <video src={asset(project.media)} />
+        // plays on its own like a gif (muted so browsers allow autoplay)
+        <video src={asset(project.media)} autoPlay muted loop playsInline />
       ) : (
         <img src={asset(project.media)} alt={project.title} />
       )}
@@ -18,7 +20,9 @@ export default function ProjectCard({ project, hidden }) {
           <li className="tag" key={tag}>{tag}</li>
         ))}
       </ul>
-      {project.description && <p>{project.description}</p>}
+      {project.description && (
+        <p>{project.description}</p>
+      )}
     </article>
   );
 }

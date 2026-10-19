@@ -66,13 +66,13 @@ export default function About() {
           <p>creative tech + hci + design @ carnegie mellon university</p>
           <br />
           <p>
-            I am a creative technologist, researcher, and educator working at the
-            intersection of art, textiles, and technology. My research focuses on
-            soft electronics, holding people's data with care, and creating
-            open-source programs that build pathways into STEAM (science,
-            technology, engineering, art, and mathematics). Right now, I'm sewing
-            circuits onto fabric, using 3D printers to create intricate batik
-            patterns, and disguising technology within fashion pieces ୭˚. ᵎᵎ
+            I am a creative technologist, researcher, and educator working at
+            the intersection of art, textiles, and technology. My research
+            focuses on soft electronics, holding people's data with care, and
+            creating open-source programs that build pathways into STEAM. Right
+            now, I'm sewing circuits onto fabric, using 3D printers to create
+            intricate batik patterns, and disguising technology within fashion
+            pieces ୭˚. ᵎᵎ
           </p>
           <br />
           <p>
@@ -86,10 +86,10 @@ export default function About() {
           </p>
           <br />
           <p>
-            Outside of my research and practice, I am a lifestyle lolita. Wearing
-            lolita isn't just a fashion statement but a political one, too. It
-            disrupts environments that force you to conform. Lolita is my armour
-            (..◜ᴗ◝..)!
+            I am always involved in my community, either by organizing a
+            wearable art/fashion show called haute glue, creating temporary
+            interactive house on campus, called a booth or being part of a
+            satirical newspaper.
           </p>
           <br />
           <br />
@@ -103,23 +103,25 @@ export default function About() {
               </li>
             ))}
           </ul>
+
+          <section className="about-cv">
+            <h2>CV</h2>
+            {CV.map((section) => (
+              <Fragment key={section.heading}>
+                <h3>{section.heading}</h3>
+                <ul>
+                  {section.items.map((item, i) => (
+                    <Fragment key={item}>
+                      {i > 0 && <br />}
+                      <li>⤿ {item}</li>
+                    </Fragment>
+                  ))}
+                </ul>
+              </Fragment>
+            ))}
+          </section>
         </section>
       </main>
-      <aside>
-        {CV.map((section) => (
-          <Fragment key={section.heading}>
-            <h2>{section.heading}</h2>
-            <ul>
-              {section.items.map((item, i) => (
-                <Fragment key={item}>
-                  {i > 0 && <br />}
-                  <li>⤿ {item}</li>
-                </Fragment>
-              ))}
-            </ul>
-          </Fragment>
-        ))}
-      </aside>
     </Page>
   );
 }

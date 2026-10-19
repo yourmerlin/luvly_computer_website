@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate, useLocation } from "react-router";
 import { ThemeProvider } from "./theme.jsx";
 import Cursor from "./components/Cursor.jsx";
+import CursorTrail from "./components/CursorTrail.jsx";
 import Home from "./pages/Home.jsx";
 import Work from "./pages/Work.jsx";
 import About from "./pages/About.jsx";
@@ -36,6 +37,7 @@ export default function App() {
         <Route path="/resources" element={<Resources />} />
         <Route path="*" element={<OldLinks />} />
       </Routes>
+      <CursorTrail />
       <Cursor />
     </ThemeProvider>
   );

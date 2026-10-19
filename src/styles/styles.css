@@ -24,14 +24,25 @@ button {
   position: fixed;
   top: 0;
   left: 0;
-  width: 64px;
-  height: 64px;
+  width: 4rem;
+  height: 4rem;
   background-image: url("../assets/magic_wand_64.png");
   background-size: contain;
   background-repeat: no-repeat;
   pointer-events: none;
   z-index: 9999;
-  transform: translate(-37px, -20px);
+  transform: translate(-2.3125rem, -1.25rem);
+}
+
+/* pixel trail behind the wand */
+.cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998; /* above the page, just under the wand */
 }
 
 #ditherCanvas {
@@ -63,7 +74,7 @@ nav ul {
   color: var(--text-color);
   font-weight: 300;
   display: flex;
-  gap: 30px;
+  gap: 1.875rem;
   justify-content: center;
   align-items: center;
   list-style: none;
@@ -73,7 +84,7 @@ nav ul li {
 }
 
 nav ul li a {
-  padding: 14px 28px;
+  padding: 0.875rem 1.75rem;
   color: var(--text-color);
   text-decoration: none;
   font-weight: 600;
@@ -90,7 +101,7 @@ nav ul li a:hover {
 nav ul li button {
   background: transparent;
   border: none;
-  padding: 14px 28px;
+  padding: 0.875rem 1.75rem;
   color: var(--text-color);
   font-family: "Roboto Mono", monospace;
   font-size: 32px;
@@ -119,41 +130,9 @@ nav ul li button:hover {
 .home-content pre {
   width: 60%;
 }
-.home-description {
-  display: flex;
-  flex-direction: column;
-}
-.home-description p {
-  background-color: var(--bg-color);
-  backdrop-filter: blur(10px);
-  border: 2px solid var(--bg-color);
-  /* background-color: transparent; */
-  font-size: 24px;
-  font-weight: thin;
-  text-align: justify;
-  text-align-last: justify;
-}
-/* about page layout: nav on top, main + aside side by side below */
-.about-page {
-  display: grid;
-  grid-template-columns: 1fr 20%;
-  grid-template-areas:
-    "nav nav"
-    "main aside";
-  gap: 2rem;
-}
-.about-page > nav {
-  grid-area: nav;
-}
-.about-page > main.about-main {
-  grid-area: main;
-}
 .about-main h2 {
   font-family: "bd-micronfont", sans-serif;
   font-size: 36px;
-}
-.about-page > aside {
-  grid-area: aside;
 }
 
 /* about page: headshot+name | bio, side by side */
@@ -212,21 +191,21 @@ main.about-main {
   text-decoration: underline;
 }
 
-/* about page sidebar: showcases/awards/talks/publications */
-aside {
-  width: 100%;
-  border-left: 1px solid var(--text-color);
-  color: var(--text-color);
-  padding: 0.5rem 0.5rem;
+/* about page CV: showcases/awards/talks/publications, under the bio */
+.about-cv {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--text-color);
 }
 
-aside h2 {
+.about-cv h3 {
   font-family: "Roboto Mono", monospace;
   font-weight: bold;
   font-size: 12px;
+  margin-top: 1rem;
 }
 
-aside ul {
+.about-cv ul {
   font-size: 12px;
   font-weight: normal;
   padding: 0.5rem 2rem;
@@ -259,14 +238,14 @@ aside ul {
   padding: 0.5rem 0.5rem;
 }
 .work-header ul li {
-  gap: 5px;
+  gap: 0.3125rem;
 }
 .work-header button {
   backdrop-filter: blur(10px);
   background-color: transparent;
   color: var(--text-color);
   border: 1px solid var(--text-color);
-  padding: 4px 8px;
+  padding: 0.25rem 0.5rem;
 }
 .work-header button:hover,
 .work-header button.is-active {
@@ -275,24 +254,27 @@ aside ul {
 }
 
 .work-content {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: start;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  gap: 1.5rem;
+}
+/* two equal-width columns; cards stack inside each with the same gap */
+.work-column {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
   gap: 1.5rem;
 }
 .work-content article {
-  display: inline-block;
   width: 100%;
-  margin-bottom: 20px;
   border: 1px solid var(--text-color);
   backdrop-filter: blur(10px);
   background-color: transparent;
   box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.244);
   padding: 1rem 0.5rem;
   box-sizing: border-box;
-}
-.work-content article.is-hidden {
-  display: none;
 }
 .work-content article h3 {
   padding: 0.5rem 0.5rem;
@@ -313,28 +295,90 @@ aside ul {
 }
 .tags {
   display: flex;
-  gap: 10px;
+  gap: 0.625rem;
   padding: 0 0.5rem;
   flex-wrap: wrap;
 }
 .tag {
   border: 1.5px solid var(--text-color);
   color: var(--text-color);
-  padding: 4px 14px;
+  padding: 0.25rem 0.875rem;
   font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-family: "Roboto Mono", monospace;
 }
 .work-content article p {
+  padding: 0.5rem 0.5rem;
   text-align: justify;
-  text-wrap-style: balance;
 }
-
+/* same frame for every image/video, cropped to fill */
 .work-content article img,
 .work-content article video {
+  display: block;
   width: 100%;
+  aspect-ratio: 4 / 3;
   height: auto;
+  object-fit: cover;
+}
+
+/* phones: one card per row */
+@media (max-width: 700px) {
+  /* nav: smaller links that wrap onto a second line instead of overflowing */
+  nav {
+    padding: 1rem 0;
+  }
+  nav ul {
+    font-size: 20px;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+  nav ul li a,
+  nav ul li button {
+    padding: 0.25rem 0.5rem;
+    font-size: inherit;
+  }
+
+  /* home page: ascii art shrinks with the screen so it never overflows */
+  .stars-border {
+    overflow: hidden;
+  }
+  .stars-border pre {
+    font-size: 2vw;
+  }
+  .home-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .home-content pre {
+    width: 100%;
+    font-size: 1.5vw;
+  }
+
+  .work-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  /* columns dissolve so cards fall back into their original order */
+  .work-column {
+    display: contents;
+  }
+  .work-content article h3 {
+    font-size: 24px;
+    overflow-wrap: anywhere; /* long words like DEHUMANIZATION can break */
+  }
+
+  /* about page: headshot on top, then bio, then CV */
+  main.about-main {
+    flex-direction: column;
+  }
+  .about-headshot {
+    flex: none;
+    width: 100%;
+  }
+  .about-cv ul {
+    padding: 0.5rem 1rem;
+  }
 }
 
 /* experiments page */
