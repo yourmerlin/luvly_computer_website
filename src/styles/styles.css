@@ -132,7 +132,6 @@ nav ul li button:hover {
   display: flex;
   justify-content: center;
 }
-/* the box shrinks to the drawing's own width, so centering the box centers the drawing */
 .home-content pre {
   width: fit-content;
   max-width: 100%;
@@ -141,8 +140,6 @@ nav ul li button:hover {
   font-family: "bd-micronfont", sans-serif;
   font-size: 36px;
 }
-
-/* about page: headshot+name | bio, side by side */
 main.about-main {
   display: flex;
   align-items: flex-start;
@@ -267,27 +264,29 @@ main.about-main {
 }
 .tags {
   display: flex;
-  gap: 0.625rem;
+  gap: 0.5rem;
   padding: 0 0.5rem;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* tags drop to the next line when the card gets narrow */
 }
 .tag {
   border: 1.5px solid var(--text-color);
   color: var(--text-color);
-  padding: 0.25rem 0.875rem;
-  font-size: 12px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-family: "Roboto Mono", monospace;
+  max-width: 100%; /* a long tag never pokes out of the card... */
+  overflow-wrap: anywhere; /* ...it wraps inside its box instead */
 }
 
 /* work + research pages: one full-width column of wide, short cards */
-.research-content {
+.project-list {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
-.research-card {
+.project-card {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
@@ -297,22 +296,22 @@ main.about-main {
   padding: 1rem;
 }
 /* media on the left, text takes the rest */
-.research-card-media {
+.project-card-media {
   flex: 0 0 35%;
 }
-.research-card-media img,
-.research-card-media video {
+.project-card-media img,
+.project-card-media video {
   display: block;
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
-.research-card-text {
+.project-card-text {
   flex: 1;
   min-width: 0;
   color: var(--text-color);
 }
-.research-card-text h3 {
+.project-card-text h3 {
   padding: 0.5rem;
   font-size: 32px;
   font-weight: 700;
@@ -320,13 +319,18 @@ main.about-main {
   text-transform: uppercase;
   line-height: 1.1;
 }
-.research-card-text p {
+.project-card-text p {
   padding: 0.5rem;
   text-align: justify;
 }
 
 /* phones: one card per row */
 @media (max-width: 700px) {
+  /* more room on phones; raise or lower to taste */
+  body {
+    width: 90%;
+  }
+
   /* nav: smaller links that wrap onto a second line instead of overflowing */
   nav {
     padding: 1rem 0;
@@ -352,18 +356,44 @@ main.about-main {
   .home-content pre {
     font-size: 1.5vw;
   }
+  /* tags boxes */
+
+  .tags {
+    display: flex;
+    gap: 0.625rem;
+    padding: 0 0.5rem;
+    flex-wrap: wrap;
+  }
+  .tag {
+    border: 1.5px solid var(--text-color);
+    color: var(--text-color);
+    padding: 0.25rem 0.875rem;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: "Roboto Mono", monospace;
+  }
 
   /* work + research cards go back to media on top, text below */
-  .research-card {
+  .project-card {
     flex-direction: column;
   }
-  .research-card-media {
+  .project-card-media {
     flex: none;
     width: 100%;
   }
-  .research-card-text h3 {
+  .project-card-text h3 {
     font-size: 24px;
     overflow-wrap: anywhere; /* long words like DEHUMANIZATION can break */
+  }
+  /* smaller, tighter tags so more fit on each line */
+  .tags {
+    gap: 0.375rem;
+  }
+  .tag {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.625rem;
+    letter-spacing: 0.05em;
   }
 
   /* about page: headshot on top, then bio, then CV */
@@ -390,7 +420,7 @@ main.about-main {
   backdrop-filter: blur(10px);
   background-color: transparent;
   box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.244);
-  border: 1px solid white;
+  border: 1px solid var(--text-color);
   width: auto;
   height: fit-content;
   align-items: left;

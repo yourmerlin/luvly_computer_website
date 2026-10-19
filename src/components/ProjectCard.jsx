@@ -2,14 +2,14 @@ import asset from "../asset.js";
 
 // one project on the work or research page (data from src/data/work.json or research.json)
 // wide and short: media on the left, text on the right
-export default function ResearchCard({ project }) {
+export default function ProjectCard({ project }) {
   const isVideo = /\.(webm|mp4)$/i.test(project.media);
 
   return (
-    <article className="research-card">
+    <article className="project-card">
       {/* media is optional: projects without an image yet just skip it */}
       {project.media && (
-        <div className="research-card-media">
+        <div className="project-card-media">
           {isVideo ? (
             // plays on its own like a gif (muted so browsers allow autoplay)
             <video src={asset(project.media)} autoPlay muted loop playsInline />
@@ -18,7 +18,7 @@ export default function ResearchCard({ project }) {
           )}
         </div>
       )}
-      <div className="research-card-text">
+      <div className="project-card-text">
         <h3>{project.title}</h3>
         <p className="status">({project.status})</p>
         <ul className="tags">

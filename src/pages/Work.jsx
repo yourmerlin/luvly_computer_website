@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Page from "../components/Page.jsx";
-import ResearchCard from "../components/ResearchCard.jsx";
+import ProjectCard from "../components/ProjectCard.jsx";
 import projects from "../data/work.json";
 
 const TABS = ["all", "artsy", "techy", "design"];
@@ -32,10 +32,10 @@ export default function Work() {
           ))}
         </ul>
       </section>
-      {/* same wide, short cards as the research page, one column */}
-      <main className="research-content">
+      {/* one column of wide, short cards (same as the research page) */}
+      <main className="project-list">
         {visible.map((project) => (
-          <ResearchCard key={project.title} project={project} />
+          <ProjectCard key={project.title} project={project} />
         ))}
       </main>
     </Page>
