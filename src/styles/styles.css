@@ -1,5 +1,18 @@
 @import url(reset.css);
 
+/* every title/heading uses the pixel font (from the Adobe Fonts kit in index.html).
+   it only comes in regular, so headings stay at 400: bold would be faked and blurry */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "bitcount-grid-single-circle", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 html {
   font-family: "Roboto Mono", monospace;
   --bg-color: #ff0077;
@@ -121,6 +134,50 @@ nav ul li button:hover {
   text-decoration-color: var(--text-color);
 }
 
+/* "menu" button: only shown on phones (see the phone section below) */
+.menu-button {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0;
+}
+/* plain text; underlined while the menu is open */
+.menu-button:hover,
+.menu-button[aria-expanded="true"] {
+  text-decoration: underline;
+  text-decoration-color: var(--text-color);
+}
+/* bow home link + theme toggle outside the dropdown: phones only too */
+.nav-home,
+.nav-controls {
+  display: none;
+}
+.nav-home {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+.nav-theme {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.25rem;
+  padding: 0.25rem 0;
+}
+
+/* footer on every page */
+footer {
+  text-align: center;
+  padding: 2rem 0 1rem;
+  font-size: 12px;
+  color: var(--text-color);
+}
+
 /* home html css */
 .stars-border {
   display: flex;
@@ -137,7 +194,6 @@ nav ul li button:hover {
   max-width: 100%;
 }
 .about-main h2 {
-  font-family: "bd-micronfont", sans-serif;
   font-size: 36px;
 }
 main.about-main {
@@ -157,11 +213,8 @@ main.about-main {
 }
 
 .about-headshot h2 {
-  font-family: "bd-micronfont", sans-serif;
   color: var(--text-color);
   font-size: 32px;
-  font-weight: bold;
-  font-weight: 200;
 }
 
 .about-headshot p {
@@ -202,15 +255,33 @@ main.about-main {
   border-top: 1px solid var(--text-color);
 }
 
-.about-cv h3 {
-  font-family: "Roboto Mono", monospace;
-  font-weight: bold;
-  font-size: 12px;
+/* headings are click-to-open: ▸ when closed, ▾ when open */
+.about-cv summary {
+  list-style: none; /* hide the browser's own triangle */
   margin-top: 1rem;
+}
+.about-cv summary::-webkit-details-marker {
+  display: none;
+}
+.about-cv summary::before {
+  content: "▸ ";
+  font-size: 14px;
+}
+.about-cv details[open] summary::before {
+  content: "▾ ";
+}
+.about-cv summary:hover h3 {
+  text-decoration: underline;
+}
+
+/* same size as the bio text */
+.about-cv h3 {
+  display: inline;
+  font-size: 14px;
 }
 
 .about-cv ul {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   padding: 0.5rem 2rem;
 }
@@ -223,7 +294,6 @@ main.about-main {
 }
 .work-header h2 {
   font-size: 24px;
-  font-weight: bold;
   padding: 0.5rem 0.5rem;
 }
 
@@ -314,7 +384,6 @@ main.about-main {
 .project-card-text h3 {
   padding: 0.5rem;
   font-size: 32px;
-  font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   line-height: 1.1;
@@ -331,18 +400,50 @@ main.about-main {
     width: 90%;
   }
 
-  /* nav: smaller links that wrap onto a second line instead of overflowing */
+  /* nav: links hide behind the "menu" button and drop down when it's tapped */
+  /* bow on the left, theme toggle + menu on the right */
   nav {
+    position: relative;
+    z-index: 10; /* dropdown sits above the page content */
+    justify-content: space-between;
     padding: 1rem 0;
   }
+  .menu-button,
+  .nav-home {
+    display: block;
+  }
+  .nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  /* the bow and toggle are already shown, so leave them out of the dropdown */
+  nav ul li.nav-home-item,
+  nav ul li.nav-theme-item {
+    display: none;
+  }
+  /* dropdown opens under the menu button, lined up on the right */
   nav ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 60%;
+    padding: 0.5rem 0;
     font-size: 20px;
-    flex-wrap: wrap;
-    gap: 0.5rem 1rem;
+    background-color: var(--bg-color);
+    border: 1px solid var(--text-color);
+    box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.244);
+  }
+  nav ul.is-open {
+    display: flex;
   }
   nav ul li a,
   nav ul li button {
-    padding: 0.25rem 0.5rem;
+    display: block;
+    padding: 0.5rem 1rem;
     font-size: inherit;
   }
 
@@ -353,8 +454,10 @@ main.about-main {
   .stars-border pre {
     font-size: 2vw;
   }
+  /* about as big as it gets: the drawing is ~75 characters wide,
+     so 1.9vw fills most of the 90% page width without overflowing */
   .home-content pre {
-    font-size: 1.5vw;
+    font-size: 1.9vw;
   }
   /* tags boxes */
 
@@ -430,7 +533,6 @@ main.about-main {
 }
 .experiments-content article h3 {
   font-size: 24px;
-  font-weight: bold;
 }
 
 .experiments-content p {

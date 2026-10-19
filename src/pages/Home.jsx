@@ -1,6 +1,5 @@
 import { Link } from "react-router";
 import Page from "../components/Page.jsx";
-import Footer from "../components/Footer.jsx";
 
 const STARS =
   "┆　┆　┆　┆　┆\n┆　┆  ࣪ ˖☆ ࣪⭑┆ ݁˖ .☆ . ݁ ˖ \n☆⊹ ࣪ ┆ ˖ ࣪　⊹ ࣪ ★ ⋆.˚  ⊹ ࣪\n   ࣪ ˖⋆˚★ ₊ ⊹　  ࣪˖ ࣪ ₊  ࣪ ˖　\n. ݁　⊹ ࣪ ˖　　　 ࣪ ˖\n　　.  ݁　　　  ݁\n　　. \n";
@@ -33,7 +32,6 @@ export default function Home() {
           </pre>
         </section>
       </main>
-      <Footer />
     </Page>
   );
 }

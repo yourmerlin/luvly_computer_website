@@ -15,7 +15,7 @@ const CV = [
     heading: "showcases/galleries",
     items: [
       "Fidget Camp Showcase @ Pebblebed | SF, CA | 2026",
-      "Dematerialize @ Studio of Creative Inquiry | Pittsburgh, PA | 2025",
+      "Dematerialize @ Studio for Creative Inquiry | Pittsburgh, PA | 2025",
       "Disconnected Lovers @ Frame Gallery | Pittsburgh, PA | 2024",
       "Disconnected Lovers @ Wick Monet | Pittsburgh, PA | 2024",
     ],
@@ -23,26 +23,26 @@ const CV = [
   {
     heading: "awards/honors",
     items: [
-      "Samuel Rosenberg Junior Award, Issued by Carnegie Mellon School of Art. 2026.",
-      "Honorable Mention: Henry Armero Memorial Award for Inclusive Creativity, Issued by BXA Intercollege Degree Program. 2026.",
-      "Frank Ratchye Further Fund Recipient, Issued by The Frank Ratchye Studio. 2025",
-      "Dean's List, Issued by Carnegie Mellon University. 2023 + 2024.",
+      "Samuel Rosenberg Junior Award, issued by Carnegie Mellon School of Art. 2026.",
+      "Honorable Mention: Henry Armero Memorial Award for Inclusive Creativity, issued by the BXA Intercollege Degree Program. 2026.",
+      "Frank Ratchye Further Fund Recipient, issued by the Frank Ratchye Studio. 2025.",
+      "Dean's List, issued by Carnegie Mellon University. 2023 + 2024.",
     ],
   },
   {
     heading: "talks/workshops",
     items: [
-      "Soft circuit wizard hat & nfc wands workshop @ haute glue | Pittsburgh, PA | 2026",
-      "Soft circuit crown workshop @ the made | Oakland, CA | 2026",
-      "Batik, tub-dying & dye painting workshop @ fidget camp | SF, CA | 2026",
-      "Introduction to Laser-cutting @ cmu pre-college | Pittsburgh, PA | 2025",
+      "Soft Circuit Wizard Hat & NFC Wands Workshop @ haute glue | Pittsburgh, PA | 2026",
+      "Soft Circuit Crown Workshop @ the made | Oakland, CA | 2026",
+      "Batik, Tub-Dyeing & Dye Painting Workshop @ Fidget Camp | SF, CA | 2026",
+      "Introduction to Laser Cutting @ CMU Pre-College | Pittsburgh, PA | 2025",
     ],
   },
   {
     heading: "publications",
     items: [
-      "dreamscape @ lemon publication | Pittsburgh, PA | 2026",
-      "First-Gen guide to dealing with Guilt @ Carnegie Library (Permanent Collection) | Pittsburgh, PA | 2024",
+      "Dreamscape @ Lemon Publication | Pittsburgh, PA | 2026",
+      "First-Gen Guide to Dealing with Guilt @ Carnegie Library (Permanent Collection) | Pittsburgh, PA | 2024",
     ],
   },
 ];
@@ -55,7 +55,7 @@ export default function About() {
           <section>
             <img
               src={asset("sillyheadshot2026.webp")}
-              alt="headshot of merlin with stickers surrounding the images"
+              alt="headshot of merlin with stickers surrounding the image"
               width="500"
               height="500"
             />
@@ -87,9 +87,9 @@ export default function About() {
           </p>
           <br />
           <p>
-            I am always involved in my community, either by organizing a
-            wearable art/fashion show called haute glue, creating temporary
-            interactive house on campus, called a booth or being part of a
+            I am always involved in my community, whether by organizing a
+            wearable art/fashion show called haute glue, creating a temporary
+            interactive house on campus called a booth, or being part of a
             satirical newspaper.
           </p>
           <br />
@@ -107,9 +107,12 @@ export default function About() {
 
           <section className="about-cv">
             <h2>CV</h2>
+            {/* each heading opens/closes its list when clicked */}
             {CV.map((section) => (
-              <Fragment key={section.heading}>
-                <h3>{section.heading}</h3>
+              <details key={section.heading}>
+                <summary>
+                  <h3>{section.heading}</h3>
+                </summary>
                 <ul>
                   {section.items.map((item, i) => (
                     <Fragment key={item}>
@@ -118,7 +121,7 @@ export default function About() {
                     </Fragment>
                   ))}
                 </ul>
-              </Fragment>
+              </details>
             ))}
           </section>
         </section>

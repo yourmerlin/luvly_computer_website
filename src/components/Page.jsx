@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import Nav from "./Nav.jsx";
 import DitherBackground from "./DitherBackground.jsx";
+import Footer from "./Footer.jsx";
 
-// every page: sets the tab title, draws the nav, and (optionally) the dither bg
+// every page: sets the tab title, draws the nav, the footer, and (optionally) the dither bg
 export default function Page({ title, className, dither = false, themeToggle = true, children }) {
   useEffect(() => {
     document.title = title;
@@ -13,6 +14,7 @@ export default function Page({ title, className, dither = false, themeToggle = t
       {dither && <DitherBackground />}
       <Nav themeToggle={themeToggle} />
       {children}
+      <Footer />
     </div>
   );
 }
