@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Page from "../components/Page.jsx";
-import ProjectCard from "../components/ProjectCard.jsx";
+import ResearchCard from "../components/ResearchCard.jsx";
 import projects from "../data/work.json";
 
 const TABS = ["all", "artsy", "techy", "design"];
@@ -32,20 +32,11 @@ export default function Work() {
           ))}
         </ul>
       </section>
-      <main className="work-main">
-        <section className="work-content">
-          {/* cyber autonomy front-end devleoper */}
-          {/* two stacked columns so each card hugs its content (left, right, left, right...) */}
-          {[0, 1].map((col) => (
-            <div className="work-column" key={col}>
-              {visible.map((project, i) =>
-                i % 2 === col ? (
-                  <ProjectCard key={project.title} project={project} order={i} />
-                ) : null
-              )}
-            </div>
-          ))}
-        </section>
+      {/* same wide, short cards as the research page, one column */}
+      <main className="research-content">
+        {visible.map((project) => (
+          <ResearchCard key={project.title} project={project} />
+        ))}
       </main>
     </Page>
   );

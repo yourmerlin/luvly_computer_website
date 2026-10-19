@@ -4,6 +4,7 @@ import Cursor from "./components/Cursor.jsx";
 import CursorTrail from "./components/CursorTrail.jsx";
 import Home from "./pages/Home.jsx";
 import Work from "./pages/Work.jsx";
+import Research from "./pages/Research.jsx";
 import About from "./pages/About.jsx";
 import Experiments from "./pages/Experiments.jsx";
 import ExperimentalCapture from "./pages/ExperimentalCapture.jsx";
@@ -28,6 +29,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/work" element={<Work />} />
+        <Route path="/research" element={<Research />} />
         <Route path="/about" element={<About />} />
         <Route path="/experiments" element={<Experiments />} />
         <Route path="/experimental-capture" element={<ExperimentalCapture />} />

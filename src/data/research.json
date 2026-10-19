@@ -1,0 +1,19 @@
+[
+  {
+    "title": "dehumanization of databases",
+    "media": "work_imgs/erasuremap.webm",
+    "status": "in-progress",
+    "tags": ["research", "data visualization", "creative coding"],
+    "description": "This paper examines the structural role of absent and incomplete data within the U.S. Immigration and Customs Enforcement (ICE) arrest database as a deliberate mechanism of dehumanization and institutional erasure. Through close reading of database architecture and legal terminology, this paper argues that the absence of data strings in ICE records is not incidental mismanagement but a purposeful tactic: one that obscures the scope of enforcement, limits public accountability, and furthers the systemic erasure of immigrant lives from institutional record."
+  },
+  {
+    "title": "turning play into neuroplasticity",
+    "status": "in-progress",
+    "tags": ["research"]
+  },
+  {
+    "title": "how to archive your computer",
+    "status": "in-progress",
+    "tags": ["research"]
+  }
+]

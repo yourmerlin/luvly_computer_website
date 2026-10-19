@@ -219,9 +219,6 @@ main.about-main {
 }
 
 /* work page meow */
-.work-main {
-  display: flex;
-}
 .work-header {
   align-items: center;
   text-align: center;
@@ -260,38 +257,6 @@ main.about-main {
   color: var(--bg-color);
 }
 
-.work-content {
-  display: flex;
-  align-items: flex-start;
-  width: 100%;
-  gap: 1.5rem;
-}
-/* two equal-width columns; cards stack inside each with the same gap */
-.work-column {
-  flex: 1 1 0;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-.work-content article {
-  width: 100%;
-  border: 1px solid var(--text-color);
-  backdrop-filter: blur(10px);
-  background-color: transparent;
-  box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.244);
-  padding: 1rem 0.5rem;
-  box-sizing: border-box;
-}
-.work-content article h3 {
-  padding: 0.5rem 0.5rem;
-  font-size: 32px;
-  color: var(--text-color);
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  line-height: 1.1;
-}
 .status {
   padding: 0.5rem 0.5rem;
   color: var(--text-color);
@@ -315,18 +280,49 @@ main.about-main {
   text-transform: uppercase;
   font-family: "Roboto Mono", monospace;
 }
-.work-content article p {
-  padding: 0.5rem 0.5rem;
-  text-align: justify;
+
+/* work + research pages: one full-width column of wide, short cards */
+.research-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
-/* same frame for every image/video, cropped to fill */
-.work-content article img,
-.work-content article video {
+.research-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  border: 1px solid var(--text-color);
+  backdrop-filter: blur(10px);
+  box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.244);
+  padding: 1rem;
+}
+/* media on the left, text takes the rest */
+.research-card-media {
+  flex: 0 0 35%;
+}
+.research-card-media img,
+.research-card-media video {
   display: block;
   width: 100%;
   aspect-ratio: 4 / 3;
-  height: auto;
   object-fit: cover;
+}
+.research-card-text {
+  flex: 1;
+  min-width: 0;
+  color: var(--text-color);
+}
+.research-card-text h3 {
+  padding: 0.5rem;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.research-card-text p {
+  padding: 0.5rem;
+  text-align: justify;
 }
 
 /* phones: one card per row */
@@ -357,15 +353,15 @@ main.about-main {
     font-size: 1.5vw;
   }
 
-  .work-content {
+  /* work + research cards go back to media on top, text below */
+  .research-card {
     flex-direction: column;
-    align-items: stretch;
   }
-  /* columns dissolve so cards fall back into their original order */
-  .work-column {
-    display: contents;
+  .research-card-media {
+    flex: none;
+    width: 100%;
   }
-  .work-content article h3 {
+  .research-card-text h3 {
     font-size: 24px;
     overflow-wrap: anywhere; /* long words like DEHUMANIZATION can break */
   }

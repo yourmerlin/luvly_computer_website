@@ -9,6 +9,7 @@ export default function Nav({ themeToggle = true }) {
       <ul>
         <li><Link to="/">𐙚</Link></li>
         <li><Link to="/work">work</Link></li>
+        <li><Link to="/research">research</Link></li>
         <li><Link to="/about">about</Link></li>
         <li><Link to="/experiments">experiments</Link></li>
         <li><Link to="/play">play</Link></li>
