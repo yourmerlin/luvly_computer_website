@@ -1,19 +1,23 @@
 [
   {
     "title": "dehumanization of databases",
-    "media": "work_imgs/erasuremap.webm",
+    "media": "research_imgs/erasuremap.webm",
     "status": "in-progress",
     "tags": ["research", "data visualization", "creative coding"],
     "description": "This paper examines the structural role of absent and incomplete data within the U.S. Immigration and Customs Enforcement (ICE) arrest database as a deliberate mechanism of dehumanization and institutional erasure. Through close reading of database architecture and legal terminology, this paper argues that the absence of data strings in ICE records is not incidental mismanagement but a purposeful tactic: one that obscures the scope of enforcement, limits public accountability, and furthers the systemic erasure of immigrant lives from institutional record."
   },
   {
     "title": "turning play into neuroplasticity",
+    "media": "research_imgs/ewaste_img.webp",
     "status": "in-progress",
-    "tags": ["research"]
+    "tags": ["research", "wearable technology", "e-textiles"],
+    "description": "An open-source repository that uses play as an educational tool for learning e-textiles and wearable technology through mini art-based projects. Each project breaks down core technical and mathematical concepts into approachable, hands-on steps."
   },
   {
     "title": "how to archive your computer",
+    "media": "research_imgs/computer_img.webp",
     "status": "in-progress",
-    "tags": ["research"]
+    "tags": ["research", "3D modeling", "photogrammetry"],
+    "description": "An open-source tutorial on creating a high-fidelity 3D model of your own computer, no expensive or inaccessible equipment required. It covers photogrammetry, 3D modeling pipelines, and model optimization. Every tool and piece of software used is completely free, and the whole process can be DIYed. Once you’re done, you can add your model to computers.json, a public archive of people’s computers."
   }
 ]
