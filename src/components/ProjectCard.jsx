@@ -1,6 +1,7 @@
+import { Link } from "react-router";
 import asset from "../asset.js";
 
-// one project on the work or research page (data from src/data/work.json or research.json)
+// one project on the work, research or experiments page (data from src/data/*.json)
 // wide and short: media on the left, text on the right
 export default function ProjectCard({ project }) {
   const isVideo = /\.(webm|mp4)$/i.test(project.media);
@@ -20,15 +21,23 @@ export default function ProjectCard({ project }) {
       )}
       <div className="project-card-text">
         <h3>{project.title}</h3>
-        <p className="status">[{project.status}]</p>
-        <ul className="tags">
-          {project.tags.map((tag) => (
-            <li className="tag" key={tag}>
-              {tag}
-            </li>
-          ))}
-        </ul>
+        {/* status, tags, description and link are all optional */}
+        {project.status && <p className="status">[{project.status}]</p>}
+        {project.tags && (
+          <ul className="tags">
+            {project.tags.map((tag) => (
+              <li className="tag" key={tag}>
+                {tag}
+              </li>
+            ))}
+          </ul>
+        )}
         {project.description && <p>{project.description}</p>}
+        {project.link && (
+          <Link className="project-card-link" to={project.link.to}>
+            {project.link.label}
+          </Link>
+        )}
       </div>
     </article>
   );

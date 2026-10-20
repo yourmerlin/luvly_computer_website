@@ -1,0 +1,54 @@
+[
+  {
+    "title": "experimental capture studies",
+    "status": "N/A",
+    "tags": [
+      "N/A"
+    ],
+    "description": "a collection of all the studies i did for experimental capture",
+    "link": {
+      "to": "/experimental-capture",
+      "label": "check out the process ->"
+    }
+  },
+  {
+    "title": "please verify your identity",
+    "status": "N/A",
+    "tags": [
+      "N/A"
+    ],
+    "description": "learn how bytes worked and able to create my own program to delete/rearrange bytes in a image"
+  },
+  {
+    "title": "overconsumed",
+    "status": "N/A",
+    "tags": [
+      "N/A"
+    ],
+    "description": "able to connect arduino connection (sensor) to p5js"
+  },
+  {
+    "title": "pieces of you",
+    "status": "N/A",
+    "tags": [
+      "N/A"
+    ],
+    "description": "learned how to write SQL + basic database structure"
+  },
+  {
+    "title": "notes around the web",
+    "status": "N/A",
+    "tags": [
+      "N/A"
+    ],
+    "description": "learned how to make my own chrome extension!"
+  },
+  {
+    "title": "recorder of feelings",
+    "status": "N/A",
+    "tags": [
+      "N/A"
+    ],
+    "description": "learned how to have p5js input to export to an thermal printer (via arduino)"
+  }
+]

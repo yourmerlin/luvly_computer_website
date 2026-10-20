@@ -398,6 +398,11 @@ main.about-main {
   padding: 0.5rem;
   text-align: justify;
 }
+.project-card-link {
+  display: inline-block;
+  padding: 0.5rem;
+  color: var(--text-color);
+}
 
 /* phones: one card per row */
 @media (max-width: 700px) {
@@ -516,31 +521,4 @@ main.about-main {
   .about-cv ul {
     padding: 0.5rem 1rem;
   }
-}
-
-/* experiments page */
-.experiments-content {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding-top: 1rem;
-}
-.experiments-content article {
-  backdrop-filter: blur(10px);
-  background-color: transparent;
-  box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.244);
-  border: 1px solid var(--text-color);
-  width: auto;
-  height: fit-content;
-  align-items: left;
-  text-align: left;
-  justify-content: flex-start;
-  padding-bottom: 0.5rem;
-}
-.experiments-content article h3 {
-  font-size: 24px;
-}
-
-.experiments-content p {
-  font-size: 14px;
 }
