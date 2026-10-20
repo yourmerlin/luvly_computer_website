@@ -389,11 +389,19 @@ main.about-main {
   color: var(--text-color);
 }
 .project-card-text h3 {
+  color: var(--text-color);
   padding: 0.5rem;
   font-size: 32px;
   text-transform: uppercase;
+  text-decoration: none;
 }
-
+.project-card-text h3 a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+.project-card-text h3 a:hover {
+  text-decoration: underline;
+}
 .project-card-text p {
   padding: 0.5rem;
   text-align: justify;
