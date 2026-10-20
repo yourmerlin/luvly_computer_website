@@ -20,10 +20,12 @@ export default function ProjectCard({ project }) {
       )}
       <div className="project-card-text">
         <h3>{project.title}</h3>
-        <p className="status">({project.status})</p>
+        <p className="status">[{project.status}]</p>
         <ul className="tags">
           {project.tags.map((tag) => (
-            <li className="tag" key={tag}>{tag}</li>
+            <li className="tag" key={tag}>
+              {tag}
+            </li>
           ))}
         </ul>
         {project.description && <p>{project.description}</p>}

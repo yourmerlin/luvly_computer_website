@@ -4,11 +4,14 @@
    it only comes in regular, so headings stay at 400: bold would be faked and blurry */
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "bitcount-grid-single-circle", sans-serif;
+h3 {
+  font-family: bitcount-grid-single-square, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.jacquarda-bastarda-9-regular {
+  font-family: "Jacquarda Bastarda 9", serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -194,6 +197,9 @@ footer {
   max-width: 100%;
 }
 .about-main h2 {
+  font-family: bitcount-grid-single-square, sans-serif;
+  font-weight: 400;
+  font-style: normal;
   font-size: 36px;
 }
 main.about-main {
@@ -274,8 +280,10 @@ main.about-main {
   text-decoration: underline;
 }
 
-/* same size as the bio text */
 .about-cv h3 {
+  font-family: bitcount-grid-single-square, sans-serif;
+  font-weight: 400;
+  font-style: normal;
   display: inline;
   font-size: 14px;
 }
@@ -328,9 +336,8 @@ main.about-main {
   padding: 0.5rem 0.5rem;
   color: var(--text-color);
   opacity: 75%;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: thin;
-  font-style: italic;
 }
 .tags {
   display: flex;
@@ -382,6 +389,7 @@ main.about-main {
   color: var(--text-color);
 }
 .project-card-text h3 {
+  font-size: 24px;
   padding: 0.5rem;
   font-size: 32px;
   letter-spacing: 0.05em;
