@@ -8,7 +8,7 @@ import folders from "../data/play.json";
 // nudged a little off the circle so it looks hand-placed
 function webPoints(count) {
   if (count === 1) return [{ x: 50, y: 50 }];
-  const outer = count > 7 ? Math.ceil(count * 0.6) : count;
+  const outer = count > 9 ? Math.ceil(count * 0.6) : count;
   return Array.from({ length: count }, (_, i) => {
     const inner = i >= outer;
     const ringSize = inner ? count - outer : outer;
@@ -63,7 +63,6 @@ function FolderWindow({ folder, onClose }) {
                 y1={a.y}
                 x2={b.x}
                 y2={b.y}
-                pathLength="1"
                 vectorEffect="non-scaling-stroke"
                 style={{ animationDelay: `${i * 40}ms` }}
               />
