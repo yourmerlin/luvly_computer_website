@@ -20,9 +20,11 @@ export default function ProjectCard({ project }) {
         </div>
       )}
       <div className="project-card-text">
-        <h3><a href={project.link} target="_blank" rel="noopener noreferrer">
-          {project.title}
-        </a></h3>
+        <h3>
+          <a href={project.link} target="_blank" rel="noopener noreferrer">
+            {project.title}
+          </a>
+        </h3>
         {/* status, tags, description and link are all optional */}
         {project.status && <p className="status">[{project.status}]</p>}
         {project.tags && (

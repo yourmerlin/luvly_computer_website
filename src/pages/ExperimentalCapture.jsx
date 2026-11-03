@@ -2,7 +2,7 @@ import Page from "../components/Page.jsx";
 
 export default function ExperimentalCapture() {
   return (
-    <Page title="experimental-capture" themeToggle={false}>
+    <Page title="experimental-capture" themeToggle={false} cloud>
       {/*
         use a 4 x 3 grid to display images of scanner
         also have another grid of flops

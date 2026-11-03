@@ -1,0 +1,60 @@
+[
+  {
+    "name": "design",
+    "x": 14,
+    "y": 18,
+    "media": [
+      "play_imgs/webp/design/webp/coworkday.webp",
+      "play_imgs/webp/design/webp/dreamscape_pg1.webp",
+      "play_imgs/webp/design/webp/ewaste_jewelry_workshop.webp",
+      "play_imgs/webp/design/webp/FINAL_MOVIEPOSTER.webp",
+      "play_imgs/webp/design/webp/frolicrollinghill.webp",
+      "play_imgs/webp/design/webp/iloveinternetgirls.webp",
+      "play_imgs/webp/design/webp/rossetteworkshop.webp",
+      "play_imgs/webp/design/webp/workshop_hautglue_final.webp"
+    ]
+  },
+  {
+    "name": "digital art",
+    "x": 72,
+    "y": 12,
+    "media": [
+      "play_imgs/webp/digital art/oldwounds.webp",
+      "play_imgs/webp/digital art/recover.webp",
+      "play_imgs/webp/digital art/Sleepy.webp",
+      "play_imgs/webp/digital art/Underthesea_.webp"
+    ]
+  },
+  {
+    "name": "paintings",
+    "x": 44,
+    "y": 46,
+    "media": [
+      "play_imgs/webp/paintings/appreciationofinsecurities.webp",
+      "play_imgs/webp/paintings/delpalso.webp",
+      "play_imgs/webp/paintings/disappear.webp",
+      "play_imgs/webp/paintings/disconnectedlovers2.webp",
+      "play_imgs/webp/paintings/disconnectlovers-1.webp",
+      "play_imgs/webp/paintings/growth.webp",
+      "play_imgs/webp/paintings/home-1.webp",
+      "play_imgs/webp/paintings/inverted.webp",
+      "play_imgs/webp/paintings/red-lining.webp",
+      "play_imgs/webp/paintings/screnprint.webp",
+      "play_imgs/webp/paintings/theheights.webp",
+      "play_imgs/webp/paintings/whatisart.webp",
+      "play_imgs/webp/paintings/whatisthis.webp"
+    ]
+  },
+  {
+    "name": "textiles",
+    "x": 10,
+    "y": 74,
+    "media": ["play_imgs/webp/textiles/waves.webp"]
+  },
+  {
+    "name": "time based",
+    "x": 78,
+    "y": 70,
+    "media": ["play_imgs/webp/time-based/Enriquez_Memories_AnimationProject.webm"]
+  }
+]

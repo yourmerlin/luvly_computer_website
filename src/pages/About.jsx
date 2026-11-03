@@ -88,8 +88,8 @@ export default function About() {
           <br />
           <p>
             I am always involved in my community, whether by organizing a
-            wearable art/fashion show called haute glue, creating a temporary
-            interactive house on campus called a booth, or being part of a
+            wearable art and fashion show called Haute Glue, building a
+            temporary interactive house on campus for Booth, or writing for a
             satirical newspaper.
           </p>
           <br />

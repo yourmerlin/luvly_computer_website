@@ -78,6 +78,29 @@ button {
   pointer-events: none;
   image-rendering: pixelated; /* keep the blocks crisp when scaled up */
 }
+
+/* pixelcloud.png behind the whole page (play, experiments + experimental capture) */
+.cloud-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+/* blue text reads better on the sky than pink/white, in both themes */
+.cloud-page {
+  --bg-color: white;
+  --text-color: #0005d0;
+  color: var(--text-color);
+}
+/* solid white cards instead of the blur, so the sky doesn't show through the text */
+.cloud-page .project-card,
+.cloud-page .project-card:hover {
+  background-color: var(--bg-color);
+  backdrop-filter: none;
+}
 body {
   width: 75%;
   margin: 0 auto;
@@ -364,17 +387,22 @@ main.about-main {
   gap: 1.5rem;
 }
 .project-card {
+  backdrop-filter: blur(10px);
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  border: 1px solid var(--text-color);
+  padding: 1rem;
+}
+.project-card:hover {
+  border: 3px solid var(--text-color);
   backdrop-filter: blur(10px);
   box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.244);
-  padding: 1rem;
+  transition: all 0.2s;
 }
 /* media on the left, text takes the rest */
 .project-card-media {
   flex: 0 0 35%;
+  border: 3px solid var(--text-color);
 }
 .project-card-media img,
 .project-card-media video {
@@ -383,6 +411,7 @@ main.about-main {
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+
 .project-card-text {
   flex: 1;
   min-width: 0;
@@ -410,6 +439,180 @@ main.about-main {
   display: inline-block;
   padding: 0.5rem;
   color: var(--text-color);
+}
+
+/* play page: folders scattered on a "desktop" */
+.play-desktop {
+  position: relative;
+  height: 70vh;
+  min-height: 28rem;
+}
+.play-folder {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  width: 8rem;
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-family: "Roboto Mono", monospace;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+.play-folder img {
+  width: 100%;
+  transition: filter 0.2s;
+}
+.play-folder:hover {
+  transform: translateY(-4px) rotate(-3deg);
+}
+/* drop-shadow (not box-shadow) so it follows the folder's shape */
+.play-folder:hover img {
+  filter: drop-shadow(6px 10px 6px rgba(0, 0, 0, 0.35));
+}
+.play-folder:hover span {
+  text-decoration: underline;
+}
+
+/* pop-up window that opens from a folder */
+.play-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100; /* above the nav, under the wand cursor */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+}
+.play-window {
+  /* white + blue in both themes; everything inside reads these */
+  --bg-color: white;
+  --text-color: #0005d0;
+  color: var(--text-color);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  height: 85vh;
+  background-color: var(--bg-color);
+  border: 1px solid var(--text-color);
+  box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.244);
+  animation: play-pop 0.25s ease-out;
+}
+.play-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--text-color);
+  font-size: 12px;
+}
+.play-window-bar h3 {
+  flex: 1;
+  font-size: 20px;
+}
+.play-window-close {
+  background: transparent;
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1;
+  font-size: 18px;
+}
+.play-window-close:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+}
+
+/* the web: thumbnails sit on the points, svg lines run between them */
+.play-web {
+  position: relative;
+  flex: 1;
+  margin: 2rem;
+  --piece: 9rem;
+}
+.play-web-medium {
+  --piece: 13rem;
+}
+.play-web-large {
+  --piece: 22rem;
+}
+.play-web-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.play-web-lines line {
+  stroke: var(--text-color);
+  stroke-width: 1.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: play-draw 0.6s ease-out forwards;
+}
+.play-piece {
+  position: absolute;
+  width: var(--piece);
+  max-width: 40%;
+  padding: 0;
+  background: var(--bg-color);
+  border: 1px solid var(--text-color);
+  transform: translate(-50%, -50%);
+  animation: play-piece-in 0.35s ease-out backwards;
+  transition: transform 0.2s;
+}
+.play-piece img,
+.play-piece video {
+  display: block;
+  width: 100%;
+  max-height: calc(var(--piece) * 1.2);
+  object-fit: cover;
+}
+.play-piece:hover {
+  z-index: 1;
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+/* one piece shown big inside the window */
+.play-zoom {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: var(--bg-color);
+}
+.play-zoom img,
+.play-zoom video {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+@keyframes play-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+@keyframes play-piece-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+}
+@keyframes play-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 /* phones: one card per row */
@@ -528,5 +731,24 @@ main.about-main {
   }
   .about-cv ul {
     padding: 0.5rem 1rem;
+  }
+
+  /* play page: smaller folders and thumbnails so it all fits */
+  .play-folder {
+    width: 5rem;
+    font-size: 11px;
+  }
+  .play-window {
+    width: 95vw;
+  }
+  .play-web {
+    margin: 1rem;
+    --piece: 4.5rem;
+  }
+  .play-web-medium {
+    --piece: 6rem;
+  }
+  .play-web-large {
+    --piece: 12rem;
   }
 }

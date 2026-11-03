@@ -2,16 +2,24 @@ import { useEffect } from "react";
 import Nav from "./Nav.jsx";
 import DitherBackground from "./DitherBackground.jsx";
 import Footer from "./Footer.jsx";
+import asset from "../asset.js";
 
-// every page: sets the tab title, draws the nav, the footer, and (optionally) the dither bg
-export default function Page({ title, className, dither = false, themeToggle = true, children }) {
+// every page: sets the tab title, draws the nav, the footer, and (optionally) the dither or cloud bg
+export default function Page({ title, className, dither = false, cloud = false, themeToggle = true, children }) {
   useEffect(() => {
     document.title = title;
   }, [title]);
 
   return (
-    <div className={className}>
+    // cloud pages also get blue text (see .cloud-page in styles.css)
+    <div className={[className, cloud && "cloud-page"].filter(Boolean).join(" ") || undefined}>
       {dither && <DitherBackground />}
+      {cloud && (
+        <div
+          className="cloud-bg"
+          style={{ backgroundImage: `url(${asset("pixelcloud.png")})` }}
+        />
+      )}
       <Nav themeToggle={themeToggle} />
       {children}
       <Footer />
