@@ -19,20 +19,26 @@ export function Media({ path, zoomed = false }) {
 }
 
 // white + blue pop-up window (play folders, experiments gallery)
+// items is every piece in order (for the next/back arrows);
 // children is a function that gets `zoom(path)` to show one piece big
-export default function PopupWindow({ title, count, onClose, children }) {
-  const [zoomed, setZoomed] = useState(null);
+export default function PopupWindow({ title, items, onClose, children }) {
+  const [zoomed, setZoomed] = useState(null); // index into items, or null
+  const zoom = (path) => setZoomed(items.indexOf(path));
+  // wraps around: back from the first goes to the last
+  const step = (by) => setZoomed((i) => (i + by + items.length) % items.length);
 
-  // esc closes the zoomed piece first, then the window
+  // esc closes the zoomed piece first, then the window; arrow keys flip through
   useEffect(() => {
     const onKey = (event) => {
-      if (event.key !== "Escape") return;
-      if (zoomed) setZoomed(null);
-      else onClose();
+      if (event.key === "Escape") {
+        if (zoomed !== null) setZoomed(null);
+        else onClose();
+      } else if (zoomed !== null && event.key === "ArrowRight") step(1);
+      else if (zoomed !== null && event.key === "ArrowLeft") step(-1);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [zoomed, onClose]);
+  });
 
   // drawn straight into <body> so a blurred card can't trap the fixed backdrop inside it
   return createPortal(
@@ -44,19 +50,45 @@ export default function PopupWindow({ title, count, onClose, children }) {
         onClick={(event) => event.stopPropagation()}
       >
         <div className="play-window-bar">
+          <h3>{title}</h3>
           <button className="play-window-close" onClick={onClose} aria-label="close">
             ×
           </button>
-          <h3>{title}</h3>
-          <span>{count} items</span>
         </div>
 
-        {children(setZoomed)}
+        {children(zoom)}
 
-        {/* click a piece to see it big, click again to go back */}
-        {zoomed && (
+        {/* click a piece to see it big, click around it to go back */}
+        {zoomed !== null && (
           <div className="play-zoom" onClick={() => setZoomed(null)}>
-            <Media path={zoomed} zoomed />
+            {items.length > 1 && (
+              <button
+                className="play-zoom-arrow"
+                aria-label="back"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  step(-1);
+                }}
+              >
+                ‹
+              </button>
+            )}
+            {/* key makes videos restart when you flip to them */}
+            <div className="play-zoom-media" onClick={(event) => event.stopPropagation()}>
+              <Media key={items[zoomed]} path={items[zoomed]} zoomed />
+            </div>
+            {items.length > 1 && (
+              <button
+                className="play-zoom-arrow"
+                aria-label="next"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  step(1);
+                }}
+              >
+                ›
+              </button>
+            )}
           </div>
         )}
       </div>

@@ -51,7 +51,7 @@ function FolderWindow({ folder, onClose }) {
   const size = folder.media.length <= 2 ? "large" : folder.media.length <= 6 ? "medium" : "small";
 
   return (
-    <PopupWindow title={folder.name} count={folder.media.length} onClose={onClose}>
+    <PopupWindow title={folder.name} items={folder.media} onClose={onClose}>
       {(zoom) => (
         <div className={`play-web play-web-${size}`}>
           {/* viewBox matches the % positions; non-scaling-stroke keeps lines thin when stretched */}

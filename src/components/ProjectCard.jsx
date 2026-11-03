@@ -50,7 +50,7 @@ export default function ProjectCard({ project }) {
       {galleryOpen && (
         <PopupWindow
           title={project.title}
-          count={project.gallery.length}
+          items={project.gallery}
           onClose={() => setGalleryOpen(false)}
         >
           {(zoom) => (
