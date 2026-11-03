@@ -7,7 +7,6 @@ import Work from "./pages/Work.jsx";
 import Research from "./pages/Research.jsx";
 import About from "./pages/About.jsx";
 import Experiments from "./pages/Experiments.jsx";
-import ExperimentalCapture from "./pages/ExperimentalCapture.jsx";
 import Play from "./pages/Play.jsx";
 import Dreams from "./pages/Dreams.jsx";
 import Blogs from "./pages/Blogs.jsx";
@@ -32,7 +31,8 @@ export default function App() {
         <Route path="/research" element={<Research />} />
         <Route path="/about" element={<About />} />
         <Route path="/experiments" element={<Experiments />} />
-        <Route path="/experimental-capture" element={<ExperimentalCapture />} />
+        {/* experimental capture is a pop-up gallery on the experiments page now */}
+        <Route path="/experimental-capture" element={<Navigate to="/experiments" replace />} />
         <Route path="/play" element={<Play />} />
         <Route path="/dreams" element={<Dreams />} />
         <Route path="/blogs" element={<Blogs />} />

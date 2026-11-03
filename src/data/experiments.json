@@ -1,18 +1,26 @@
 [
   {
     "title": "experimental capture studies",
+    "media": "experiments_imgs/excap_tests/security_selfie.webp",
     "status": "N/A",
     "tags": [
       "N/A"
     ],
     "description": "a collection of all the studies i did for experimental capture",
-    "link": {
-      "to": "/experimental-capture",
-      "label": "check out the process ->"
-    }
+    "gallery": [
+      "experiments_imgs/excap_tests/flatbedScan1.webp",
+      "experiments_imgs/excap_tests/flatbedScan2.webp",
+      "experiments_imgs/excap_tests/flatbedScan3.webp",
+      "experiments_imgs/excap_tests/pillowGif.gif",
+      "experiments_imgs/excap_tests/pillow3Drender.webm",
+      "experiments_imgs/excap_tests/pillow3DGaussian.webm",
+      "experiments_imgs/excap_tests/pillow3DGaussian2.webm",
+      "experiments_imgs/excap_tests/security_selfie.webp"
+    ]
   },
   {
     "title": "please verify your identity",
+    "media": "experiments_imgs/webm/pleaseverifyyouridentity.webm",
     "status": "N/A",
     "tags": [
       "N/A"
@@ -21,6 +29,7 @@
   },
   {
     "title": "overconsumed",
+    "media": "experiments_imgs/webm/overconsuming.webm",
     "status": "N/A",
     "tags": [
       "N/A"
@@ -37,6 +46,7 @@
   },
   {
     "title": "notes around the web",
+    "media": "experiments_imgs/webm/notes-around-the-web-docu.webm",
     "status": "N/A",
     "tags": [
       "N/A"
@@ -45,6 +55,7 @@
   },
   {
     "title": "recorder of feelings",
+    "media": "experiments_imgs/webm/feelingHolderFInal.webm",
     "status": "N/A",
     "tags": [
       "N/A"

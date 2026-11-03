@@ -79,7 +79,7 @@ button {
   image-rendering: pixelated; /* keep the blocks crisp when scaled up */
 }
 
-/* pixelcloud.png behind the whole page (play, experiments + experimental capture) */
+/* pixelcloud.png behind the whole page (play + experiments) */
 .cloud-bg {
   position: fixed;
   inset: 0;
@@ -439,6 +439,11 @@ main.about-main {
   display: inline-block;
   padding: 0.5rem;
   color: var(--text-color);
+  /* it's a button (opens the gallery) but looks like a link */
+  background: transparent;
+  border: none;
+  font: inherit;
+  text-decoration: underline;
 }
 
 /* play page: folders scattered on a "desktop" */
@@ -579,6 +584,35 @@ main.about-main {
   transform: translate(-50%, -50%) scale(1.08);
 }
 
+/* experiments gallery: same window, pieces in a scrolling grid */
+.gallery-grid {
+  flex: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  align-items: start;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+.gallery-piece {
+  padding: 0;
+  background: var(--bg-color);
+  border: 1px solid var(--text-color);
+  animation: play-fade-in 0.35s ease-out backwards;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.gallery-piece img,
+.gallery-piece video {
+  display: block;
+  width: 100%;
+  max-height: 22rem;
+  object-fit: cover;
+}
+.gallery-piece:hover {
+  transform: translateY(-3px);
+  box-shadow: 6px 10px 6px rgba(0, 0, 0, 0.2);
+}
+
 /* one piece shown big inside the window */
 .play-zoom {
   position: absolute;
@@ -607,6 +641,12 @@ main.about-main {
   from {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.6);
+  }
+}
+@keyframes play-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
   }
 }
 @keyframes play-draw {

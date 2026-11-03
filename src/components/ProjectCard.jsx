@@ -1,10 +1,12 @@
-import { Link } from "react-router";
+import { useState } from "react";
 import asset from "../asset.js";
+import PopupWindow, { Media } from "./PopupWindow.jsx";
 
 // one project on the work, research or experiments page (data from src/data/*.json)
 // wide and short: media on the left, text on the right
 export default function ProjectCard({ project }) {
   const isVideo = /\.(webm|mp4)$/i.test(project.media);
+  const [galleryOpen, setGalleryOpen] = useState(false);
 
   return (
     <article className="project-card">
@@ -37,12 +39,31 @@ export default function ProjectCard({ project }) {
           </ul>
         )}
         {project.description && <p>{project.description}</p>}
-        {project.link && (
-          <Link className="project-card-link" to={project.link.to}>
-            {project.link.label}
-          </Link>
+        {project.gallery && (
+          <button className="project-card-link" onClick={() => setGalleryOpen(true)}>
+            check out the process -&gt;
+          </button>
         )}
       </div>
+
+      {/* "gallery" in the json: every piece in a pop-up grid, in the order listed */}
+      {galleryOpen && (
+        <PopupWindow
+          title={project.title}
+          count={project.gallery.length}
+          onClose={() => setGalleryOpen(false)}
+        >
+          {(zoom) => (
+            <div className="gallery-grid">
+              {project.gallery.map((path) => (
+                <button key={path} className="gallery-piece" onClick={() => zoom(path)}>
+                  <Media path={path} />
+                </button>
+              ))}
+            </div>
+          )}
+        </PopupWindow>
+      )}
     </article>
   );
 }
