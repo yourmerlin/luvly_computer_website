@@ -49,7 +49,12 @@
     "name": "textiles",
     "x": 10,
     "y": 74,
-    "media": ["play_imgs/webp/textiles/waves.webp"]
+    "media": [
+      "play_imgs/webp/textiles/waves.webp",
+      "play_imgs/webp/textiles/batikDyePainting_Final.webp",
+      "play_imgs/webp/textiles/dyepainting.webp",
+      "play_imgs/webp/textiles/keyboardcolor.webp"
+    ]
   },
   {
     "name": "time based",

@@ -2,10 +2,8 @@
   {
     "title": "experimental capture studies",
     "media": "experiments_imgs/excap_tests/security_selfie.webp",
-    "status": "N/A",
-    "tags": [
-      "N/A"
-    ],
+    "status": "in-progress",
+    "tags": ["computational photography", "gaussian splats", "photogrammetry"],
     "description": "a collection of all the studies i did for experimental capture",
     "gallery": [
       "experiments_imgs/excap_tests/flatbedScan1.webp",
@@ -21,45 +19,33 @@
   {
     "title": "please verify your identity",
     "media": "experiments_imgs/webm/pleaseverifyyouridentity.webm",
-    "status": "N/A",
+    "status": "finished",
     "tags": [
-      "N/A"
+      "computer vision",
+      "image processing",
+      "computational photography"
     ],
     "description": "learn how bytes worked and able to create my own program to delete/rearrange bytes in a image"
   },
   {
     "title": "overconsumed",
     "media": "experiments_imgs/webm/overconsuming.webm",
-    "status": "N/A",
-    "tags": [
-      "N/A"
-    ],
+    "status": "finished",
+    "tags": ["arduino", "p5js", "particle systems"],
     "description": "able to connect arduino connection (sensor) to p5js"
-  },
-  {
-    "title": "pieces of you",
-    "status": "N/A",
-    "tags": [
-      "N/A"
-    ],
-    "description": "learned how to write SQL + basic database structure"
   },
   {
     "title": "notes around the web",
     "media": "experiments_imgs/webm/notes-around-the-web-docu.webm",
-    "status": "N/A",
-    "tags": [
-      "N/A"
-    ],
+    "status": "finished",
+    "tags": ["chrome extension"],
     "description": "learned how to make my own chrome extension!"
   },
   {
     "title": "recorder of feelings",
     "media": "experiments_imgs/webm/feelingHolderFInal.webm",
-    "status": "N/A",
-    "tags": [
-      "N/A"
-    ],
+    "status": "finished",
+    "tags": ["p5js", "arduino", "thermal printer"],
     "description": "learned how to have p5js input to export to an thermal printer (via arduino)"
   }
 ]
