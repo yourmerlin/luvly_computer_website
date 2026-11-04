@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { useTheme } from "../theme.jsx";
+import ScrambleLink from "./ScrambleLink.jsx";
 
 // on phones the links hide behind a "menu" button that drops them down
 export default function Nav({ themeToggle = true }) {
@@ -35,11 +36,12 @@ export default function Nav({ themeToggle = true }) {
       </div>
       <ul id="nav-links" className={open ? "is-open" : undefined} onClick={closeOnLink}>
         <li className="nav-home-item"><Link to="/">𐙚</Link></li>
-        <li><Link to="/work">work</Link></li>
-        <li><Link to="/research">research</Link></li>
-        <li><Link to="/about">about</Link></li>
-        <li><Link to="/experiments">experiments</Link></li>
-        <li><Link to="/play">play</Link></li>
+        {/* these scramble into binary on hover (see ScrambleLink) */}
+        <li><ScrambleLink to="/work" text="work" /></li>
+        <li><ScrambleLink to="/research" text="research" /></li>
+        <li><ScrambleLink to="/about" text="about" /></li>
+        <li><ScrambleLink to="/experiments" text="experiments" /></li>
+        <li><ScrambleLink to="/play" text="play" /></li>
         {themeToggle && (
           <li className="nav-theme-item">
             <button id="themeToggle" aria-label="toggle theme" onClick={toggleTheme}>
