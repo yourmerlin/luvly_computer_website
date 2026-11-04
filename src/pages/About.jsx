@@ -19,12 +19,13 @@ const LINKS = [
 
 const CV = [
   {
-    heading: "showcases/galleries",
+    heading: "talks/workshops",
     items: [
-      "Fidget Camp Showcase @ Pebblebed | SF, CA | 2026",
-      "Dematerialize @ The Studio for Creative Inquiry | Pittsburgh, PA | 2025",
-      "Disconnected Lovers @ Frame Gallery | Pittsburgh, PA | 2024",
-      "Disconnected Lovers @ Wick Monet | Pittsburgh, PA | 2024",
+      "E-waste Jewelry Workshop (intro to soldering) @ Haute Glue | Pittsburgh, PA | 2026",
+      "Soft Circuit Wizard Hat & NFC Wands Workshop @ Haute Glue | Pittsburgh, PA | 2026",
+      "Soft Circuit Crown Workshop @ The Made | Oakland, CA | 2026",
+      "Batik, Tub-Dyeing & Dye Painting Workshop @ Fidget Camp | SF, CA | 2026",
+      "Introduction to Laser Cutting @ CMU Pre-College | Pittsburgh, PA | 2025",
     ],
   },
   {
@@ -38,13 +39,12 @@ const CV = [
     ],
   },
   {
-    heading: "talks/workshops",
+    heading: "showcases/galleries",
     items: [
-      "E-waste Jewelry Workshop (intro to soldering) @ Haute Glue | Pittsburgh, PA | 2026",
-      "Soft Circuit Wizard Hat & NFC Wands Workshop @ Haute Glue | Pittsburgh, PA | 2026",
-      "Soft Circuit Crown Workshop @ The Made | Oakland, CA | 2026",
-      "Batik, Tub-Dyeing & Dye Painting Workshop @ Fidget Camp | SF, CA | 2026",
-      "Introduction to Laser Cutting @ CMU Pre-College | Pittsburgh, PA | 2025",
+      "Fidget Camp Showcase @ Pebblebed | SF, CA | 2026",
+      "Dematerialize @ The Studio for Creative Inquiry | Pittsburgh, PA | 2025",
+      "Disconnected Lovers @ Frame Gallery | Pittsburgh, PA | 2024",
+      "Disconnected Lovers @ Wick Monet | Pittsburgh, PA | 2024",
     ],
   },
   {
