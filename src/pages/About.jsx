@@ -65,29 +65,28 @@ export default function About() {
             <img
               src={asset("sillyheadshot2026.webp")}
               alt="headshot of merlin with stickers surrounding the image"
-              width="500"
-              height="500"
+              width="800"
+              height="800"
             />
           </section>
         </section>
         <section className="about-bio">
           <h2>Merlin Susana Enriquez</h2>
           <br />
-          <p>creative tech + hci + design @ carnegie mellon university</p>
+          <p>new media arts + hci + design @ carnegie mellon university</p>
           <br />
           <p>
             I am a creative technologist, researcher, and educator working at
-            the intersection of art, textiles, and technology. My research
-            focuses on soft electronics, holding people's data with care, and
-            creating open-source programs that build pathways into STEAM. Right
-            now, I'm sewing circuits onto fabric, using 3D printers to create
-            intricate batik patterns, and disguising technology within fashion
-            pieces ୭˚. ᵎᵎ
+            the intersection of art and technology. My research focuses on
+            e-textiles & wearables, and creating open-source programs that build
+            pathways into STEAM. Right now, I'm interested in computational
+            textiles, using 3D printers to create intricate batik patterns, and
+            disguising technology within fashion pieces ୭˚. ᵎᵎ
           </p>
           <br />
           <p>
             My conceptual practice focuses on missing or absent data, misusing
-            surveillance technology, and creating playful websites. Some of my
+            surveillance technology, and making computing playful. Some of my
             work is rooted in activism, and some of it is just about making
             technology feel silly, playful, and unserious. I wholeheartedly
             believe play is a form of resistance. There has to be a balance
@@ -98,7 +97,7 @@ export default function About() {
           <p>
             I am always involved in my community, whether by organizing a
             wearable art and fashion show called Haute Glue, building a
-            temporary interactive house on campus for Booth, or writing for a
+            temporary interactive house on campus for Booth, or being of a
             satirical newspaper.
           </p>
           <br />
