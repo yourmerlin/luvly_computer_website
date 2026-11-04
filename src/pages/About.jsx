@@ -3,6 +3,10 @@ import Page from "../components/Page.jsx";
 import asset from "../asset.js";
 
 const LINKS = [
+  {
+    label: "senrique[@]andrew[dot]cmu[dot]edu",
+    href: "mailto:senrique@andrew.cmu.edu",
+  },
   { label: "linkedin", href: "https://www.linkedin.com/in/senrique/" },
   {
     label: "resume",
@@ -26,17 +30,19 @@ const CV = [
   {
     heading: "awards/honors",
     items: [
-      "Samuel Rosenberg Junior Award, issued by Carnegie Mellon School of Art. 2026.",
-      "Honorable Mention: Henry Armero Memorial Award for Inclusive Creativity, issued by the BXA Intercollege Degree Program. 2026.",
-      "Frank Ratchye Further Fund Recipient, issued by the Frank Ratchye Studio. 2025.",
+      "Frank Ratchye Further Fund Research Grant($1,600), issued by The Studio of Creative Inquiry. 2026.",
+      "Samuel Rosenberg Junior Award($1,000), issued by Carnegie Mellon School of Art. 2026.",
+      "Honorable Mention: Henry Armero Memorial Award for Inclusive Creativity($500), issued by the BXA Intercollege Degree Program. 2026.",
+      "Frank Ratchye Further Fund Recipient($500), issued by The Studio of Creative Inquiry. 2025.",
       "Dean's List, issued by Carnegie Mellon University. 2023 + 2024.",
     ],
   },
   {
     heading: "talks/workshops",
     items: [
-      "Soft Circuit Wizard Hat & NFC Wands Workshop @ haute glue | Pittsburgh, PA | 2026",
-      "Soft Circuit Crown Workshop @ the made | Oakland, CA | 2026",
+      "E-waste Jewelry Workshop (intro to soldering) @ Haute Glue | Pittsburgh, PA | 2026",
+      "Soft Circuit Wizard Hat & NFC Wands Workshop @ Haute Glue | Pittsburgh, PA | 2026",
+      "Soft Circuit Crown Workshop @ The Made | Oakland, CA | 2026",
       "Batik, Tub-Dyeing & Dye Painting Workshop @ Fidget Camp | SF, CA | 2026",
       "Introduction to Laser Cutting @ CMU Pre-College | Pittsburgh, PA | 2025",
     ],
