@@ -22,7 +22,7 @@ const CV = [
     heading: "showcases/galleries",
     items: [
       "Fidget Camp Showcase @ Pebblebed | SF, CA | 2026",
-      "Dematerialize @ Studio for Creative Inquiry | Pittsburgh, PA | 2025",
+      "Dematerialize @ The Studio for Creative Inquiry | Pittsburgh, PA | 2025",
       "Disconnected Lovers @ Frame Gallery | Pittsburgh, PA | 2024",
       "Disconnected Lovers @ Wick Monet | Pittsburgh, PA | 2024",
     ],
@@ -30,10 +30,10 @@ const CV = [
   {
     heading: "awards/honors",
     items: [
-      "Frank Ratchye Further Fund Research Grant($1,600), issued by The Studio of Creative Inquiry. 2026.",
+      "Frank Ratchye Further Fund Research Grant($1,600), issued by The Studio for Creative Inquiry. 2026.",
       "Samuel Rosenberg Junior Award($1,000), issued by Carnegie Mellon School of Art. 2026.",
       "Honorable Mention: Henry Armero Memorial Award for Inclusive Creativity($500), issued by the BXA Intercollege Degree Program. 2026.",
-      "Frank Ratchye Further Fund Recipient($500), issued by The Studio of Creative Inquiry. 2025.",
+      "Frank Ratchye Further Fund Recipient($500), issued by The Studio for Creative Inquiry. 2025.",
       "Dean's List, issued by Carnegie Mellon University. 2023 + 2024.",
     ],
   },
