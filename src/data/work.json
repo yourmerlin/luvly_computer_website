@@ -1,26 +1,32 @@
 [
   {
-    "title": "real american",
-    "media": "work_imgs/real_american.webp",
-    "status": "done",
-    "categories": ["techy", "artsy"],
-    "tags": ["digital fabrication", "research", "installation"],
-    "description": "This piece is dedicated to immigrants—too often rendered invisible in the American narrative. The green card, while symbolizing legal residency, still carries the label \"resident alien,\" a term that strips individuals of humanity and reinforces the idea they will never be seen as truly American."
-  },
-  {
     "title": "computers.json",
     "media": "work_imgs/computer_gif.gif",
     "status": "done",
     "categories": ["techy", "design"],
-    "tags": ["web dev", "photogrammetry", "3D model pipelines"],
+    "tags": [
+      "web dev",
+      "react.js",
+      "html/css/js",
+      "photogrammetry",
+      "3D model pipelines"
+    ],
     "description": "What if we made a home for our computers? This is not an archive of the product itself, but an intimate story about the person who owns the computer. Data isn’t always shown in numbers or strings; it can be shown by how many stickers you have. Even the dents, scratches, and worn-down keys are data about how you treat your technology. These intimate details invite others to see the imperfections and personalizations. Computers.json is the home for our computers, and I want YOU to be a part of it!"
+  },
+  {
+    "title": "real american",
+    "media": "work_imgs/real_american.webp",
+    "status": "done",
+    "categories": ["techy", "artsy"],
+    "tags": ["digital fabrication", "CAD", "laser-cutting"],
+    "description": "This piece is dedicated to immigrants—too often rendered invisible in the American narrative. The green card, while symbolizing legal residency, still carries the label \"resident alien,\" a term that strips individuals of humanity and reinforces the idea they will never be seen as truly American."
   },
   {
     "title": "ceo wAIfus",
     "media": "work_imgs/ceo_waifus.webp",
     "status": "in-progress",
     "categories": ["artsy", "techy"],
-    "tags": ["digital fabrication", "soft sculpture", "physical computing"],
+    "tags": ["digital fabrication", "electronics", "physical computing", "AI"],
     "description": "wAifu CEOs is a critique of humans’ relationships with autonomous machines that have no consciousness. When did algorithms and probability become a replacement for human intimacy? In this “AI era,” people are forming romantic relationships with their AI agents or even using them as therapists. This interactive body pillow is a satirical piece: users can sleep with their AI agent or talk to it like a human (and it talks back!). Instead of displaying characterized versions of AI agents, I put the people at the forefront of these AI companies, the CEOs, front and center. Yes, this is the Sam Altman body pillow."
   },
   {
