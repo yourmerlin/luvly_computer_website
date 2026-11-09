@@ -18,10 +18,16 @@ export default function Nav({ themeToggle = true }) {
   return (
     <nav>
       {/* phones only: bow on the left, theme toggle + menu on the right */}
-      <Link to="/" className="nav-home">𐙚</Link>
+      <Link to="/" className="nav-home">
+        𐙚
+      </Link>
       <div className="nav-controls">
         {themeToggle && (
-          <button className="nav-theme" aria-label="toggle theme" onClick={toggleTheme}>
+          <button
+            className="nav-theme"
+            aria-label="toggle theme"
+            onClick={toggleTheme}
+          >
             {themeIcon}
           </button>
         )}
@@ -34,17 +40,34 @@ export default function Nav({ themeToggle = true }) {
           {open ? "close" : "menu"}
         </button>
       </div>
-      <ul id="nav-links" className={open ? "is-open" : undefined} onClick={closeOnLink}>
-        <li className="nav-home-item"><Link to="/">𐙚</Link></li>
+      <ul
+        id="nav-links"
+        className={open ? "is-open" : undefined}
+        onClick={closeOnLink}
+      >
+        <li className="nav-home-item">
+          <Link to="/">𐙚</Link>
+        </li>
         {/* these scramble into binary on hover (see ScrambleLink) */}
-        <li><ScrambleLink to="/work" text="work" /></li>
-        <li><ScrambleLink to="/research" text="research" /></li>
-        <li><ScrambleLink to="/about" text="about" /></li>
-        <li><ScrambleLink to="/experiments" text="experiments" /></li>
-        <li><ScrambleLink to="/play" text="play" /></li>
+        <li>
+          <ScrambleLink to="/about" text="about" />
+        </li>
+        <li>
+          <ScrambleLink to="/research" text="research" />
+        </li>
+        <li>
+          <ScrambleLink to="/experiments" text="experiments" />
+        </li>
+        <li>
+          <ScrambleLink to="/play" text="play" />
+        </li>
         {themeToggle && (
           <li className="nav-theme-item">
-            <button id="themeToggle" aria-label="toggle theme" onClick={toggleTheme}>
+            <button
+              id="themeToggle"
+              aria-label="toggle theme"
+              onClick={toggleTheme}
+            >
               {themeIcon}
             </button>
           </li>

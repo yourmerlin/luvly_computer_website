@@ -8,13 +8,16 @@ const TABS = ["all", "artsy", "techy", "design"];
 export default function Work() {
   const [tab, setTab] = useState("all");
   const visible = projects.filter(
-    (project) => tab === "all" || project.categories.includes(tab)
+    (project) => tab === "all" || project.categories.includes(tab),
   );
 
   return (
     <Page title="work">
       <section className="work-header">
-        <h2>selected projects</h2>
+        <h2>
+          Hey! I am Merlin Enriquez :-) I am a creative technologist / designer
+          / web developer / n more!
+        </h2>
         <p>
           web dev, design, creative code, digital fabrication, fashion design, n
           more!

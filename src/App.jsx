@@ -27,12 +27,14 @@ export default function App() {
     <ThemeProvider>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/work" element={<Work />} />
-        <Route path="/research" element={<Research />} />
         <Route path="/about" element={<About />} />
+        <Route path="/research" element={<Research />} />
         <Route path="/experiments" element={<Experiments />} />
         {/* experimental capture is a pop-up gallery on the experiments page now */}
-        <Route path="/experimental-capture" element={<Navigate to="/experiments" replace />} />
+        <Route
+          path="/experimental-capture"
+          element={<Navigate to="/experiments" replace />}
+        />
         <Route path="/play" element={<Play />} />
         <Route path="/dreams" element={<Dreams />} />
         <Route path="/blogs" element={<Blogs />} />
@@ -44,7 +46,3 @@ export default function App() {
     </ThemeProvider>
   );
 }
-
-
-
-
