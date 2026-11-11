@@ -52,11 +52,11 @@ export default function ProjectCard({ project, detailed = false }) {
 
         <div className="project-card-text">
           <h3>{project.title}</h3>
-          {/* status and tags are optional */}
+          {/* status and tools are optional */}
           {project.status && <p className="status">[{project.status}]</p>}
-          {project.tags && (
+          {project.tools && (
             <ul className="tags">
-              {project.tags.map((tag) => (
+              {project.tools.map((tag) => (
                 <li className="tag" key={tag}>
                   {tag}
                 </li>
@@ -97,9 +97,9 @@ export default function ProjectCard({ project, detailed = false }) {
                   {project.status && (
                     <p className="status">[{project.status}]</p>
                   )}
-                  {project.tags && (
+                  {project.tools && (
                     <ul className="tags">
-                      {project.tags.map((tag) => (
+                      {project.tools.map((tag) => (
                         <li className="tag" key={tag}>
                           {tag}
                         </li>
@@ -109,10 +109,10 @@ export default function ProjectCard({ project, detailed = false }) {
                   {paragraphs.map((text) => (
                     <p key={text}>{text}</p>
                   ))}
-                  {project.link && (
+                  {project.links && (
                     <a
                       className="project-card-link"
-                      href={project.link}
+                      href={project.links}
                       target="_blank"
                       rel="noopener noreferrer"
                     >

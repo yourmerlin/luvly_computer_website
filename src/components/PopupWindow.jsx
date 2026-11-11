@@ -72,7 +72,17 @@ export default function PopupWindow({ title, items, onClose, className, children
             )}
             {/* key makes videos restart when you flip to them */}
             <div className="play-zoom-media" onClick={(event) => event.stopPropagation()}>
-              <Media key={items[zoomed]} path={items[zoomed]} zoomed />
+              {/* frame hugs the image so the × sits on its corner */}
+              <div className="play-zoom-frame">
+                <Media key={items[zoomed]} path={items[zoomed]} zoomed />
+                <button
+                  className="play-zoom-close"
+                  aria-label="exit zoom"
+                  onClick={() => setZoomed(null)}
+                >
+                  ×
+                </button>
+              </div>
             </div>
             {items.length > 1 && (
               <button
