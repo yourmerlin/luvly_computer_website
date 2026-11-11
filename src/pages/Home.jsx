@@ -4,42 +4,8 @@
 import { useState } from "react";
 import Page from "../components/Page.jsx";
 import ProjectCard from "../components/ProjectCard.jsx";
+import AsciiProfile from "../components/AsciiProfile.jsx";
 import projects from "../data/work.json";
-
-// const STARS =
-//   "┆　┆　┆　┆　┆\n┆　┆  ࣪ ˖☆ ࣪⭑┆ ݁˖ .☆ . ݁ ˖ \n☆⊹ ࣪ ┆ ˖ ࣪　⊹ ࣪ ★ ⋆.˚  ⊹ ࣪\n   ࣪ ˖⋆˚★ ₊ ⊹　  ࣪˖ ࣪ ₊  ࣪ ˖　\n. ݁　⊹ ࣪ ˖　　　 ࣪ ˖\n　　.  ݁　　　  ݁\n　　. \n";
-
-// the computer drawing (split around the link to dreams)
-// const COMPUTER_TOP =
-//   "             ________________________________________________\n            /                                                \\\n           |    _________________________________________     |\n           |   |                                         |    |\n           |   |  C:\\> welcome to my dreams...           |    |\n           |   |                                         |    |\n           |   |         ";
-// const COMPUTER_BOTTOM =
-//   "          |    |\n           |   |                                         |    |\n           |   |                                         |    |\n           |   |                                         |    |\n           |   |                                         |    |\n           |   |                                         |    |\n           |   |                                         |    |\n           |   |                                         |    |\n           |   |   > studying  new media art &           |    |\n           |   |             human computer interaction  |    |\n           |   |_________________________________________|    |\n           |                                                  |\n            \\_________________________________________________/\n                   \\___________________________________/\n                ___________________________________________\n             _-'    .-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.  --- `-_\n          _-'.-.-. .---.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.  .-.-.`-_\n       _-'.-.-.-. .---.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-`__`. .-.-.-.`-_\n    _-'.-.-.-.-. .-----.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-----. .-.-.-.-.`-_\n _-'.-.-.-.-.-. .---.-. .-------------------------. .-.---. .---.-.-.-.`-_\n:-------------------------------------------------------------------------:\n`---._.-------------------------------------------------------------._.---'\n\n";
-
-// export default function Home() {
-//   return (
-//     <Page title="luvlycomputer">
-//       <main className="home-main">
-//         <section className="stars-border">
-//           {[1, 2, 3, 4, 5].map((n) => (
-//             <pre key={n}>{STARS}</pre>
-//           ))}
-//         </section>
-//         <section className="home-content">
-//           <pre>
-//             {COMPUTER_TOP}
-//             <Link
-//               to="/dreams"
-//               style={{ color: "inherit", textDecoration: "none" }}
-//             >
-//               {"    click to see more_"}
-//             </Link>
-//             {COMPUTER_BOTTOM}
-//           </pre>
-//         </section>
-//       </main>
-//     </Page>
-//   );
-// }
 
 const TABS = ["all", "artsy", "techy", "design"];
 
@@ -50,15 +16,22 @@ export default function Home() {
   );
 
   return (
-    <Page title="work">
+    <Page title="hello world!">
+      <section className="work-intro">
+        <AsciiProfile />
+        <div className="work-intro-text">
+          <h2>C:\Merlin\Enriquez</h2>
+          <h4>
+            {">"}is a creative technologist / front-end developer<br></br>/ ux
+            designer / hci researcher / STEM educator
+            <br></br>
+            <br></br>
+            {">"}focusing on building technology that holds you with care_
+          </h4>
+        </div>
+      </section>
       <section className="work-header">
-        <h2> Hey! I am Merlin Enriquez :-)</h2>
-        <p>
-          I am a creative technologist / designer/ web developer / researcher/
-          educator / n more!
-        </p>
-        <h3>selected projects</h3>
-        <ul className="work-tabs">
+        {/* <ul className="work-tabs">
           {TABS.map((name) => (
             <li key={name}>
               <button
@@ -69,7 +42,7 @@ export default function Home() {
               </button>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </section>
       {/* one column of wide, short cards (same as the research page) */}
       <main className="project-list">

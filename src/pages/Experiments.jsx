@@ -8,8 +8,8 @@ export default function Experiments() {
       <section className="work-header">
         <h2>my mad experiments</h2>
         <p>
-          testing out new technical mediums, documenting trial + errors. some
-          projects are somewhat failures and flops
+          testing out new technical mediums, documenting trials + errors. some
+          projects are kinda failures and flops
         </p>
       </section>
       {/* same cards as the work + research pages */}

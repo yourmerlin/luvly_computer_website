@@ -25,14 +25,14 @@
       "image processing",
       "computational photography"
     ],
-    "description": "learn how bytes worked and able to create my own program to delete/rearrange bytes in a image"
+    "description": "learned how bytes work and was able to create my own program to delete/rearrange bytes in an image"
   },
   {
     "title": "overconsumed",
     "media": "experiments_imgs/webm/overconsuming.webm",
     "status": "finished",
     "tags": ["arduino", "p5js", "particle systems"],
-    "description": "able to connect arduino connection (sensor) to p5js"
+    "description": "was able to connect an arduino (sensor) to p5js"
   },
   {
     "title": "notes around the web",
@@ -46,6 +46,6 @@
     "media": "experiments_imgs/webm/feelingHolderFInal.webm",
     "status": "finished",
     "tags": ["p5js", "arduino", "thermal printer"],
-    "description": "learned how to have p5js input to export to an thermal printer (via arduino)"
+    "description": "learned how to send p5js input to a thermal printer (via arduino)"
   }
 ]

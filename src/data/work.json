@@ -2,75 +2,46 @@
   {
     "title": "computers.json",
     "media": "work_imgs/computer_gif.gif",
-    "status": "done",
     "categories": ["techy", "design"],
-    "tags": [
-      "web dev",
-      "react.js",
-      "html/css/js",
-      "photogrammetry",
-      "3D model pipelines"
-    ],
-    "description": "What if we made a home for our computers? This is not an archive of the product itself, but an intimate story about the person who owns the computer. Data isn’t always shown in numbers or strings; it can be shown by how many stickers you have. Even the dents, scratches, and worn-down keys are data about how you treat your technology. These intimate details invite others to see the imperfections and personalizations. Computers.json is the home for our computers, and I want YOU to be a part of it!"
+    "tags": ["web dev", "react.js", "html/css/js", "3D model pipelines"],
+    "description": "A digital archive of personal computers. Using free, accessible tools, it constructs high-fidelity 3D renders for anyone to use, creating an intimate space on the web that tells a story about each owner through detailed surface textures."
+  },
+  {
+    "title": "preserve.wardrobe",
+    "media": "work_imgs/preserve_wardrobe.webp",
+    "status": "in-progress",
+    "categories": ["techy", "design"],
+    "tags": ["web dev", "react.js", "html/css/js"],
+    "description": "A fashion search engine, digital closet, and community home all in one. Rooted in curation rather than overconsumption, it’s a home for those who love fashion beyond aesthetics."
+  },
+  {
+    "title": "please, verify your identity",
+    "media": "work_imgs/please_verify.gif",
+    "categories": ["techy", "design"],
+    "tags": ["computer vision", "glitch-bending", "computational photography"],
+    "description": ""
   },
   {
     "title": "real american",
     "media": "work_imgs/real_american.webp",
-    "status": "done",
     "categories": ["techy", "artsy"],
     "tags": ["digital fabrication", "CAD", "laser-cutting"],
-    "description": "This piece is dedicated to immigrants—too often rendered invisible in the American narrative. The green card, while symbolizing legal residency, still carries the label \"resident alien,\" a term that strips individuals of humanity and reinforces the idea they will never be seen as truly American."
-  },
-  {
-    "title": "ceo wAIfus",
-    "media": "work_imgs/ceo_waifus.webp",
-    "status": "in-progress",
-    "categories": ["artsy", "techy"],
-    "tags": ["digital fabrication", "electronics", "physical computing", "AI"],
-    "description": "wAifu CEOs is a critique of humans’ relationships with autonomous machines that have no consciousness. When did algorithms and probability become a replacement for human intimacy? In this “AI era,” people are forming romantic relationships with their AI agents or even using them as therapists. This interactive body pillow is a satirical piece: users can sleep with their AI agent or talk to it like a human (and it talks back!). Instead of displaying characterized versions of AI agents, I put the people at the forefront of these AI companies, the CEOs, front and center. Yes, this is the Sam Altman body pillow."
-  },
-  {
-    "title": "rip computer angel",
-    "media": "work_imgs/computer_purse.webp",
-    "status": "done",
-    "categories": ["artsy"],
-    "tags": ["digital fabrication", "soft sculpture", "fashion"],
-    "description": [
-      "what if a computer didn’t only store your digital data, but also the physical data you carry with you all the time? this is e-waste turned into a fashion wearable–a piece where you hold your physical items instead of pictures or documents in a folder. what was once part of a system becomes memorabilia of what it used to be, upcycled into a new artifact. it’s a non-functioning computer, where the user has to process all the instructions themselves. it’s still a machine, just one that holds a different kind of data. "
-    ]
-  },
-  {
-    "title": "dreamscape",
-    "media": "work_imgs/dreamscape.webp",
-    "status": "in-progress",
-    "categories": ["artsy", "design"],
-    "tags": ["fashion", "soft sculpture", "design"],
-    "description": [
-      "Dreamscape is a fashion collection for the freaks, the weirdos, the “too much-ers,” whimsical wizards & late-diagnosed neurodivergent gals. This is a love letter to growing up as a neurodivergent girl, told through the language of lolita fashion—a J-fashion subculture defined by anti-consumerism, feminism, and radical self-expression. "
-    ]
+    "description": "A life-size invisible green card, symbolizing legal residency while still labeling its holder a “Resident Alien.” This term dehumanizes immigrants and reinforces the idea that they will never be seen as “true Americans.” Anyone can walk into the frame to reflect on, empathize with, and humanize immigrants in the US."
   },
   {
     "title": "reminiscence",
     "media": "work_imgs/reminiscence.webp",
-    "status": "done",
     "categories": ["artsy", "design"],
     "tags": ["digital fabrication", "soft sculpture", "installation"],
-    "description": "This work revolves around memory—specifically how our memories evolve over time, particularly with sentimental items we've lost over the years. In these interviews, I ask my friends to recall a childhood plushie and describe it from memory. I recreate the plushie based on their descriptions and recollection. Each plushie was handmade, serving as an extension of my love for these friends. Our material objects are an extension of ourselves. Sometimes the material object is all that we have left. And it the only thing that we can attach as humans. Memory becomes intertwined with the object itself"
+    "description": "A reinterpretation of sentimental childhood items that were lost, based on three individual interviews. These recollections tell a story of objects used to communicate the intangible: memories and feelings."
   },
   {
-    "title": "entity of protection",
-    "media": "work_imgs/Entity_of_Protection.webp",
-    "status": "done",
+    "title": "dreamscape",
+    "media": "work_imgs/dreamscape.webp",
     "categories": ["artsy", "design"],
-    "tags": ["digital fabrication", "soft sculpture", "installation"],
-    "description": "Entity of Protection is a site-specific installation piece, temporarily displayed at Carnegie Mellon, which became a home for this cat warrior. This magical, life-size, axe-wielding cat plushie was created as a symbol of protection over students and to bring more whimsy to campus."
-  },
-  {
-    "title": "connections of love",
-    "media": "work_imgs/connections_of_love.webp",
-    "status": "done",
-    "categories": ["artsy"],
-    "tags": ["digital fabrication", "sculpture", "installation"],
-    "description": "Exploring different connections of love through a queer lens"
+    "tags": ["fashion", "soft sculpture", "design"],
+    "description": [
+      "A love letter to growing up as a neurodivergent girl, told through the language of lolita fashion—a J-fashion subculture defined by anti-consumerism, feminism, and radical self-expression."
+    ]
   }
 ]
