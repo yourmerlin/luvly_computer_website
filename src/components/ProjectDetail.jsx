@@ -6,7 +6,8 @@ import PopupWindow, { Media } from "./PopupWindow.jsx";
 //   "timeline":   "fall 2025 – spring 2026"
 //   "techstack":  ["react.js", "three.js"]   (falls back to "tags")
 //   "media":      main image/video under the header
-//   "context":    "text" or ["paragraph", "paragraph"]   (falls back to "description")
+//   "description": shown to the right of the main media
+//   "context":    "text" or ["paragraph", "paragraph"], or { idea, text, media }
 //   "process":    { "text": "..." or [...], "media": ["path", ...] }
 //   "reflection": { "text": "..." or [...], "media": ["final images", ...] }
 //   "link" / "links": a url, shown under the tech stack
@@ -15,11 +16,15 @@ const asList = (value) => [].concat(value || []).filter(Boolean);
 
 // a section can be plain text or { text, media }
 function readSection(value) {
-  if (!value) return { text: [], media: [] };
+  if (!value) return { idea: [], text: [], media: [] };
   if (typeof value === "string" || Array.isArray(value)) {
-    return { text: asList(value), media: [] };
+    return { idea: [], text: asList(value), media: [] };
   }
-  return { text: asList(value.text), media: asList(value.media) };
+  return {
+    idea: asList(value.idea),
+    text: asList(value.text),
+    media: asList(value.media),
+  };
 }
 
 function fullUrl(url) {
@@ -34,15 +39,11 @@ export default function ProjectDetail({ project, onClose }) {
 
   const techstack = asList(project.techstack || project.tags);
   const link = project.link || project.links;
+  const description = asList(project.description);
 
   // the sections in order; empty ones are skipped
   const sections = [
-    {
-      id: "context",
-      title: "context",
-      ...readSection(project.context || project.description),
-    },
-    { id: "process", title: "process", ...readSection(project.process) },
+    { id: "context", title: "context", ...readSection(project.context) },
     {
       id: "reflection",
       title: "reflection",
@@ -148,9 +149,18 @@ export default function ProjectDetail({ project, onClose }) {
               </div>
             </header>
 
-            {project.media && (
+            {/* main media with the description to its right */}
+            {(project.media || description.length > 0) && (
               <div className="project-detail-hero">
-                {piece(project.media, zoom)}
+                {project.media && piece(project.media, zoom)}
+                {description.length > 0 && (
+                  <div className="project-detail-description">
+                    <h3>description</h3>
+                    {description.map((text) => (
+                      <p key={text}>{text}</p>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
 
@@ -158,13 +168,20 @@ export default function ProjectDetail({ project, onClose }) {
             {sections.map((s) => (
               <section
                 key={s.id}
-                className="project-detail-section"
+                // context puts its media to the right of the text
+                className={
+                  s.id === "context" && s.media.length > 0
+                    ? "project-detail-section project-detail-side"
+                    : "project-detail-section"
+                }
                 ref={(node) => (sectionRefs.current[s.id] = node)}
               >
-                <h3>{s.title}</h3>
-                {s.text.map((text) => (
-                  <p key={text}>{text}</p>
-                ))}
+                <div className="project-detail-words">
+                  <h3>{s.title}</h3>
+                  {[...s.idea, ...s.text].map((text) => (
+                    <p key={text}>{text}</p>
+                  ))}
+                </div>
                 {s.media.length > 0 && (
                   <div className="project-detail-grid">
                     {s.media.map((path) => piece(path, zoom))}

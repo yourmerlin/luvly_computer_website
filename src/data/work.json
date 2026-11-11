@@ -6,9 +6,10 @@
     "tags": ["web dev", "react.js", "html/css/js", "3D model pipelines"],
     "timeline": "2 weeks(October 2026)",
     "description": "A digital archive of personal computers. Using free, accessible tools, it constructs high-fidelity 3D renders for anyone to use, creating an intimate space on the web that tells a story about each owner through detailed surface textures.",
-    "process": {
-      "text": "",
-      "media": []
+    "context": {
+      "idea": "People have long archived technology, whether it’s the web through the Internet Archive or physical objects at the Computer History Museum. But there’s no in-between place where you can see the details of physical objects while keeping them as accessible as the web. ",
+      "text": "This led me to archive people’s personal computers, creating a public archive and communal space on the web. A key goal throughout the project was making it easy for anyone to submit or archive their own computer. That took me down a DIY route to achieve high-fidelity 3D renders without expensive equipment or inaccessible spaces. Which, you can find the open-source tutorial here :-)",
+      "media": ["work_imgs/compu_tutorial.png"]
     },
     "reflection": {
       "text": "",

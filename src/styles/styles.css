@@ -1079,11 +1079,24 @@ main.about-main {
   max-width: 100%;
   border: 1px solid var(--text-color); /* hugs the image, never cropped */
 }
+/* main media on the left, description on the right */
 .project-detail-hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
   padding: 1.5rem 0;
 }
 .project-detail-hero .project-detail-piece {
-  margin: 0 auto;
+  flex: 0 1 60%;
+  min-width: 0;
+}
+.project-detail-description {
+  flex: 1;
+  min-width: 0;
+}
+.project-detail-description p {
+  padding: 0 0 0.75rem;
+  line-height: 1.6;
 }
 .project-detail-hero img,
 .project-detail-hero video {
@@ -1095,7 +1108,8 @@ main.about-main {
   padding: 2rem 0;
   border-top: 1px solid var(--text-color);
 }
-.project-detail-section h3 {
+.project-detail-section h3,
+.project-detail-description h3 {
   font-size: 24px;
   padding-bottom: 0.5rem;
 }
@@ -1111,6 +1125,22 @@ main.about-main {
   align-items: start;
   gap: 1rem;
   padding-top: 1rem;
+}
+
+/* context: text on the left, its image(s) on the right */
+.project-detail-side {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+}
+.project-detail-side .project-detail-words {
+  flex: 1;
+  min-width: 0;
+}
+.project-detail-side .project-detail-grid {
+  flex: 1;
+  min-width: 0;
+  grid-template-columns: 1fr; /* stacked in its own column */
 }
 
 /* phones: the rail becomes a thin bar along the top, header stacks */
@@ -1138,6 +1168,14 @@ main.about-main {
   }
   .project-detail-header {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .project-detail-side {
+    flex-direction: column; /* image goes under the text on phones */
+    gap: 0;
+  }
+  .project-detail-hero {
+    flex-direction: column; /* description goes under the media on phones */
     gap: 1rem;
   }
 }
