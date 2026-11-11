@@ -28,6 +28,10 @@ export default function Home() {
             <br></br>
             {">"}focusing on building technology that holds you with care_
           </h4>
+          <p>
+            {">"} double major in human computer interaction & new media arts @
+            Carnegie Mellon University
+          </p>
         </div>
       </section>
 
