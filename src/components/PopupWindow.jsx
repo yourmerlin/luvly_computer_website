@@ -6,7 +6,6 @@ export const isVideo = (path) => /\.(webm|mp4)$/i.test(path);
 // some folder names have spaces ("digital art"), so encode them for the url
 export const mediaSrc = (path) => asset(encodeURI(path));
 
-// one image or video; videos play on their own like a gif
 export function Media({ path, zoomed = false }) {
   if (isVideo(path)) {
     return zoomed ? (
@@ -18,10 +17,8 @@ export function Media({ path, zoomed = false }) {
   return <img src={mediaSrc(path)} alt="" loading={zoomed ? undefined : "lazy"} />;
 }
 
-// white + blue pop-up window (play folders, experiments gallery)
-// items is every piece in order (for the next/back arrows);
-// children is a function that gets `zoom(path)` to show one piece big
-export default function PopupWindow({ title, items, onClose, children }) {
+
+export default function PopupWindow({ title, items, onClose, className, children }) {
   const [zoomed, setZoomed] = useState(null); // index into items, or null
   const zoom = (path) => setZoomed(items.indexOf(path));
   // wraps around: back from the first goes to the last
@@ -44,7 +41,7 @@ export default function PopupWindow({ title, items, onClose, children }) {
   return createPortal(
     <div className="play-backdrop" onClick={onClose}>
       <div
-        className="play-window"
+        className={className ? `play-window ${className}` : "play-window"}
         role="dialog"
         aria-label={title}
         onClick={(event) => event.stopPropagation()}

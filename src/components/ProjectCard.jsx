@@ -1,69 +1,148 @@
 import { useState } from "react";
 import asset from "../asset.js";
 import PopupWindow, { Media } from "./PopupWindow.jsx";
+import ProjectDetail from "./ProjectDetail.jsx";
 
-// one project on the work, research or experiments page (data from src/data/*.json)
-// wide and short: media on the left, text on the right
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ project, detailed = false }) {
   const isVideo = /\.(webm|mp4)$/i.test(project.media);
-  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  // the description is sometimes a list of paragraphs in the json
+  const paragraphs = [].concat(project.description || []).filter(Boolean);
+  // everything the pop-up can show big (the arrows flip through these)
+  const pieces = [
+    ...new Set([project.media, ...(project.gallery || [])].filter(Boolean)),
+  ];
+
+  // keyboard users can open the card with enter or space
+  const openOnKey = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setOpen(true);
+    }
+  };
 
   return (
-    <article className="project-card">
-      {/* media is optional: projects without an image yet just skip it */}
-      {project.media && (
-        <div className="project-card-media">
-          {isVideo ? (
-            // plays on its own like a gif (muted so browsers allow autoplay)
-            <video src={asset(project.media)} autoPlay muted loop playsInline />
-          ) : (
-            <img src={asset(project.media)} alt={project.title} />
+    <>
+      <article
+        className="project-card"
+        role="button"
+        tabIndex={0}
+        aria-label={`open ${project.title}`}
+        onClick={() => setOpen(true)}
+        onKeyDown={openOnKey}
+      >
+        {/* media is optional: projects without an image yet just skip it */}
+        {project.media && (
+          <div className="project-card-media">
+            {isVideo ? (
+              // plays on its own like a gif (muted so browsers allow autoplay)
+              <video
+                src={asset(project.media)}
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
+            ) : (
+              <img src={asset(project.media)} alt={project.title} />
+            )}
+          </div>
+        )}
+
+        <div className="project-card-text">
+          <h3>{project.title}</h3>
+          {/* status and tags are optional */}
+          {project.status && <p className="status">[{project.status}]</p>}
+          {project.tags && (
+            <ul className="tags">
+              {project.tags.map((tag) => (
+                <li className="tag" key={tag}>
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          )}
+          {/* only the first few lines show here; the pop-up has the whole thing */}
+          {paragraphs.length > 0 && (
+            <p className="project-card-description">{paragraphs.join(" ")}</p>
           )}
         </div>
-      )}
-      <div className="project-card-text">
-        <h3>
-          <a href={project.link} target="_blank" rel="noopener noreferrer">
-            {project.title}
-          </a>
-        </h3>
-        {/* status, tags, description and link are all optional */}
-        {project.status && <p className="status">[{project.status}]</p>}
-        {project.tags && (
-          <ul className="tags">
-            {project.tags.map((tag) => (
-              <li className="tag" key={tag}>
-                {tag}
-              </li>
-            ))}
-          </ul>
-        )}
-        {project.description && <p>{project.description}</p>}
-        {project.gallery && (
-          <button className="project-card-link" onClick={() => setGalleryOpen(true)}>
-            check out the process -&gt;
-          </button>
-        )}
-      </div>
+      </article>
 
-      {/* "gallery" in the json: every piece in a pop-up grid, in the order listed */}
-      {galleryOpen && (
+      {/* kept outside the <article> so clicks inside the pop-up (like ×)
+          don't bubble up to the card and open it again */}
+      {open && detailed && (
+        <ProjectDetail project={project} onClose={() => setOpen(false)} />
+      )}
+      {open && !detailed && (
         <PopupWindow
           title={project.title}
-          items={project.gallery}
-          onClose={() => setGalleryOpen(false)}
+          items={pieces}
+          onClose={() => setOpen(false)}
         >
           {(zoom) => (
-            <div className="gallery-grid">
-              {project.gallery.map((path) => (
-                <button key={path} className="gallery-piece" onClick={() => zoom(path)}>
-                  <Media path={path} />
-                </button>
-              ))}
+            <div className="project-popup">
+              <div className="project-popup-main">
+                {project.media && (
+                  <button
+                    className="project-popup-media"
+                    onClick={() => zoom(project.media)}
+                    aria-label="see it bigger"
+                  >
+                    <Media path={project.media} />
+                  </button>
+                )}
+                <div className="project-popup-info">
+                  {project.status && (
+                    <p className="status">[{project.status}]</p>
+                  )}
+                  {project.tags && (
+                    <ul className="tags">
+                      {project.tags.map((tag) => (
+                        <li className="tag" key={tag}>
+                          {tag}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {paragraphs.map((text) => (
+                    <p key={text}>{text}</p>
+                  ))}
+                  {project.link && (
+                    <a
+                      className="project-card-link"
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      visit the project -&gt;
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              {/* "gallery" in the json: the process pieces, in the order listed */}
+              {project.gallery && (
+                <>
+                  <h4 className="project-popup-heading">the process</h4>
+                  <div className="gallery-grid">
+                    {project.gallery.map((path) => (
+                      <button
+                        key={path}
+                        className="gallery-piece"
+                        onClick={() => zoom(path)}
+                      >
+                        <Media path={path} />
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           )}
         </PopupWindow>
       )}
-    </article>
+    </>
   );
 }

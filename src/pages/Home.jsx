@@ -30,24 +30,10 @@ export default function Home() {
           </h4>
         </div>
       </section>
-      <section className="work-header">
-        {/* <ul className="work-tabs">
-          {TABS.map((name) => (
-            <li key={name}>
-              <button
-                className={tab === name ? "is-active" : undefined}
-                onClick={() => setTab(name)}
-              >
-                {name}
-              </button>
-            </li>
-          ))}
-        </ul> */}
-      </section>
-      {/* one column of wide, short cards (same as the research page) */}
+
       <main className="project-list">
         {visible.map((project) => (
-          <ProjectCard key={project.title} project={project} />
+          <ProjectCard key={project.title} project={project} detailed />
         ))}
       </main>
     </Page>

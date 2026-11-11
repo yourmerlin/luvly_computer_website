@@ -380,51 +380,73 @@ main.about-main {
   overflow-wrap: anywhere; /* ...it wraps inside its box instead */
 }
 
-/* work + research pages: one full-width column of wide, short cards */
 .project-list {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1.5rem;
 }
 .project-card {
   backdrop-filter: blur(10px);
   display: flex;
+  flex-direction: row; /* media on the left, title + tags next to it */
   align-items: flex-start;
+  box-sizing: border-box;
+  width: 100%;
   gap: 1rem;
-  padding: 1rem;
-  /* the border is always there (just invisible) so hovering only changes
-     its color and never pushes the text/media around */
-  border: 3px solid transparent;
+  padding: 0.75rem;
+  text-align: left;
+  border: 3px solid transparent; /* full border only shows on hover */
+  /* four corner brackets: each corner is one short horizontal + one short vertical line */
+  --corner: linear-gradient(var(--text-color), var(--text-color));
+  background-image: var(--corner), var(--corner), var(--corner), var(--corner),
+    var(--corner), var(--corner), var(--corner), var(--corner);
+  background-size:
+    1.5rem 3px, 3px 1.5rem, 1.5rem 3px, 3px 1.5rem,
+    1.5rem 3px, 3px 1.5rem, 1.5rem 3px, 3px 1.5rem;
+  background-position:
+    top left, top left, top right, top right,
+    bottom left, bottom left, bottom right, bottom right;
+  background-repeat: no-repeat;
+  background-origin: border-box; /* corners sit right where the border would be */
   transition:
     border-color 0.2s,
     box-shadow 0.2s;
 }
-.project-card:hover {
+.project-card:hover,
+.project-card:focus-visible {
+  background-image: none; /* corners go away, the full border takes over */
   border-color: var(--text-color);
   box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.244);
 }
-/* media on the left, text takes the rest */
 .project-card-media {
-  flex: 0 0 35%;
-  border: 3px solid var(--text-color);
+  flex: 0 0 40%; /* same slot size on every card */
+  height: 240px; /* same on every card; images shrink to fit inside */
+  display: flex;
+  align-items: center; /* image sits in the middle of its slot */
+  justify-content: center;
 }
 .project-card-media img,
 .project-card-media video {
   display: block;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  box-sizing: border-box;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border: 3px solid var(--text-color);
 }
 
 .project-card-text {
   flex: 1;
   min-width: 0;
+  min-height: 4rem;
   color: var(--text-color);
 }
 .project-card-text h3 {
   color: var(--text-color);
   padding: 0.5rem;
-  font-size: 32px;
+  font-size: 24px;
   text-transform: uppercase;
   text-decoration: none;
 }
@@ -437,7 +459,7 @@ main.about-main {
 }
 .project-card-text p {
   padding: 0.5rem;
-  text-align: justify;
+  text-align: left;
 }
 .project-card-link {
   display: inline-block;
@@ -773,15 +795,17 @@ main.about-main {
   }
 
   /* work + research cards go back to media on top, text below */
+  /* phones: media on top, title + tags underneath */
   .project-card {
     flex-direction: column;
   }
   .project-card-media {
     flex: none;
     width: 100%;
+    height: 200px;
   }
   .project-card-text h3 {
-    font-size: 24px;
+    font-size: 20px;
     overflow-wrap: anywhere; /* long words like DEHUMANIZATION can break */
   }
   /* smaller, tighter tags so more fit on each line */
@@ -872,4 +896,248 @@ main.about-main {
   display: block;
   width: 100%;
   height: auto;
+}
+
+/* project card -> pop-up (ProjectCard.jsx) */
+.project-card:focus-visible {
+  outline: none;
+  border-color: var(--text-color);
+}
+.project-popup {
+  flex: 1;
+  overflow-y: auto; /* long descriptions + galleries scroll inside the window */
+  padding: 1.5rem;
+}
+/* big media on the left, info on the right */
+.project-popup-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+.project-popup-media {
+  flex: 0 0 60%;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+.project-popup-media img,
+.project-popup-media video {
+  display: block;
+  box-sizing: border-box;
+  max-width: 100%;
+  max-height: 65vh; /* whole image, never cropped */
+  border: 1px solid var(--text-color);
+}
+.project-popup-info {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+.project-popup-info p {
+  padding: 0.5rem;
+}
+.project-popup-heading {
+  padding: 2rem 0 0.5rem;
+  font-size: 16px;
+}
+/* the gallery scrolls with the rest of the pop-up instead of on its own */
+.project-popup .gallery-grid {
+  overflow: visible;
+  padding: 0;
+}
+/* phones: media on top, info underneath */
+@media (max-width: 700px) {
+  .project-popup {
+    padding: 1rem;
+  }
+  .project-popup-main {
+    flex-direction: column;
+  }
+  .project-popup-media {
+    flex: none;
+  }
+}
+
+/* card description: cut off after a few lines (with …) so every card stays the same size */
+.project-card-text .project-card-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  overflow: hidden;
+}
+
+/* home page: the big documentation pop-up (ProjectDetail.jsx) */
+.project-detail-window {
+  width: min(96vw, 1400px);
+  height: 94vh;
+}
+/* rail on the left, scrolling write-up on the right */
+.project-detail {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+/* the scroll rail: --p (0 to 1) is how far you've scrolled */
+.project-detail-rail {
+  flex: none;
+  display: flex;
+  gap: 0.75rem;
+  padding: 2rem 1rem 2rem 1.5rem;
+  border-right: 1px solid var(--text-color);
+}
+.project-detail-track {
+  position: relative;
+  width: 3px;
+  background-color: rgba(0, 5, 208, 0.15); /* faint blue, the unfilled part */
+}
+.project-detail-fill {
+  position: absolute;
+  inset: 0;
+  background-color: var(--text-color);
+  transform: scaleY(var(--p, 0));
+  transform-origin: top;
+  transition: transform 0.1s linear;
+}
+.project-detail-rail ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.project-detail-rail button {
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font: inherit;
+  font-size: 12px;
+  text-align: left;
+  opacity: 0.5;
+}
+.project-detail-rail button:hover,
+.project-detail-rail button.is-active {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* the write-up */
+.project-detail-scroll {
+  position: relative; /* so section positions are measured from here */
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 2rem;
+  text-align: left;
+}
+/* keeps long text readable on wide screens */
+.project-detail-scroll > * {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* header: title - timeline - tech stack */
+.project-detail-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr;
+  gap: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--text-color);
+}
+.project-detail-header h2 {
+  font-size: 32px;
+  text-transform: uppercase;
+}
+.project-detail-header .tags {
+  padding: 0.25rem 0;
+}
+.project-detail-header .project-card-link {
+  padding: 0.5rem 0;
+}
+.project-detail-label {
+  display: block;
+  padding-bottom: 0.25rem;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+/* every image/video in here is a button that opens the full-size view */
+.project-detail-piece {
+  display: block;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+.project-detail-piece img,
+.project-detail-piece video {
+  display: block;
+  box-sizing: border-box;
+  max-width: 100%;
+  border: 1px solid var(--text-color); /* hugs the image, never cropped */
+}
+.project-detail-hero {
+  padding: 1.5rem 0;
+}
+.project-detail-hero .project-detail-piece {
+  margin: 0 auto;
+}
+.project-detail-hero img,
+.project-detail-hero video {
+  max-height: 70vh;
+}
+
+/* context / process / reflection */
+.project-detail-section {
+  padding: 2rem 0;
+  border-top: 1px solid var(--text-color);
+}
+.project-detail-section h3 {
+  font-size: 24px;
+  padding-bottom: 0.5rem;
+}
+.project-detail-section p {
+  max-width: 70ch; /* comfortable line length */
+  padding: 0.5rem 0;
+  line-height: 1.6;
+}
+/* images: as many columns as fit, each at its own ratio */
+.project-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  align-items: start;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+/* phones: the rail becomes a thin bar along the top, header stacks */
+@media (max-width: 700px) {
+  .project-detail {
+    flex-direction: column;
+  }
+  .project-detail-rail {
+    padding: 0;
+    border-right: none;
+  }
+  .project-detail-rail ul {
+    display: none;
+  }
+  .project-detail-track {
+    width: 100%;
+    height: 3px;
+  }
+  .project-detail-fill {
+    transform: scaleX(var(--p, 0));
+    transform-origin: left;
+  }
+  .project-detail-scroll {
+    padding: 1rem;
+  }
+  .project-detail-header {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
