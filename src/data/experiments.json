@@ -17,15 +17,22 @@
     ]
   },
   {
-    "title": "please verify your identity",
-    "media": "experiments_imgs/webm/pleaseverifyyouridentity.webm",
-    "status": "finished",
-    "tags": [
-      "computer vision",
-      "image processing",
-      "computational photography"
-    ],
-    "description": "learned how bytes work and was able to create my own program to delete/rearrange bytes in an image"
+    "title": "ceo wAIfus",
+    "media": "work_imgs/ceo_waifus.webp",
+    "status": "in-progress",
+    "categories": ["artsy", "techy"],
+    "tags": ["digital fabrication", "electronics", "physical computing", "AI"],
+    "description": "wAifu CEOs is a critique of humans’ relationships with autonomous machines that have no consciousness. When did algorithms and probability become a replacement for human intimacy? In this “AI era,” people are forming romantic relationships with their AI agents or even using them as therapists. This interactive body pillow is a satirical piece: users can sleep with their AI agent or talk to it like a human (and it talks back!). Instead of displaying characterized versions of AI agents, I put the people at the forefront of these AI companies, the CEOs, front and center. Yes, this is the Sam Altman body pillow."
+  },
+  {
+    "title": "rip computer angel",
+    "media": "work_imgs/computer_purse.webp",
+    "status": "done",
+    "categories": ["artsy"],
+    "tags": ["digital fabrication", "soft sculpture", "fashion"],
+    "description": [
+      "what if a computer didn’t only store your digital data, but also the physical data you carry with you all the time? this is e-waste turned into a fashion wearable–a piece where you hold your physical items instead of pictures or documents in a folder. what was once part of a system becomes memorabilia of what it used to be, upcycled into a new artifact. it’s a non-functioning computer, where the user has to process all the instructions themselves. it’s still a machine, just one that holds a different kind of data. "
+    ]
   },
   {
     "title": "overconsumed",
