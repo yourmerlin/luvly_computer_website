@@ -9,7 +9,6 @@
   {
     "title": "preserve.wardrobe",
     "media": "work_imgs/preserve_wardrobe.webp",
-    "status": "in-progress",
     "categories": ["techy", "design"],
     "tags": ["web dev", "react.js", "html/css/js"],
     "description": "A fashion search engine, digital closet, and community home all in one. Rooted in curation rather than overconsumption, it’s a home for those who love fashion beyond aesthetics."
