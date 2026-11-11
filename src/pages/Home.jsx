@@ -26,7 +26,7 @@ export default function Home() {
             designer / hci researcher / STEM educator
             <br></br>
             <br></br>
-            {">"}focusing on building technology that holds you with care_
+            {">"}building technology that holds you with care_
           </h4>
           <p>
             {">"} double major in human computer interaction & new media arts @
