@@ -4,35 +4,49 @@
     "media": "work_imgs/computer_gif.gif",
     "links": "iluvmy.computer",
     "tags": ["web dev", "react.js", "html/css/js", "3D model pipelines"],
-    "description": "A digital archive of personal computers. Using free, accessible tools, it constructs high-fidelity 3D renders for anyone to use, creating an intimate space on the web that tells a story about each owner through detailed surface textures."
+    "timeline": "2 weeks(October 2026)",
+    "description": "A digital archive of personal computers. Using free, accessible tools, it constructs high-fidelity 3D renders for anyone to use, creating an intimate space on the web that tells a story about each owner through detailed surface textures.",
+    "process": {
+      "text": "",
+      "media": []
+    },
+    "reflection": {
+      "text": "",
+      "media": []
+    }
   },
   {
     "title": "preserve.wardrobe",
     "media": "work_imgs/preserve_wardrobe.webp",
+    "timeline": "1.5 Months (Apr-May 2026)",
     "tags": ["web dev", "react.js", "html/css/js"],
     "description": "A fashion search engine, digital closet, and community home all in one. Rooted in curation rather than overconsumption, it’s a home for those who love fashion beyond aesthetics."
   },
   {
     "title": "please, verify your identity",
     "media": "work_imgs/please_verify.gif",
+    "timeline": "2 Weeks (July 2026)",
     "tags": ["computer vision", "glitch-bending", "computational photography"],
     "description": ""
   },
   {
     "title": "real american",
     "media": "work_imgs/real_american.webp",
+    "timeline": "2 Months (Feb-May 2025)",
     "tags": ["digital fabrication", "CAD", "laser-cutting"],
     "description": "A life-size invisible green card, symbolizing legal residency while still labeling its holder a “Resident Alien.” This term dehumanizes immigrants and reinforces the idea that they will never be seen as “true Americans.” Anyone can walk into the frame to reflect on, empathize with, and humanize immigrants in the US."
   },
   {
     "title": "reminiscence",
     "media": "work_imgs/reminiscence.webp",
+    "timeline": "2 Months (Oct-Nov 2024)",
     "tags": ["digital fabrication", "soft sculpture", "installation"],
     "description": "A reinterpretation of sentimental childhood items that were lost, based on three individual interviews. These recollections tell a story of objects used to communicate the intangible: memories and feelings."
   },
   {
     "title": "dreamscape",
     "media": "work_imgs/dreamscape.webp",
+    "timeline": "6 Months (Sept 2025-March 2026)",
     "tags": ["fashion", "soft sculpture", "design"],
     "description": [
       "A love letter to growing up as a neurodivergent girl, told through the language of lolita fashion—a J-fashion subculture defined by anti-consumerism, feminism, and radical self-expression."

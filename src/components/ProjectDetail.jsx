@@ -99,7 +99,6 @@ export default function ProjectDetail({ project, onClose }) {
 
   return (
     <PopupWindow
-      title={project.title}
       items={pieces}
       onClose={onClose}
       className="project-detail-window"
