@@ -53,6 +53,26 @@
     }
   },
   {
+    "title": "luvlycomputer",
+    "media": "work_imgs/personal_web/digital_home.png",
+    "links": "",
+    "timeline": "8 Months (March 2026-Current)",
+    "tools": ["web dev", "react.js", "ui/ux"],
+    "description": ["the labor of love that went into my digital home <3 "],
+    "context": {
+      "context_text": "",
+      "context_media": []
+    },
+    "process": {
+      "process_text": "",
+      "process_media": []
+    },
+    "reflection": {
+      "reflection_text": "",
+      "reflection_media": []
+    }
+  },
+  {
     "title": "please, verify your identity",
     "media": "work_imgs/please_verify.gif",
     "links": "",
