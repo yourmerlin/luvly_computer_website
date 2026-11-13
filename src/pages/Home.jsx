@@ -28,10 +28,10 @@ export default function Home() {
             <br></br>
             {">"}building technology that holds you with care_
           </h4>
-          <p>
+          {/* <p>
             {">"} double major in human computer interaction & new media arts @
             Carnegie Mellon University
-          </p>
+          </p> */}
         </div>
       </section>
 
