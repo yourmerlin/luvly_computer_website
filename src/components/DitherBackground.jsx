@@ -64,7 +64,7 @@ const fsSource = `#version 300 es
     `;
 
 const COLORS = {
-  light: [1.0, 0.0, 0.467],
+  light: [0.0, 0.02, 0.816], // #0005d0
   dark: [1.0, 1.0, 1.0],
 };
 

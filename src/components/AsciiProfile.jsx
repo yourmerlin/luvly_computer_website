@@ -16,7 +16,7 @@ const FPS = 10; // slow on purpose
 const FONT = '"Roboto Mono", monospace';
 // same as --text-color in styles.css (read here because the css variable
 // only updates after this component's effect runs on a theme switch)
-const COLORS = { dark: "white", light: "#ff0077" };
+const COLORS = { dark: "white", light: "#0005d0" };
 
 const clamp = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 

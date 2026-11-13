@@ -1,6 +1,6 @@
 import { useState } from "react";
 import asset from "../asset.js";
-import PopupWindow, { Media } from "./PopupWindow.jsx";
+import PopupWindow, { Media, altFor } from "./PopupWindow.jsx";
 import ProjectDetail from "./ProjectDetail.jsx";
 
 export default function ProjectCard({ project, detailed = false }) {
@@ -39,13 +39,14 @@ export default function ProjectCard({ project, detailed = false }) {
               // plays on its own like a gif (muted so browsers allow autoplay)
               <video
                 src={asset(project.media)}
+                aria-label={altFor(project.media)}
                 autoPlay
                 muted
                 loop
                 playsInline
               />
             ) : (
-              <img src={asset(project.media)} alt={project.title} />
+              <img src={asset(project.media)} alt={altFor(project.media)} />
             )}
           </div>
         )}
@@ -88,7 +89,7 @@ export default function ProjectCard({ project, detailed = false }) {
                   <button
                     className="project-popup-media"
                     onClick={() => zoom(project.media)}
-                    aria-label="see it bigger"
+                    aria-label={`see it bigger: ${altFor(project.media)}`}
                   >
                     <Media path={project.media} />
                   </button>

@@ -2,19 +2,32 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import asset from "../asset.js";
 
+import altText from "../data/alt.json";
+
 export const isVideo = (path) => /\.(webm|mp4)$/i.test(path);
 // some folder names have spaces ("digital art"), so encode them for the url
 export const mediaSrc = (path) => asset(encodeURI(path));
 
+// what screen readers say for a piece: written descriptions live in
+// src/data/alt.json (keyed by the same path as the other json files).
+// a new piece without one falls back to its file name, cleaned up.
+export function altFor(path) {
+  if (altText[path]) return altText[path];
+  const name = path.split("/").pop().replace(/\.[a-z0-9]+$/i, "");
+  return name.replace(/[_-]+/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2").toLowerCase();
+}
+
 export function Media({ path, zoomed = false }) {
+  const alt = altFor(path);
   if (isVideo(path)) {
+    // videos have no alt, so the description goes in aria-label
     return zoomed ? (
-      <video src={mediaSrc(path)} autoPlay loop playsInline controls />
+      <video src={mediaSrc(path)} aria-label={alt} autoPlay loop playsInline controls />
     ) : (
-      <video src={mediaSrc(path)} autoPlay muted loop playsInline />
+      <video src={mediaSrc(path)} aria-label={alt} autoPlay muted loop playsInline />
     );
   }
-  return <img src={mediaSrc(path)} alt="" loading={zoomed ? undefined : "lazy"} />;
+  return <img src={mediaSrc(path)} alt={alt} loading={zoomed ? undefined : "lazy"} />;
 }
 
 

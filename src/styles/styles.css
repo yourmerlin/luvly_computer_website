@@ -18,7 +18,7 @@ h3 {
 
 html {
   font-family: "Roboto Mono", monospace;
-  --bg-color: #ff0077;
+  --bg-color: #0005d0;
   --text-color: white;
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -27,7 +27,7 @@ html {
 
 html.light-mode {
   --bg-color: white;
-  --text-color: #ff0077;
+  --text-color: #0005d0;
 }
 
 a,
@@ -79,6 +79,31 @@ button {
   image-rendering: pixelated; /* keep the blocks crisp when scaled up */
 }
 
+/* click ripples: behind the content. same layer as the paper grain and the
+   cloud bg, but later in the page, so it draws over both */
+.pixel-ripple {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* paper grain between the page color (html) and the content */
+.paper-grain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-size:
+    240px 240px,
+    720px 720px;
+  mix-blend-mode: soft-light; /* tints the color under it instead of greying it */
+  opacity: 0.45; /* raise for a rougher paper */
+}
+
 /* pixelcloud.png behind the whole page (play + experiments) */
 .cloud-bg {
   position: fixed;
@@ -94,12 +119,6 @@ button {
   --bg-color: white;
   --text-color: #0005d0;
   color: var(--text-color);
-}
-/* solid white cards instead of the blur, so the sky doesn't show through the text */
-.cloud-page .project-card,
-.cloud-page .project-card:hover {
-  background-color: var(--bg-color);
-  backdrop-filter: none;
 }
 body {
   width: 75%;
@@ -387,7 +406,12 @@ main.about-main {
   gap: 1.5rem;
 }
 .project-card {
-  backdrop-filter: blur(10px);
+  /* white card + blue text in both themes, so cards stand out on the blue
+     dark-mode page. #0005d0 on white is about 10:1 (WCAG AA needs 4.5:1).
+     everything inside reads these two, so text, tags and borders follow */
+  --bg-color: white;
+  --text-color: #0005d0;
+  background-color: var(--bg-color);
   display: flex;
   flex-direction: row; /* media on the left, title + tags next to it */
   align-items: flex-start;
@@ -397,25 +421,12 @@ main.about-main {
   padding: 0.75rem;
   text-align: left;
   border: 3px solid transparent; /* full border only shows on hover */
-  /* four corner brackets: each corner is one short horizontal + one short vertical line */
-  --corner: linear-gradient(var(--text-color), var(--text-color));
-  background-image: var(--corner), var(--corner), var(--corner), var(--corner),
-    var(--corner), var(--corner), var(--corner), var(--corner);
-  background-size:
-    1.5rem 3px, 3px 1.5rem, 1.5rem 3px, 3px 1.5rem,
-    1.5rem 3px, 3px 1.5rem, 1.5rem 3px, 3px 1.5rem;
-  background-position:
-    top left, top left, top right, top right,
-    bottom left, bottom left, bottom right, bottom right;
-  background-repeat: no-repeat;
-  background-origin: border-box; /* corners sit right where the border would be */
   transition:
     border-color 0.2s,
     box-shadow 0.2s;
 }
 .project-card:hover,
 .project-card:focus-visible {
-  background-image: none; /* corners go away, the full border takes over */
   border-color: var(--text-color);
   box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.244);
 }
@@ -1175,12 +1186,42 @@ main.about-main {
   display: none;
 }
 /* three across for process/reflection, one at a time in the context column */
-.carousel-slide {
-  flex: 0 0 calc((100% - 2rem) / 3);
-  scroll-snap-align: start;
+.carousel-track {
+  --slide-width: calc((100% - 2rem) / 3);
 }
-.carousel-single .carousel-slide {
-  flex-basis: 100%;
+.carousel-slide {
+  flex: 0 0 var(--slide-width);
+  scroll-snap-align: center;
+}
+/* side slides sink back (smaller, blurred, faded) so the middle one stands out */
+.carousel:not(.carousel-single) .carousel-slide {
+  transform: scale(0.85);
+  filter: blur(3px);
+  opacity: 0.55;
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease,
+    opacity 0.35s ease;
+}
+.carousel:not(.carousel-single) .carousel-slide.is-current {
+  transform: none;
+  filter: none;
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .carousel-slide {
+    transition: none !important;
+  }
+}
+.carousel-single .carousel-track {
+  --slide-width: 100%;
+}
+/* the loop's invisible jump back to the middle copy: no animation */
+.carousel-track.is-jumping {
+  scroll-snap-type: none;
+}
+.carousel-track.is-jumping .carousel-slide {
+  transition: none !important;
 }
 .carousel-slide img,
 .carousel-slide video {
@@ -1242,8 +1283,11 @@ main.about-main {
   .project-detail-columns {
     columns: 1;
   }
-  .carousel-slide {
-    flex-basis: 80%;
+  .carousel-track {
+    --slide-width: 80%;
+  }
+  .carousel-single .carousel-track {
+    --slide-width: 100%;
   }
   .project-detail-zoom-hint {
     opacity: 1; /* no hover on touch, so always show it */

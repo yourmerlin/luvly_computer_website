@@ -1,31 +1,34 @@
 [
   {
     "title": "computers.json",
-    "media": "work_imgs/computer_gif.gif",
+    "media": "work_imgs/luvcomputer_imgs/computer_gif.gif",
     "links": "iluvmy.computer",
     "timeline": "2 weeks(October 2026)",
-    "tools": [
-      "web dev",
-      "react.js",
-      "html/css/js",
-      "3D model pipelines"
-    ],
+    "tools": ["web dev", "react.js", "html/css/js", "3D model pipelines"],
     "description": "A digital archive of personal computers. Using free, accessible tools, it constructs high-fidelity 3D renders for anyone to use, creating an intimate space on the web that tells a story about each owner through detailed surface textures.",
     "context": {
       "context_text": [
         "People have long archived technology, whether it’s the web through the Internet Archive or physical objects at the Computer History Museum. But there’s no in-between place where you can see the details of physical objects while keeping them as accessible as the web. ",
         "This led me to archive people’s personal computers, creating a public archive and communal space on the web. A key goal throughout the project was making it easy for anyone to submit or archive their own computer. That took me down a DIY route to achieve high-fidelity 3D renders without expensive equipment or inaccessible spaces. Which, you can find the open-source tutorial here :-)"
       ],
-      "context_media": [
-        "work_imgs/compu_tutorial.png"
-      ]
+      "context_media": ["work_imgs/luvcomputer_imgs/compu_tutorial.png"]
     },
     "process": {
-      "process_text": "",
-      "process_media": []
+      "process_text": [
+        "I initially 3D scanned the computers with Polycam using photogrammetry. Afterwards, I went into MeshLab to clean up the model, fill in the gaps, and optimize it, so that it would retain detail and display well on the web.",
+        "My next step was flatbed scanning the surfaces of the computer to capture high-resolution detail. Then I took my scans into Blender and applied the flatbed scan textures to the 3D mesh. This created a high-resolution render of a 3D model without expensive equipment.",
+        "To further optimize the render on the webpage, I created a lower-resolution model that displays when the user first opens the page, which makes it load faster. Users can then choose to view the model in high resolution. Throughout my process, I wanted to keep as much detail in the 3D model as possible without sacrificing my users' experience on the webpage."
+      ],
+      "process_media": [
+        "work_imgs/luvcomputer_imgs/polycam_scans.png",
+        "work_imgs/luvcomputer_imgs/meshlab_optimize.png",
+        "work_imgs/luvcomputer_imgs/blender_uvmapping.png",
+        "work_imgs/luvcomputer_imgs/blender_uvmapping2.png",
+        "work_imgs/luvcomputer_imgs/basic_webpage.png"
+      ]
     },
     "reflection": {
-      "reflection_text": "",
+      "reflection_text": "hi hello",
       "reflection_media": []
     }
   },
@@ -34,11 +37,7 @@
     "media": "work_imgs/preserve_wardrobe.webp",
     "links": "",
     "timeline": "1.5 Months (Apr-May 2026)",
-    "tools": [
-      "web dev",
-      "react.js",
-      "html/css/js"
-    ],
+    "tools": ["web dev", "react.js", "html/css/js"],
     "description": "A fashion search engine, digital closet, and community home all in one. Rooted in curation rather than overconsumption, it’s a home for those who love fashion beyond aesthetics.",
     "context": {
       "context_text": "",
@@ -58,11 +57,7 @@
     "media": "work_imgs/please_verify.gif",
     "links": "",
     "timeline": "2 Weeks (July 2026)",
-    "tools": [
-      "computer vision",
-      "glitch-bending",
-      "computational photography"
-    ],
+    "tools": ["computer vision", "glitch-bending", "computational photography"],
     "description": "",
     "context": {
       "context_text": "",
@@ -82,11 +77,7 @@
     "media": "work_imgs/real_american.webp",
     "links": "",
     "timeline": "2 Months (Feb-May 2025)",
-    "tools": [
-      "digital fabrication",
-      "CAD",
-      "laser-cutting"
-    ],
+    "tools": ["digital fabrication", "CAD", "laser-cutting"],
     "description": "A life-size invisible green card, symbolizing legal residency while still labeling its holder a “Resident Alien.” This term dehumanizes immigrants and reinforces the idea that they will never be seen as “true Americans.” Anyone can walk into the frame to reflect on, empathize with, and humanize immigrants in the US.",
     "context": {
       "context_text": "",
@@ -106,11 +97,7 @@
     "media": "work_imgs/reminiscence.webp",
     "links": "",
     "timeline": "2 Months (Oct-Nov 2024)",
-    "tools": [
-      "digital fabrication",
-      "soft sculpture",
-      "installation"
-    ],
+    "tools": ["digital fabrication", "soft sculpture", "installation"],
     "description": "A reinterpretation of sentimental childhood items that were lost, based on three individual interviews. These recollections tell a story of objects used to communicate the intangible: memories and feelings.",
     "context": {
       "context_text": "",
@@ -130,11 +117,7 @@
     "media": "work_imgs/dreamscape.webp",
     "links": "",
     "timeline": "6 Months (Sept 2025-March 2026)",
-    "tools": [
-      "fashion",
-      "soft sculpture",
-      "design"
-    ],
+    "tools": ["fashion", "soft sculpture", "design"],
     "description": [
       "A love letter to growing up as a neurodivergent girl, told through the language of lolita fashion—a J-fashion subculture defined by anti-consumerism, feminism, and radical self-expression."
     ],

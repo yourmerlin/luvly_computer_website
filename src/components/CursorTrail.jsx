@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 const PIXEL = 10; //size of squares in the trail (px)
 const LIFE = 700; //lifespan for each square (ms)
 const MAX_PIXELS = 100; //cap
-const LIGHT_COLOR = "#ff0077"; //trail color in light mode
+const LIGHT_COLOR = "#0005d0"; //trail color in light mode
 const DARK_COLOR = "#ffffff"; //trail color in dark mode
 
 export default function CursorTrail() {

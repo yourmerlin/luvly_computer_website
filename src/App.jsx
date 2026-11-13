@@ -2,6 +2,7 @@ import { Routes, Route, Navigate, useLocation } from "react-router";
 import { ThemeProvider } from "./theme.jsx";
 import Cursor from "./components/Cursor.jsx";
 import CursorTrail from "./components/CursorTrail.jsx";
+import PixelRipple from "./components/PixelRipple.jsx";
 import Home from "./pages/Home.jsx";
 import Work from "./pages/Work.jsx";
 import Research from "./pages/Research.jsx";
@@ -41,6 +42,7 @@ export default function App() {
         <Route path="/resources" element={<Resources />} />
         <Route path="*" element={<OldLinks />} />
       </Routes>
+      <PixelRipple />
       <CursorTrail />
       <Cursor />
     </ThemeProvider>
