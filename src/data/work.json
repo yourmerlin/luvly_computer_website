@@ -34,7 +34,7 @@
   },
   {
     "title": "preserve.wardrobe",
-    "media": "work_imgs/preserve_wardrobe.webp",
+    "media": "work_imgs/preserve_wardrobe/node_connections.gif",
     "links": "",
     "timeline": "1.5 Months (Apr-May 2026)",
     "tools": ["web dev", "react.js", "html/css/js"],
@@ -60,15 +60,21 @@
     "tools": ["computer vision", "glitch-bending", "computational photography"],
     "description": "",
     "context": {
-      "context_text": "",
-      "context_media": []
+      "context_text": "hi hello",
+      "context_media": [
+        "work_imgs/please_verify/figma_moodboard.png",
+        "work_imgs/please_verify/figma_interfaces.png",
+        "work_imgs/please_verify/facescan_pleaseverify.gif",
+        "work_imgs/please_verify/gallerypan_pleaseverify.gif",
+        "work_imgs/please_verify/galleryClicked_pleaseverify.gif"
+      ]
     },
     "process": {
-      "process_text": "",
+      "process_text": "hi hello",
       "process_media": []
     },
     "reflection": {
-      "reflection_text": "",
+      "reflection_text": "hi hello",
       "reflection_media": []
     }
   },
