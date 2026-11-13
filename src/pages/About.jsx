@@ -1,5 +1,6 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import Page from "../components/Page.jsx";
+import AsciiProfile from "../components/AsciiProfile.jsx";
 import asset from "../asset.js";
 
 const LINKS = [
@@ -57,18 +58,58 @@ const CV = [
 ];
 
 export default function About() {
+  const [ascii, setAscii] = useState(false); // showing the 0s-and-1s version?
+  const [asciiLoaded, setAsciiLoaded] = useState(false);
+
   return (
     <Page title="about" className="about-page">
       <main className="about-main">
         <section className="about-headshot">
-          <section>
+          {/* click the photo to cross-fade into the 0s-and-1s version (and back).
+              the ascii one only mounts once someone hovers/focuses/clicks,
+              so it costs nothing for people who never interact */}
+          <button
+            className={ascii ? "headshot-toggle is-ascii" : "headshot-toggle"}
+            onPointerEnter={() => setAsciiLoaded(true)}
+            onFocus={() => setAsciiLoaded(true)}
+            onClick={() => {
+              if (asciiLoaded) {
+                setAscii((on) => !on);
+                return;
+              }
+              // first time (e.g. a tap with no hover): mount it hidden, then
+              // flip a couple of frames later so the fade actually plays
+              setAsciiLoaded(true);
+              requestAnimationFrame(() =>
+                requestAnimationFrame(() => setAscii(true)),
+              );
+            }}
+            aria-pressed={ascii}
+            // the label replaces the img alt for screen readers, so it says both
+            // what the picture is and what pressing does
+            aria-label={
+              ascii
+                ? "portrait of merlin in a wizard hat drawn in 0s and 1s. press to show the photo"
+                : "merlin smiling in a blue velvet wizard hat and cape. press to show it drawn in 0s and 1s"
+            }
+          >
             <img
-              src={asset("sillyheadshot2026.webp")}
-              alt="headshot of merlin with stickers surrounding the image"
+              className="headshot-photo"
+              src={asset("me_wizard_profile.jpg")}
+              alt="merlin smiling in a blue velvet wizard hat and cape covered in gold stars and moons, with a pearl necklace"
               width="800"
               height="800"
             />
-          </section>
+            {asciiLoaded && (
+              <span className="headshot-ascii" aria-hidden={!ascii}>
+                <AsciiProfile active={ascii} />
+              </span>
+            )}
+            {/* hover pop-up (screen readers already get this from aria-label) */}
+            <span className="headshot-hint" aria-hidden="true">
+              {ascii ? "see the real me!" : "see me in binary code!"}
+            </span>
+          </button>
         </section>
         <section className="about-bio">
           <h2>Merlin Susana Enriquez</h2>

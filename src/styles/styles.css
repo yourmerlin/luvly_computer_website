@@ -260,6 +260,114 @@ main.about-main {
   height: auto;
 }
 
+/* about photo <-> ascii version: both sit in the same square and cross-fade.
+   the one leaving blurs + shrinks a touch, the one arriving sharpens in */
+.headshot-toggle {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent; /* no grey flash on tap (phones) */
+}
+.headshot-toggle:focus-visible {
+  outline: 3px solid var(--text-color);
+  outline-offset: 4px;
+}
+.headshot-photo,
+.headshot-ascii {
+  display: block;
+  transition:
+    opacity 0.7s ease,
+    filter 0.7s ease,
+    transform 0.7s ease;
+}
+.headshot-ascii {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  filter: blur(8px);
+  transform: scale(1.04);
+  pointer-events: none;
+}
+/* the shared .ascii-profile size rules are for the home page; here it fills the square */
+.headshot-ascii .ascii-profile {
+  width: 100%;
+  height: 100%;
+}
+.headshot-toggle.is-ascii .headshot-photo {
+  opacity: 0;
+  filter: blur(8px);
+  transform: scale(0.96);
+}
+.headshot-toggle.is-ascii .headshot-ascii {
+  opacity: 1;
+  filter: none;
+  transform: none;
+}
+/* "see me in binary code!" bubble: floats up over the top of the picture */
+.headshot-hint {
+  position: absolute;
+  top: 0.75rem;
+  left: 50%;
+  z-index: 1;
+  padding: 0.4rem 0.8rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1.5px solid var(--text-color);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 6px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+/* little tail pointing down at the picture */
+.headshot-hint::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background-color: var(--bg-color);
+  border-right: 1.5px solid var(--text-color);
+  border-bottom: 1.5px solid var(--text-color);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.headshot-toggle:hover .headshot-hint,
+.headshot-toggle:focus-visible .headshot-hint {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+/* touch screens can't hover, so the bubble just stays up */
+@media (hover: none) {
+  .headshot-hint {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .headshot-hint {
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .headshot-photo,
+  .headshot-ascii {
+    transition: opacity 0.3s ease; /* plain fade, no zoom or blur */
+    filter: none !important;
+    transform: none !important;
+  }
+}
+
 .about-headshot h2 {
   color: var(--text-color);
   font-size: 32px;
@@ -860,9 +968,11 @@ main.about-main {
   main.about-main {
     flex-direction: column;
   }
+  /* a full-width photo is huge on a phone: cap it and center it */
   .about-headshot {
     flex: none;
-    width: 100%;
+    width: min(320px, 100%);
+    align-self: center;
   }
   .about-cv ul {
     padding: 0.5rem 1rem;
@@ -1237,6 +1347,7 @@ main.about-main {
   flex: none;
   width: 2.25rem;
   height: 2.25rem;
+  -webkit-tap-highlight-color: transparent;
   background: var(--bg-color);
   border: 1px solid var(--text-color);
   color: var(--text-color);
@@ -1250,17 +1361,29 @@ main.about-main {
 .carousel-dots {
   display: flex;
   justify-content: center;
-  gap: 0.4rem;
-  padding-top: 0.75rem;
+  flex-wrap: wrap; /* lots of pieces on a narrow phone wrap instead of overflowing */
+  padding-top: 0.25rem;
 }
+/* the square you see is small, but the tappable area around it is 24px
+   (WCAG's minimum touch target): the padding is clickable, the fill isn't */
 .carousel-dot {
+  box-sizing: content-box;
   width: 0.6rem;
   height: 0.6rem;
-  padding: 0;
-  border: 1px solid var(--text-color);
+  padding: calc((24px - 0.6rem) / 2);
+  border: none;
   background: transparent;
+  -webkit-tap-highlight-color: transparent;
 }
-.carousel-dot.is-active {
+.carousel-dot::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--text-color);
+}
+.carousel-dot.is-active::before {
   background-color: var(--text-color);
 }
 
@@ -1285,6 +1408,16 @@ main.about-main {
   }
   .carousel-track {
     --slide-width: 80%;
+  }
+  /* bigger arrows are easier to hit with a thumb */
+  .carousel-arrow {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+  /* on a phone you swipe, so the side pieces only need a hint of depth */
+  .carousel:not(.carousel-single) .carousel-slide {
+    transform: scale(0.9);
+    filter: blur(2px);
   }
   .carousel-single .carousel-track {
     --slide-width: 100%;

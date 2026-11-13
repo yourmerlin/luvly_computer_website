@@ -121,9 +121,13 @@ function buildAtlas(cellW, cellH, color) {
   return { atlas, spriteW, spriteH };
 }
 
-export default function AsciiProfile() {
+// active={false} pauses the animation (e.g. while it's faded out on the
+// about page) so a hidden portrait doesn't keep redrawing
+export default function AsciiProfile({ active = true }) {
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
+  const activeRef = useRef(active);
+  activeRef.current = active;
   const { theme } = useTheme();
 
   useEffect(() => {
@@ -199,7 +203,7 @@ export default function AsciiProfile() {
 
     function loop(now) {
       raf = requestAnimationFrame(loop);
-      if (!visible || now - last < 1000 / FPS) return;
+      if (!visible || !activeRef.current || now - last < 1000 / FPS) return;
       last = now;
       draw(now);
     }

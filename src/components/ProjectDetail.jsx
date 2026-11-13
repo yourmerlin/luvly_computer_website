@@ -89,6 +89,7 @@ function centerOf(track, i) {
 function Carousel({ items, zoom, single = false }) {
   const trackRef = useRef(null);
   const settleTimer = useRef(null);
+  const touching = useRef(false); // finger on the track (phones)
   const n = items.length;
   const [current, setCurrent] = useState(n); // first piece of the middle copy
 
@@ -158,6 +159,20 @@ function Carousel({ items, zoom, single = false }) {
   const onScroll = () => {
     setCurrent(closestToMiddle(trackRef.current));
     clearTimeout(settleTimer.current);
+    // never jump while a finger is still dragging (a pause mid-swipe
+    // would otherwise yank the row out from under it)
+    if (!touching.current) settleTimer.current = setTimeout(settle, 150);
+  };
+
+  const onTouchStart = () => {
+    touching.current = true;
+    clearTimeout(settleTimer.current);
+  };
+  // after letting go, the row may still glide (momentum); onScroll restarts
+  // the timer while it does, so the jump only happens once it really stops
+  const onTouchEnd = () => {
+    touching.current = false;
+    clearTimeout(settleTimer.current);
     settleTimer.current = setTimeout(settle, 150);
   };
 
@@ -171,7 +186,14 @@ function Carousel({ items, zoom, single = false }) {
         >
           ‹
         </button>
-        <div className="carousel-track" ref={trackRef} onScroll={onScroll}>
+        <div
+          className="carousel-track"
+          ref={trackRef}
+          onScroll={onScroll}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+          onTouchCancel={onTouchEnd}
+        >
           {slides.map((path, i) => (
             <div
               className={
