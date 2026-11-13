@@ -16,7 +16,7 @@ export default function Home() {
   );
 
   return (
-    <Page title="hello world!">
+    <Page title="Merlin Enriquez">
       <section className="work-intro">
         <AsciiProfile />
         <div className="work-intro-text">
