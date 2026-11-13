@@ -138,8 +138,8 @@ export default function About() {
           <p>
             I am always involved in my community, whether by organizing a
             wearable art and fashion show called Haute Glue, building a
-            temporary interactive house on campus for Booth, or being part
-            of a satirical newspaper.
+            temporary interactive house on campus for Booth, or being part of a
+            satirical newspaper.
           </p>
           <br />
           <br />
@@ -153,26 +153,6 @@ export default function About() {
               </li>
             ))}
           </ul>
-
-          <section className="about-cv">
-            <h2>CV</h2>
-            {/* each heading opens/closes its list when clicked */}
-            {CV.map((section) => (
-              <details key={section.heading}>
-                <summary>
-                  <h3>{section.heading}</h3>
-                </summary>
-                <ul>
-                  {section.items.map((item, i) => (
-                    <Fragment key={item}>
-                      {i > 0 && <br />}
-                      <li>⤿ {item}</li>
-                    </Fragment>
-                  ))}
-                </ul>
-              </details>
-            ))}
-          </section>
         </section>
       </main>
     </Page>
