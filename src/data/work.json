@@ -64,7 +64,12 @@
     },
     "reflection": {
       "reflection_text": "",
-      "reflection_media": []
+      "reflection_media": [
+        "work_imgs/preserve_wardrobe/node_connections.gif",
+        "work_imgs/preserve_wardrobe/node_hover.gif",
+        "work_imgs/preserve_wardrobe/node_collections.gif",
+        "work_imgs/preserve_wardrobe/profile_interact.gif"
+      ]
     }
   },
   {
@@ -96,7 +101,9 @@
       "computer vision",
       "glitch-bending",
       "computational photography",
-      "python"
+      "python",
+      "figma",
+      "ui/ux"
     ],
     "description": "",
     "context": {
