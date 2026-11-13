@@ -47,8 +47,11 @@
     "tools": ["web dev", "react.js", "python", "ui/ux", "vite", "webGL"],
     "description": "A fashion search engine, digital closet, and community home all in one. Rooted in curation rather than overconsumption, it’s a home for those who love fashion beyond aesthetics.",
     "context": {
-      "context_text": "",
-      "context_media": []
+      "context_text": "Inspired by 2000s outfit generator games, myspace and old pinterest back in the day.",
+      "context_media": [
+        "work_imgs/preserve_wardrobe/2000sOutfit.jpg",
+        "work_imgs/preserve_wardrobe/myspaceinspo.jpg"
+      ]
     },
     "process": {
       "process_text": "hi hello",
@@ -63,7 +66,7 @@
       ]
     },
     "reflection": {
-      "reflection_text": "",
+      "reflection_text": "hi hello",
       "reflection_media": [
         "work_imgs/preserve_wardrobe/node_connections.gif",
         "work_imgs/preserve_wardrobe/node_hover.gif",
