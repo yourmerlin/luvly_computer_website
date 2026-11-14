@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import PopupWindow, { Media, altFor } from "./PopupWindow.jsx";
 
@@ -20,16 +20,17 @@ function fullUrl(url) {
   return /^https?:\/\//i.test(url) ? url : `https://${url}`;
 }
 
-// one clickable piece: hover shows a magnifier + "click to zoom in"
-function Piece({ path, zoom }) {
+// one clickable piece: hover scales it up with a shadow.
+// group: the pieces the zoom arrows flip through (just this one if left out)
+function Piece({ path, zoom, group = [path] }) {
   return (
-    <button
+    <section
       className="project-detail-piece"
-      onClick={() => zoom(path)}
+      onClick={() => zoom(path, group)}
       aria-label={`zoom in: ${altFor(path)}`}
     >
       <Media path={path} />
-    </button>
+    </section>
   );
 }
 
@@ -45,7 +46,25 @@ function centerOf(track, i) {
   );
 }
 
-// a sideways-scrolling row of pieces with arrows and dots underneath.
+// whichever slide is closest to the middle of the track
+function closestToMiddle(track) {
+  const trackBox = track.getBoundingClientRect();
+  const middle = trackBox.left + trackBox.width / 2;
+  let best = 0;
+  let bestDistance = Infinity;
+  [...track.children].forEach((slide, i) => {
+    const box = slide.getBoundingClientRect();
+    const distance = Math.abs(box.left + box.width / 2 - middle);
+    if (distance < bestDistance) {
+      bestDistance = distance;
+      best = i;
+    }
+  });
+  return best;
+}
+
+// a sideways-scrolling row of pieces with dots underneath. move it by
+// swiping, the scroll wheel, the dots, or clicking either side.
 // it loops: the pieces are drawn three times in a row and we stay in the
 // middle copy. whenever the scroll stops in the first or last copy, it jumps
 // (instantly, no animation) to the same piece in the middle copy.
@@ -77,6 +96,80 @@ function Carousel({ items, zoom, single = false }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [n]);
 
+  // scrolling in any direction (wheel up/down, trackpad up/down/sideways)
+  // moves the carousel one piece at a time while you're hovering it (the
+  // images, the side click areas or the dots), instead of scrolling the pop-up.
+  // down or right = next, up or left = back.
+  //
+  // the slide animation is done by hand (requestAnimationFrame) with snapping
+  // switched off while it runs. the browser's own smooth scroll got cancelled
+  // and snapped back when the wheel was over the images (inside the track),
+  // which is what made it feel stuck there.
+  const carouselRef = useRef(null);
+  useEffect(() => {
+    const box = carouselRef.current;
+    const track = trackRef.current;
+    if (n < 2 || !box || !track) return;
+    let lastStep = 0;
+    let frame = null; // the running animation, if any
+    let target = null; // the slide it's heading to
+
+    const glideTo = (i) => {
+      cancelAnimationFrame(frame);
+      target = i;
+      const from = track.scrollLeft;
+      const to = centerOf(track, i);
+      const start = performance.now();
+      const duration = 350;
+      track.classList.add("is-gliding"); // no snapping mid-glide
+      const tick = (now) => {
+        const t = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - t, 3); // ease-out
+        track.scrollLeft = from + (to - from) * eased;
+        if (t < 1) {
+          frame = requestAnimationFrame(tick);
+        } else {
+          frame = null;
+          target = null;
+          track.classList.remove("is-gliding");
+        }
+      };
+      frame = requestAnimationFrame(tick);
+    };
+
+    const onWheel = (event) => {
+      // whichever way the scroll mostly went
+      const delta =
+        Math.abs(event.deltaX) > Math.abs(event.deltaY)
+          ? event.deltaX
+          : event.deltaY;
+      if (delta === 0) return;
+      event.preventDefault(); // keep the pop-up (and the track) from scrolling too
+      // one wheel flick fires lots of events: only step once per 300ms
+      const now = Date.now();
+      if (now - lastStep < 300) return;
+      lastStep = now;
+      // start from where it's heading (mid-glide) or where it is now
+      let from = target ?? closestToMiddle(track);
+      // drifted into the first/last copy? hop back to the middle copy first
+      // so non-stop scrolling can't run off the end of the row
+      if (from < n || from >= 2 * n) {
+        cancelAnimationFrame(frame);
+        track.classList.remove("is-gliding");
+        from = (from % n) + n;
+        jumpTo(from);
+      }
+      glideTo(from + (delta > 0 ? 1 : -1));
+    };
+    // passive: false is what lets preventDefault stop the page scroll
+    box.addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      box.removeEventListener("wheel", onWheel);
+      cancelAnimationFrame(frame);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [n]);
+
   if (n === 0) return null;
   // one piece needs no carousel
   if (n === 1) {
@@ -102,22 +195,6 @@ function Carousel({ items, zoom, single = false }) {
     if (i < n || i >= 2 * n) jumpTo((i % n) + n);
   };
 
-  // whichever slide is closest to the middle is the current one
-  const closestToMiddle = (track) => {
-    const trackBox = track.getBoundingClientRect();
-    const middle = trackBox.left + trackBox.width / 2;
-    let best = 0;
-    let bestDistance = Infinity;
-    [...track.children].forEach((slide, i) => {
-      const box = slide.getBoundingClientRect();
-      const distance = Math.abs(box.left + box.width / 2 - middle);
-      if (distance < bestDistance) {
-        bestDistance = distance;
-        best = i;
-      }
-    });
-    return best;
-  };
 
   const onScroll = () => {
     setCurrent(closestToMiddle(trackRef.current));
@@ -140,15 +217,18 @@ function Carousel({ items, zoom, single = false }) {
   };
 
   return (
-    <div className={single ? "carousel carousel-single" : "carousel"}>
+    <div
+      className={single ? "carousel carousel-single" : "carousel"}
+      ref={carouselRef}
+    >
       <div className="carousel-row">
+        {/* invisible click areas on each side: no arrow drawn, but clicking
+            the left/right edge still moves the carousel */}
         <button
-          className="carousel-arrow"
+          className="carousel-side"
           aria-label="previous"
           onClick={() => goTo(current - 1)}
-        >
-          ‹
-        </button>
+        />
         <div
           className="carousel-track"
           ref={trackRef}
@@ -164,17 +244,15 @@ function Carousel({ items, zoom, single = false }) {
               }
               key={`${i}-${path}`}
             >
-              <Piece path={path} zoom={zoom} />
+              <Piece path={path} zoom={zoom} group={items} />
             </div>
           ))}
         </div>
         <button
-          className="carousel-arrow"
+          className="carousel-side"
           aria-label="next"
           onClick={() => goTo(current + 1)}
-        >
-          ›
-        </button>
+        />
       </div>
       <div className="carousel-dots">
         {items.map((path, i) => (
@@ -202,23 +280,10 @@ export default function ProjectDetail({ project, onClose }) {
   const reflection = readSection(project.reflection, "reflection");
   const has = (s) => s.text.length > 0 || s.media.length > 0;
 
-  // every piece in the window, in order (for the zoom arrows)
-  const pieces = [
-    ...new Set(
-      [
-        project.media,
-        ...context.media,
-        ...process.media,
-        ...reflection.media,
-      ].filter(Boolean),
-    ),
-  ];
-
   const paragraphs = (list) => list.map((text) => <p key={text}>{text}</p>);
 
   return (
     <PopupWindow
-      items={pieces}
       onClose={onClose}
       className="project-detail-window"
     >

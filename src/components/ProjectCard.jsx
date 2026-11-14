@@ -9,10 +9,6 @@ export default function ProjectCard({ project, detailed = false }) {
 
   // the description is sometimes a list of paragraphs in the json
   const paragraphs = [].concat(project.description || []).filter(Boolean);
-  // everything the pop-up can show big (the arrows flip through these)
-  const pieces = [
-    ...new Set([project.media, ...(project.gallery || [])].filter(Boolean)),
-  ];
 
   // keyboard users can open the card with enter or space
   const openOnKey = (event) => {
@@ -79,7 +75,6 @@ export default function ProjectCard({ project, detailed = false }) {
       {open && !detailed && (
         <PopupWindow
           title={project.title}
-          items={pieces}
           onClose={() => setOpen(false)}
         >
           {(zoom) => (
@@ -88,7 +83,7 @@ export default function ProjectCard({ project, detailed = false }) {
                 {project.media && (
                   <button
                     className="project-popup-media"
-                    onClick={() => zoom(project.media)}
+                    onClick={() => zoom(project.media, [project.media])}
                     aria-label={`see it bigger: ${altFor(project.media)}`}
                   >
                     <Media path={project.media} />
@@ -132,7 +127,7 @@ export default function ProjectCard({ project, detailed = false }) {
                       <button
                         key={path}
                         className="gallery-piece"
-                        onClick={() => zoom(path)}
+                        onClick={() => zoom(path, project.gallery)}
                       >
                         <Media path={path} />
                       </button>

@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import Nav from "./Nav.jsx";
 import DitherBackground from "./DitherBackground.jsx";
-import PaperTexture from "./PaperTexture.jsx";
 import Footer from "./Footer.jsx";
 import asset from "../asset.js";
 
@@ -10,11 +9,9 @@ export default function Page({
   className,
   dither = false,
   cloud = false,
-  paper = true,
   themeToggle = true,
   children,
 }) {
-  const showPaper = paper && !cloud && !dither;
   useEffect(() => {
     document.title = title;
   }, [title]);
@@ -27,7 +24,6 @@ export default function Page({
         undefined
       }
     >
-      {showPaper && <PaperTexture />}
       {dither && <DitherBackground />}
       {cloud && (
         <div

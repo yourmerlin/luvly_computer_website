@@ -208,58 +208,25 @@ footer {
   color: var(--text-color);
 }
 
-/* home html css */
-.stars-border {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-}
-.home-content {
-  display: flex;
-  justify-content: center;
-}
-.home-content pre {
-  width: fit-content;
-  max-width: 100%;
-}
 .about-main h2 {
   font-family: bitcount-grid-single-square, sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 36px;
 }
+/* picture is the same width as the home ascii portrait. side padding is
+   2rem like the nav's, so the content stays inside the nav's edges and the
+   whole thing is centered under it like the nav links */
 main.about-main {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   gap: 2rem;
-}
-
-/* desktop: the about content lines up with the nav's row of links.
-   the page becomes a one-column grid sized by the nav (never wider than
-   the page). main and the footer get width 0 + min-width 100%, so they
-   fill that column without stretching it. the side padding skips the nav's
-   own padding (2rem) + the first/last link's padding (1.75rem), so the
-   content edges sit right under the first and last link words */
-@media (min-width: 701px) {
-  .about-page {
-    display: grid;
-    grid-template-columns: fit-content(100%);
-    justify-content: center;
-  }
-  .about-page > main,
-  .about-page > footer {
-    width: 0;
-    min-width: 100%;
-    box-sizing: border-box;
-  }
-  .about-page > main {
-    padding-inline: calc(2rem + 1.75rem);
-  }
+  padding: 2rem;
 }
 
 .about-headshot {
-  flex: 0 0 30%;
+  flex: 0 0 min(400px, 45%);
   min-width: 0;
 }
 
@@ -376,31 +343,24 @@ main.about-main {
   }
 }
 
-.about-headshot h2 {
-  color: var(--text-color);
-  font-size: 32px;
-}
-
-.about-headshot p {
-  color: var(--text-color);
-  font-weight: bold;
-  font-size: 14px;
-}
-
 .about-bio {
   flex: 1;
   min-width: 0;
+  max-width: 34rem; /* narrower column: the bio runs longer instead of wider */
   color: var(--text-color);
 }
-
+.about-bio h2 {
+  color: var(--text-color);
+  font-size: 3rem;
+}
 .about-bio p {
   text-align: justify;
-  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.25;
 }
 
 .about-bio ul {
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 0.875rem;
 }
 
 .about-bio ul a {
@@ -412,52 +372,12 @@ main.about-main {
   text-decoration: underline;
 }
 
-/* about page CV: showcases/awards/talks/publications, under the bio */
-.about-cv {
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--text-color);
-}
-
-/* headings are click-to-open: ▸ when closed, ▾ when open */
-.about-cv summary {
-  list-style: none; /* hide the browser's own triangle */
-  margin-top: 1rem;
-}
-.about-cv summary::-webkit-details-marker {
-  display: none;
-}
-.about-cv summary::before {
-  content: "▸ ";
-  font-size: 14px;
-}
-.about-cv details[open] summary::before {
-  content: "▾ ";
-}
-.about-cv summary:hover h3 {
-  text-decoration: underline;
-}
-
-.about-cv h3 {
-  font-family: bitcount-grid-single-square, sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  display: inline;
-  font-size: 14px;
-}
-
-.about-cv ul {
-  font-size: 14px;
-  font-weight: normal;
-  padding: 0.5rem 2rem;
-}
-
 .status {
   padding: 0.5rem 0.5rem;
   color: var(--text-color);
   opacity: 75%;
-  font-size: 14px;
-  font-weight: thin;
+  font-size: 0.875rem;
+  font-weight: 300;
 }
 .tags {
   display: flex;
@@ -730,8 +650,6 @@ main.about-main {
   box-shadow: 6px 10px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* one piece shown big inside the window */
-/* covers the window under the title bar, so the × stays reachable */
 .play-zoom {
   position: absolute;
   inset: 0;
@@ -744,45 +662,26 @@ main.about-main {
 }
 .play-zoom-media {
   flex: 1;
-  min-width: 0;
+  min-width: 0; /* lets the flex box shrink so wide pieces can't push it out */
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-/* sized by the space it has, so the image inside can fit it exactly */
-.play-zoom-media {
-  container-type: size;
-}
-.play-zoom-frame {
-  position: relative;
-  display: flex;
-}
+/* fits the piece inside the zoom area both ways, so tall images don't
+   run out the bottom of the pop-up */
 .play-zoom-media img,
 .play-zoom-media video {
   display: block;
-  max-width: 100cqw;
-  max-height: 100cqh;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
-/* exit the zoomed view: on the image's top-right corner */
-.play-zoom-close {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  z-index: 1;
-  width: 2.75rem;
-  height: 2.75rem;
-  background: var(--bg-color);
-  border: 1px solid var(--text-color);
-  color: var(--text-color);
-  font-size: 28px;
-  line-height: 1;
+/* clicking the zoomed image zooms back out (PopupWindow.jsx) */
+.play-zoom-media img {
+  cursor: zoom-out;
 }
-.play-zoom-close:hover {
-  background-color: var(--text-color);
-  color: var(--bg-color);
-}
+
 /* back / next */
 .play-zoom-arrow {
   flex: none;
@@ -931,18 +830,16 @@ main.about-main {
     letter-spacing: 0.05em;
   }
 
-  /* about page: headshot on top, then bio, then CV */
+  /* phones: matches the home intro on phones */
   main.about-main {
     flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
   }
-  /* a full-width photo is huge on a phone: cap it and center it */
   .about-headshot {
     flex: none;
-    width: min(320px, 100%);
+    width: min(240px, 70%);
     align-self: center;
-  }
-  .about-cv ul {
-    padding: 0.5rem 1rem;
   }
 
   /* play page: smaller folders and thumbnails so it all fits */
@@ -1253,11 +1150,12 @@ main.about-main {
   filter: drop-shadow(0 0 8px var(--text-color));
 }
 
-/* carousel: arrows either side, slides snap, dots underneath */
+/* carousel: slides snap, dots underneath */
 .carousel-row {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  padding: 2rem;
 }
 .carousel-track {
   flex: 1;
@@ -1303,8 +1201,9 @@ main.about-main {
   --slide-width: 100%;
 }
 /* the loop's invisible jump back to the middle copy: no animation */
-.carousel-track.is-jumping {
-  scroll-snap-type: none;
+.carousel-track.is-jumping,
+.carousel-track.is-gliding {
+  scroll-snap-type: none; /* scroll-wheel glide in ProjectDetail.jsx */
 }
 .carousel-track.is-jumping .carousel-slide {
   transition: none !important;
@@ -1319,20 +1218,20 @@ main.about-main {
   aspect-ratio: auto;
   object-fit: contain;
 }
-.carousel-arrow {
+/* invisible previous / next click areas on each side of the track
+   (ProjectDetail.jsx). nothing is drawn, they just take clicks */
+.carousel-side {
   flex: none;
-  width: 2.25rem;
-  height: 2.25rem;
+  align-self: stretch; /* as tall as the images */
+  width: 2.5rem;
+  padding: 0;
+  border: none;
+  background: transparent;
   -webkit-tap-highlight-color: transparent;
-  background: var(--bg-color);
-  border: 1px solid var(--text-color);
-  color: var(--text-color);
-  font-size: 22px;
-  line-height: 1;
 }
-.carousel-arrow:hover {
-  background-color: var(--text-color);
-  color: var(--bg-color);
+/* keyboard users still need to see where they are */
+.carousel-side:focus-visible {
+  outline: 1px dashed var(--text-color);
 }
 .carousel-dots {
   display: flex;
@@ -1382,11 +1281,6 @@ main.about-main {
   }
   .carousel-track {
     --slide-width: 80%;
-  }
-  /* bigger arrows are easier to hit with a thumb */
-  .carousel-arrow {
-    width: 2.75rem;
-    height: 2.75rem;
   }
   /* on a phone you swipe, so the side pieces only need a hint of depth */
   .carousel:not(.carousel-single) .carousel-slide {

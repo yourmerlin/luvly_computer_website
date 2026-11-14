@@ -112,27 +112,24 @@ export default function About() {
           </button>
         </section>
         <section className="about-bio">
-          <h2>Merlin Susana Enriquez</h2>
+          <h2>Merlin S. Enriquez</h2>
           <br />
-          <p>new media arts + hci + design @ carnegie mellon university</p>
+          <h3>new media arts + hci + design @ carnegie mellon university</h3>
           <br />
           <p>
-            I am a creative technologist, researcher, and educator working at
-            the intersection of art and technology. My research focuses on
+            I am a [creative technologist], [researcher], and [educator] working
+            at the intersection of art && technology. My research focuses on
             e-textiles & wearables, and creating open-source programs that build
-            pathways into STEAM. Right now, I'm interested in computational
-            textiles, using 3D printers to create intricate batik patterns, and
-            disguising technology within fashion pieces ୭˚. ᵎᵎ
+            pathways into STEAM.
           </p>
           <br />
           <p>
-            My conceptual practice focuses on missing or absent data, misusing
-            surveillance technology, and making computing playful. Some of my
-            work is rooted in activism, and some of it is just about making
-            technology feel silly, playful, and unserious. I wholeheartedly
-            believe play is a form of resistance. There has to be a balance
-            between enjoying life and combating the systems that restrict that
-            enjoyment!
+            My conceptual practice focuses on misusing surveillance technology,
+            and making computing playful. Some of my work is rooted in activism,
+            and some of it is just about making technology feel silly, playful,
+            and unserious. I wholeheartedly believe play is a form of
+            resistance. There has to be a balance between enjoying life and
+            combating the systems that restrict that enjoyment.
           </p>
           <br />
           <p>
