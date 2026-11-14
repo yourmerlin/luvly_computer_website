@@ -214,6 +214,11 @@ footer {
   font-style: normal;
   font-size: 36px;
 }
+
+.about-bio h4 {
+  color: var(--text-color);
+  font-size: 1rem;
+}
 /* picture is the same width as the home ascii portrait. side padding is
    2rem like the nav's, so the content stays inside the nav's edges and the
    whole thing is centered under it like the nav links */
@@ -925,6 +930,33 @@ main.about-main {
     width: min(240px, 70%);
   }
 }
+/* home intro: the line that types itself out (TypeText.jsx).
+   the ghost (full line, invisible) and the typed part share one grid cell,
+   so the ghost sets the size and nothing shifts while it types */
+.type-text {
+  display: inline-grid;
+}
+.type-text-ghost,
+.type-text-typed {
+  grid-area: 1 / 1;
+}
+.type-text-ghost {
+  visibility: hidden;
+}
+.type-text-cursor {
+  animation: type-blink 1s steps(1) infinite;
+}
+@keyframes type-blink {
+  50% {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .type-text-cursor {
+    animation: none;
+  }
+}
+
 .ascii-profile canvas {
   display: block;
   width: 100%;

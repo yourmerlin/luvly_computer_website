@@ -114,7 +114,7 @@ export default function About() {
         <section className="about-bio">
           <h2>Merlin S. Enriquez</h2>
           <br />
-          <h3>new media arts + hci + design @ carnegie mellon university</h3>
+          <h4>new media arts + hci + design @ carnegie mellon university</h4>
           <br />
           <p>
             I am a [creative technologist], [researcher], and [educator] working

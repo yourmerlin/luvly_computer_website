@@ -2,6 +2,7 @@ import { useState } from "react";
 import Page from "../components/Page.jsx";
 import ProjectCard from "../components/ProjectCard.jsx";
 import AsciiProfile from "../components/AsciiProfile.jsx";
+import TypeText from "../components/TypeText.jsx";
 import projects from "../data/work.json";
 
 const TABS = ["all", "artsy", "techy", "design"];
@@ -19,18 +20,14 @@ export default function Home() {
         <div className="work-intro-text">
           <h2>C:\Merlin\Enriquez</h2>
           <h4>
-            {">"} is a{" "}
-            {[
-              "[creative technologist]",
-              <br key="creative-technologist" />,
-              "[design engineer]",
-              "[frontend developer]",
-              "[hci researcher]",
-              "[STEM educator]",
-            ]}
+            <TypeText
+              text={
+                "> is a [creative technologist]<br />,[design engineer],[frontend developer],[hci researcher],[STEM educator]"
+              }
+            />
             <br></br>
             <br></br>
-            {">"} building technology that holds you with care_
+            <TypeText text="> building technology that holds you with care" />
           </h4>
         </div>
       </section>
