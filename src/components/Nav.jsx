@@ -56,9 +56,6 @@ export default function Nav({ themeToggle = true }) {
           <ScrambleLink to="/research" text="research" />
         </li>
         <li>
-          <ScrambleLink to="/experiments" text="experiments" />
-        </li>
-        <li>
           <ScrambleLink to="/play" text="play" />
         </li>
         {themeToggle && (

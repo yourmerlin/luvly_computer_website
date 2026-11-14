@@ -13,8 +13,14 @@ export const mediaSrc = (path) => asset(encodeURI(path));
 // a new piece without one falls back to its file name, cleaned up.
 export function altFor(path) {
   if (altText[path]) return altText[path];
-  const name = path.split("/").pop().replace(/\.[a-z0-9]+$/i, "");
-  return name.replace(/[_-]+/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2").toLowerCase();
+  const name = path
+    .split("/")
+    .pop()
+    .replace(/\.[a-z0-9]+$/i, "");
+  return name
+    .replace(/[_-]+/g, " ")
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .toLowerCase();
 }
 
 export function Media({ path, zoomed = false }) {
@@ -22,16 +28,37 @@ export function Media({ path, zoomed = false }) {
   if (isVideo(path)) {
     // videos have no alt, so the description goes in aria-label
     return zoomed ? (
-      <video src={mediaSrc(path)} aria-label={alt} autoPlay loop playsInline controls />
+      <video
+        src={mediaSrc(path)}
+        aria-label={alt}
+        autoPlay
+        loop
+        playsInline
+        controls
+      />
     ) : (
-      <video src={mediaSrc(path)} aria-label={alt} autoPlay muted loop playsInline />
+      <video
+        src={mediaSrc(path)}
+        aria-label={alt}
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
     );
   }
-  return <img src={mediaSrc(path)} alt={alt} loading={zoomed ? undefined : "lazy"} />;
+  return (
+    <img src={mediaSrc(path)} alt={alt} loading={zoomed ? undefined : "lazy"} />
+  );
 }
 
-
-export default function PopupWindow({ title, items, onClose, className, children }) {
+export default function PopupWindow({
+  title,
+  items,
+  onClose,
+  className,
+  children,
+}) {
   const [zoomed, setZoomed] = useState(null); // index into items, or null
   const zoom = (path) => setZoomed(items.indexOf(path));
   // wraps around: back from the first goes to the last
@@ -61,7 +88,11 @@ export default function PopupWindow({ title, items, onClose, className, children
       >
         <div className="play-window-bar">
           <h3>{title}</h3>
-          <button className="play-window-close" onClick={onClose} aria-label="close">
+          <button
+            className="play-window-close"
+            onClick={onClose}
+            aria-label="close"
+          >
             ×
           </button>
         </div>
@@ -84,7 +115,10 @@ export default function PopupWindow({ title, items, onClose, className, children
               </button>
             )}
             {/* key makes videos restart when you flip to them */}
-            <div className="play-zoom-media" onClick={(event) => event.stopPropagation()}>
+            <div
+              className="play-zoom-media"
+              onClick={(event) => event.stopPropagation()}
+            >
               {/* frame hugs the image so the × sits on its corner */}
               <div className="play-zoom-frame">
                 <Media key={items[zoomed]} path={items[zoomed]} zoomed />
@@ -113,6 +147,6 @@ export default function PopupWindow({ title, items, onClose, className, children
         )}
       </div>
     </div>,
-    document.body
+    document.body,
   );
 }

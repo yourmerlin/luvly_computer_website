@@ -1,6 +1,3 @@
-// import { Link } from "react-router";
-// import Page from "../components/Page.jsx";
-
 import { useState } from "react";
 import Page from "../components/Page.jsx";
 import ProjectCard from "../components/ProjectCard.jsx";
@@ -22,17 +19,24 @@ export default function Home() {
         <div className="work-intro-text">
           <h2>C:\Merlin\Enriquez</h2>
           <h4>
-            {">"}is a creative technologist / front-end developer<br></br>/ ux
-            designer / hci researcher / STEM educator
+            {">"} is a{" "}
+            {[
+              "[creative technologist]",
+              <br key="creative-technologist" />,
+              "[design engineer]",
+              "[frontend developer]",
+              "[hci researcher]",
+              "[STEM educator]",
+            ]}
             <br></br>
             <br></br>
-            {">"}building technology that holds you with care_
+            {">"} building technology that holds you with care_
           </h4>
-          {/* <p>
-            {">"} double major in human computer interaction & new media arts @
-            Carnegie Mellon University
-          </p> */}
         </div>
+      </section>
+      <section className="scroll-hello">
+        <h2>explore my ("hello world")</h2>
+        <h3>🡣</h3>
       </section>
 
       <main className="project-list">

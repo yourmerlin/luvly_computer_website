@@ -5,10 +5,15 @@ import PaperTexture from "./PaperTexture.jsx";
 import Footer from "./Footer.jsx";
 import asset from "../asset.js";
 
-// every page: sets the tab title, draws the nav, the footer, and a background:
-// the paper texture by default, or the dither / cloud bg.
-// pass paper={false} to turn the texture off on a page.
-export default function Page({ title, className, dither = false, cloud = false, paper = true, themeToggle = true, children }) {
+export default function Page({
+  title,
+  className,
+  dither = false,
+  cloud = false,
+  paper = true,
+  themeToggle = true,
+  children,
+}) {
   const showPaper = paper && !cloud && !dither;
   useEffect(() => {
     document.title = title;
@@ -16,7 +21,12 @@ export default function Page({ title, className, dither = false, cloud = false, 
 
   return (
     // cloud pages also get blue text (see .cloud-page in styles.css)
-    <div className={[className, cloud && "cloud-page"].filter(Boolean).join(" ") || undefined}>
+    <div
+      className={
+        [className, cloud && "cloud-page"].filter(Boolean).join(" ") ||
+        undefined
+      }
+    >
       {showPaper && <PaperTexture />}
       {dither && <DitherBackground />}
       {cloud && (

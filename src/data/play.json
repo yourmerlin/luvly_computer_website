@@ -15,6 +15,17 @@
     ]
   },
   {
+    "name": "creative tech",
+    "x": 40,
+    "y": 10,
+    "media": [
+      "play_imgs/webp/creative tech/ceo_waifus.webp",
+      "play_imgs/webp/creative tech/overconsuming.webm",
+      "play_imgs/webp/creative tech/notes-around-the-web-docu.webm",
+      "play_imgs/webp/creative tech/feelingHolderFInal.webm"
+    ]
+  },
+  {
     "name": "digital art",
     "x": 72,
     "y": 12,
@@ -51,6 +62,7 @@
     "y": 74,
     "media": [
       "play_imgs/webp/textiles/waves.webp",
+      "play_imgs/webp/textiles/computer_purse.webp",
       "play_imgs/webp/textiles/batikDyePainting_Final.webp",
       "play_imgs/webp/textiles/dyepainting.webp",
       "play_imgs/webp/textiles/keyboardcolor.webp"
@@ -60,6 +72,8 @@
     "name": "time based",
     "x": 78,
     "y": 70,
-    "media": ["play_imgs/webp/time-based/Enriquez_Memories_AnimationProject.webm"]
+    "media": [
+      "play_imgs/webp/time-based/Enriquez_Memories_AnimationProject.webm"
+    ]
   }
 ]

@@ -1,7 +1,5 @@
 @import url(reset.css);
 
-/* every title/heading uses the pixel font (from the Adobe Fonts kit in index.html).
-   it only comes in regular, so headings stay at 400: bold would be faked and blurry */
 h1,
 h2,
 h3 {
@@ -9,11 +7,17 @@ h3 {
   font-weight: 400;
   font-style: normal;
 }
+html h2 {
+  font-size: 2vw;
+}
 
 .jacquarda-bastarda-9-regular {
   font-family: "Jacquarda Bastarda 9", serif;
   font-weight: 400;
   font-style: normal;
+}
+html * {
+  box-sizing: border-box;
 }
 
 html {
@@ -23,6 +27,7 @@ html {
   background-color: var(--bg-color);
   color: var(--text-color);
   cursor: none;
+  box-sizing: border-box;
 }
 
 html.light-mode {
@@ -35,7 +40,6 @@ button {
   cursor: none;
 }
 
-/* custom wand cursor */
 #customCursor {
   position: fixed;
   top: 0;
@@ -50,14 +54,12 @@ button {
   transform: translate(-2.3125rem, -1.25rem);
 }
 
-/* touch screens have no mouse to follow, so the wand would just sit there */
 @media (hover: none) {
   #customCursor {
     display: none;
   }
 }
 
-/* pixel trail behind the wand */
 .cursor-trail {
   position: fixed;
   top: 0;
@@ -65,7 +67,7 @@ button {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 9998; /* above the page, just under the wand */
+  z-index: 9998;
 }
 
 #ditherCanvas {
@@ -76,11 +78,9 @@ button {
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  image-rendering: pixelated; /* keep the blocks crisp when scaled up */
+  image-rendering: pixelated;
 }
 
-/* click ripples: behind the content. same layer as the paper grain and the
-   cloud bg, but later in the page, so it draws over both */
 .pixel-ripple {
   position: fixed;
   top: 0;
@@ -91,20 +91,6 @@ button {
   pointer-events: none;
 }
 
-/* paper grain between the page color (html) and the content */
-.paper-grain {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-size:
-    240px 240px,
-    720px 720px;
-  mix-blend-mode: soft-light; /* tints the color under it instead of greying it */
-  opacity: 0.45; /* raise for a rougher paper */
-}
-
-/* pixelcloud.png behind the whole page (play + experiments) */
 .cloud-bg {
   position: fixed;
   inset: 0;
@@ -114,7 +100,6 @@ button {
   image-rendering: pixelated;
   pointer-events: none;
 }
-/* blue text reads better on the sky than pink/white, in both themes */
 .cloud-page {
   --bg-color: white;
   --text-color: #0005d0;
@@ -467,44 +452,6 @@ main.about-main {
   padding: 0.5rem 2rem;
 }
 
-/* work page meow */
-.work-header {
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-}
-.work-header h2 {
-  font-size: 24px;
-  padding: 0.5rem 0.5rem;
-}
-
-.work-header p {
-  padding: 0.5rem 0.5rem;
-  font-size: 14px;
-}
-.work-header ul {
-  justify-content: center;
-  text-align: center;
-  display: flex;
-  list-style: none;
-  padding: 0.5rem 0.5rem;
-}
-.work-header ul li {
-  gap: 0.3125rem;
-}
-.work-header button {
-  backdrop-filter: blur(10px);
-  background-color: transparent;
-  color: var(--text-color);
-  border: 1px solid var(--text-color);
-  padding: 0.25rem 0.5rem;
-}
-.work-header button:hover,
-.work-header button.is-active {
-  background-color: var(--text-color);
-  color: var(--bg-color);
-}
-
 .status {
   padding: 0.5rem 0.5rem;
   color: var(--text-color);
@@ -535,23 +482,21 @@ main.about-main {
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+  padding: 2.5rem 0.5rem;
 }
 .project-card {
-  /* white card + blue text in both themes, so cards stand out on the blue
-     dark-mode page. #0005d0 on white is about 10:1 (WCAG AA needs 4.5:1).
-     everything inside reads these two, so text, tags and borders follow */
   --bg-color: white;
   --text-color: #0005d0;
   background-color: var(--bg-color);
   display: flex;
-  flex-direction: row; /* media on the left, title + tags next to it */
+  flex-direction: row;
   align-items: flex-start;
   box-sizing: border-box;
   width: 100%;
   gap: 1rem;
   padding: 0.75rem;
   text-align: left;
-  border: 3px solid transparent; /* full border only shows on hover */
+  border: 3px solid transparent;
   transition:
     border-color 0.2s,
     box-shadow 0.2s;
@@ -560,6 +505,7 @@ main.about-main {
 .project-card:focus-visible {
   border-color: var(--text-color);
   box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.244);
+  transform: scale(1.05);
 }
 .project-card-media {
   flex: 0 0 40%; /* same slot size on every card */
@@ -607,14 +553,12 @@ main.about-main {
   display: inline-block;
   padding: 0.5rem;
   color: var(--text-color);
-  /* it's a button (opens the gallery) but looks like a link */
   background: transparent;
   border: none;
   font: inherit;
   text-decoration: underline;
 }
 
-/* play page: folders scattered on a "desktop" */
 .play-desktop {
   position: relative;
   height: 70vh;
@@ -1021,40 +965,41 @@ main.about-main {
   }
 }
 
-/* home page: 0/1 portrait (AsciiProfile.jsx) on the left, name + blurb on the right */
 .work-intro {
   display: flex;
   align-items: center;
   gap: 2rem;
-  padding: 1rem 0.5rem;
+  padding: 2rem 0.5rem;
 }
 .work-intro-text {
   flex: 1;
   min-width: 0;
+  line-height: 1.5;
   text-align: left;
 }
-/* sizes scale with the screen: clamp(smallest, grows with width, largest).
-   they hit their full desktop size (48px / 24px) around 740px / 600px wide,
-   so desktop looks the same and phones shrink smoothly instead of jumping */
 .work-intro-text h2 {
-  font-size: clamp(22px, 6.5vw, 48px);
+  font-size: 3.5rem;
   padding: 0.5rem 0.5rem;
-  /* "C:\Merlin\Enriquez" has no spaces, so on a really narrow screen
-     let it break at any character instead of running off the edge */
-  overflow-wrap: anywhere;
 }
 .work-intro-text h4 {
-  font-size: clamp(15px, 4vw, 24px);
-  line-height: 1.4;
+  font-size: 1.75rem;
   padding: 0.5rem 0.5rem;
-}
-.work-intro-text p {
-  padding: 0.5rem 0.5rem;
-  font-style: italic;
-  font-size: 14px;
 }
 .ascii-profile {
-  flex: 0 0 min(250px, 45%);
+  flex: 0 0 min(400px, 45%);
+}
+
+.scroll-hello {
+  border-bottom: 3px solid var(--text-color);
+  text-align: center;
+  padding-bottom: 2rem;
+}
+.scroll-hello h2 {
+  font-size: 3rem;
+}
+.scroll-hello h3 {
+  padding-top: 0.5rem;
+  font-size: 2.5rem;
 }
 /* phones: stack the portrait above the text */
 @media (max-width: 700px) {
@@ -1281,43 +1226,31 @@ main.about-main {
 /* every image/video is a button; hover shows the magnifier */
 .project-detail-piece {
   position: relative;
+  /* a button is inline by default, so it sat on the left like a word in a
+     line of text. block + auto side margins centers it in its column */
   display: block;
-  width: 100%;
+  margin-inline: auto;
+  width: fit-content;
   padding: 0;
   background: transparent;
   border: none;
   cursor: zoom-in;
+  transition:
+    transform 0.2s,
+    filter 0.2s; /* eases the scale + shadow in instead of snapping */
 }
 .project-detail-piece img,
 .project-detail-piece video {
-  display: block;
   box-sizing: border-box;
   width: 100%;
   max-height: 70vh;
-  object-fit: contain;
-  border: 1px solid var(--text-color);
-}
-.project-detail-zoom-hint {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  display: flex;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0.3rem 0.6rem;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  border: 1px solid var(--text-color);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  opacity: 0;
-  transition: opacity 0.15s;
-  pointer-events: none;
+  justify-content: center;
 }
-.project-detail-piece:hover .project-detail-zoom-hint,
-.project-detail-piece:focus-visible .project-detail-zoom-hint {
-  opacity: 1;
+.project-detail-piece:hover,
+.project-detail-piece:focus-visible {
+  transform: scale(1.02);
+  filter: drop-shadow(0 0 8px var(--text-color));
 }
 
 /* carousel: arrows either side, slides snap, dots underneath */
@@ -1407,8 +1340,6 @@ main.about-main {
   flex-wrap: wrap; /* lots of pieces on a narrow phone wrap instead of overflowing */
   padding-top: 0.25rem;
 }
-/* the square you see is small, but the tappable area around it is 24px
-   (WCAG's minimum touch target): the padding is clickable, the fill isn't */
 .carousel-dot {
   box-sizing: content-box;
   width: 0.6rem;
@@ -1464,8 +1395,5 @@ main.about-main {
   }
   .carousel-single .carousel-track {
     --slide-width: 100%;
-  }
-  .project-detail-zoom-hint {
-    opacity: 1; /* no hover on touch, so always show it */
   }
 }

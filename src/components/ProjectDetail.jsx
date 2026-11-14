@@ -2,22 +2,6 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import PopupWindow, { Media, altFor } from "./PopupWindow.jsx";
 
-// the big documentation pop-up for home page projects (src/data/work.json).
-// layout (from the wireframe sketch):
-//   [ title, link    ][ timeline  ][ tools       ]
-//   [ main media            ][ description      ]
-//   [ context text          ][ context media (carousel) ]
-//   [ process text, two columns                         ]
-//   [ <  process media carousel  >  . . . .             ]
-//   [ reflection text                                   ]
-//   [ <  reflection media carousel  >  . . . .          ]
-//
-// reads (all optional):
-//   "title", "timeline", "media", "links", "tools", "description"
-//   "context":     { "context_text": "..." or [...], "context_media": [...] }
-//   "process":     { "process_text": "..." or [...], "process_media": [...] }
-//   "reflection":  { "reflection_text": "..." or [...], "reflection_media": [...] }
-
 const asList = (value) => [].concat(value || []).filter(Boolean);
 
 // a section is { <name>_text, <name>_media } (plain text also works)
@@ -45,27 +29,6 @@ function Piece({ path, zoom }) {
       aria-label={`zoom in: ${altFor(path)}`}
     >
       <Media path={path} />
-      <span className="project-detail-zoom-hint" aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="18" height="18">
-          <circle
-            cx="10"
-            cy="10"
-            r="6.5"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-          <line
-            x1="15"
-            y1="15"
-            x2="21"
-            y2="21"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-        </svg>
-        click to zoom in
-      </span>
     </button>
   );
 }
@@ -262,7 +225,14 @@ export default function ProjectDetail({ project, onClose }) {
       {(zoom) => (
         <div className="project-detail">
           <div className="project-detail-scroll">
-            {/* row 1: title | timeline */}
+            {/* main media, full width on top */}
+            {project.media && (
+              <div className="project-detail-media">
+                <Piece path={project.media} zoom={zoom} />
+              </div>
+            )}
+            {/* row 1 (under the media): title | timeline | tools.
+             */}
             <header className="project-detail-header">
               <div className="project-detail-box">
                 <span className="project-detail-label">title</span>
@@ -300,11 +270,6 @@ export default function ProjectDetail({ project, onClose }) {
 
             {/* row 2: main media | description + tools + link */}
             <div className="project-detail-row">
-              {project.media && (
-                <div className="project-detail-media">
-                  <Piece path={project.media} zoom={zoom} />
-                </div>
-              )}
               <div className="project-detail-box project-detail-words">
                 <h3>description</h3>
                 {paragraphs(description)}

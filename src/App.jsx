@@ -30,12 +30,6 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/research" element={<Research />} />
-        <Route path="/experiments" element={<Experiments />} />
-        {/* experimental capture is a pop-up gallery on the experiments page now */}
-        <Route
-          path="/experimental-capture"
-          element={<Navigate to="/experiments" replace />}
-        />
         <Route path="/play" element={<Play />} />
         <Route path="/dreams" element={<Dreams />} />
         <Route path="/blogs" element={<Blogs />} />
