@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
+import { useNavigationType } from "react-router";
+import { takeListScroll } from "../projectPath.js";
 import Page from "../components/Page.jsx";
 import ProjectCard from "../components/ProjectCard.jsx";
 import AsciiProfile from "../components/AsciiProfile.jsx";
@@ -9,6 +11,14 @@ const TABS = ["all", "artsy", "techy", "design"];
 
 export default function Home() {
   const [tab, setTab] = useState("all");
+
+  // coming back from a project page: return to the same spot in the list
+  const navigationType = useNavigationType();
+  useLayoutEffect(() => {
+    const y = takeListScroll();
+    if (navigationType === "POP" && y !== null) window.scrollTo(0, y);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const visible = projects.filter(
     (project) => tab === "all" || project.categories.includes(tab),
   );

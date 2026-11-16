@@ -1,4 +1,5 @@
 {
+  "work_imgs/luvcomputer_imgs/merlin/low.glb": "interactive 3D scan of a laptop from the computers.json archive that you can rotate and zoom",
   "work_imgs/luvcomputer_imgs/computer_gif.gif": "screen recording of the computers.json site: 3D-scanned laptops in a grid on a blue page, each labeled with its owner's name, under an ascii drawing of a human and a computer",
   "work_imgs/luvcomputer_imgs/compu_tutorial.png": "github readme titled 'How to Archive Your Computer!' showing a 3D-scanned sticker-covered laptop and a list of free tools: Polycam, your phone, a flatbed scanner, Blender, and MeshLab",
   "work_imgs/luvcomputer_imgs/polycam_scans.png": "grid of eight rough 3D scans of different laptops in the Polycam app, some with bits of the table and floor still attached",

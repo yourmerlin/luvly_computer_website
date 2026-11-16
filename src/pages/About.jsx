@@ -110,39 +110,46 @@ export default function About() {
               {ascii ? "see the real me!" : "see me in binary code!"}
             </span>
           </button>
+          <br />
+          <br />
+          <p>b.2004 based in california🡥</p>
         </section>
         <section className="about-bio">
           <h2>Merlin S. Enriquez</h2>
           <br />
-          <h4>new media arts + hci + design @ carnegie mellon university</h4>
+          <h4>
+            [ new media arts && human computer interaction,
+            <br />+ minor in design @ carnegie mellon university ]
+          </h4>
           <br />
           <p>
             I am a [creative technologist], [researcher], and [educator] working
-            at the intersection of art && technology. My research focuses on
-            e-textiles & wearables, and creating open-source programs that build
-            pathways into STEAM.
+            at the intersection of art && technology. I’m currently interested
+            in researching algorithmic textiles, web interactivity using WebGL
+            && computer graphics, and creating an open-source curriculum for
+            learning creative technology.
           </p>
           <br />
           <p>
-            My conceptual practice focuses on misusing surveillance technology,
-            and making computing playful. Some of my work is rooted in activism,
-            and some of it is just about making technology feel silly, playful,
-            and unserious. I wholeheartedly believe play is a form of
-            resistance. There has to be a balance between enjoying life and
-            combating the systems that restrict that enjoyment.
+            My background in media arts, human-computer interaction, and design
+            allows me to develop systems that consider humans in every aspect of
+            using and building technology. I want technology and computing to
+            feel like a playground, one that puts people first. Through my
+            experimental software and design projects, my goal is to balance
+            play, software optimization, and accessibility.
           </p>
           <br />
           <p>
-            I am always involved in my community, whether by organizing a
-            wearable art and fashion show called Haute Glue, building a
-            temporary interactive house on campus for Booth, or being part of a
-            satirical newspaper.
+            In my free time, I run a wearable art show called Haute Glue🡥, where
+            I teach free, open-source workshops in fashion and wearable
+            technology🡥 (e-textiles). I was a Booth🡥 chair for two years, where
+            we built a temporary interactive house in our school’s parking lot.
+            I’m always finding ways to get involved in my community and give
+            back :-)
           </p>
-          <br />
-          <br />
-          <p>&gt; always open to chat ❤</p>
           <br />
 
+          {/* <p>&gt; always open to chat ❤</p> */}
           <ul>
             {LINKS.map((link) => (
               <li key={link.label}>

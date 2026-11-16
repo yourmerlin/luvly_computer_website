@@ -1,7 +1,8 @@
 [
   {
     "title": "computers.json",
-    "media": "work_imgs/luvcomputer_imgs/computer_gif.gif",
+    "media": "work_imgs/luvcomputer_imgs/merlin/low.glb",
+    "thumbnail": "work_imgs/luvcomputer_imgs/computer_gif.gif",
     "links": "iluvmy.computer",
     "timeline": "2 weeks(October 2026)",
     "tools": [
@@ -12,26 +13,30 @@
       "webGL",
       "react three fiber"
     ],
-    "description": "A digital archive of personal computers. Using free, accessible tools, it constructs high-fidelity 3D renders for anyone to use, creating an intimate space on the web that tells a story about each owner through detailed surface textures.",
-    "context": {
-      "context_text": [
-        "People have long archived technology, whether it’s the web through the Internet Archive or physical objects at the Computer History Museum. But there’s no in-between place where you can see the details of physical objects while keeping them as accessible as the web. ",
-        "This led me to archive people’s personal computers, creating a public archive and communal space on the web. A key goal throughout the project was making it easy for anyone to submit or archive their own computer. That took me down a DIY route to achieve high-fidelity 3D renders without expensive equipment or inaccessible spaces. Which, you can find the open-source tutorial here :-)"
-      ],
-      "context_media": ["work_imgs/luvcomputer_imgs/compu_tutorial.png"]
-    },
+    "description": "People have long archived technology, but there’s no in-between place where you can see the fine details of physical objects online. Computers.json is a public archive of people’s personal computers that doubles as a communal space on the web. ",
+
     "process": {
-      "process_text": [
-        "I initially 3D scanned the computers with Polycam using photogrammetry. Afterwards, I went into MeshLab to clean up the model, fill in the gaps, and optimize it, so that it would retain detail and display well on the web.",
-        "My next step was flatbed scanning the surfaces of the computer to capture high-resolution detail. Then I took my scans into Blender and applied the flatbed scan textures to the 3D mesh. This created a high-resolution render of a 3D model without expensive equipment.",
-        "To further optimize the render on the webpage, I created a lower-resolution model that displays when the user first opens the page, which makes it load faster. Users can then choose to view the model in high resolution. Throughout my process, I wanted to keep as much detail in the 3D model as possible without sacrificing my users' experience on the webpage."
-      ],
-      "process_media": [
-        "work_imgs/luvcomputer_imgs/polycam_scans.png",
-        "work_imgs/luvcomputer_imgs/meshlab_optimize.png",
-        "work_imgs/luvcomputer_imgs/blender_uvmapping.png",
-        "work_imgs/luvcomputer_imgs/blender_uvmapping2.png",
-        "work_imgs/luvcomputer_imgs/basic_webpage.png"
+      "process_steps": [
+        {
+          "text": "I initially 3D scanned the computers with Polycam using photogrammetry.",
+          "media": ["work_imgs/luvcomputer_imgs/polycam_scans.png"]
+        },
+        {
+          "text": "Afterwards, I went into MeshLab to clean up the model, fill in the gaps, and optimize it, so that it would retain detail and display well on the web.",
+          "media": ["work_imgs/luvcomputer_imgs/meshlab_optimize.png"]
+        },
+        {
+          "text": "My next step was flatbed scanning the surfaces of the computer to capture high-resolution detail.",
+          "media": ["work_imgs/luvcomputer_imgs/blender_uvmapping.png"]
+        },
+        {
+          "text": "Then I took my scans into Blender and applied the flatbed scan textures to the 3D mesh. This created a high-resolution render of a 3D model without expensive equipment.",
+          "media": ["work_imgs/luvcomputer_imgs/blender_uvmapping2.png"]
+        },
+        {
+          "text": "To further optimize the render on the webpage, I created a lower-resolution model that displays when the user first opens the page, which makes it load faster. Users can then choose to view the model in high resolution. Throughout my process, I wanted to keep as much detail in the 3D model as possible without sacrificing my users' experience on the webpage.",
+          "media": ["work_imgs/luvcomputer_imgs/basic_webpage.png"]
+        }
       ]
     },
     "reflection": {
@@ -45,29 +50,51 @@
     "links": "",
     "timeline": "1.5 Months (Apr-May 2026)",
     "tools": ["web dev", "react.js", "python", "ui/ux", "vite", "webGL"],
-    "description": "A fashion search engine, digital closet, and community home all in one. Rooted in curation rather than overconsumption, it’s a home for those who love fashion beyond aesthetics.",
-    "context": {
-      "context_text": "Inspired by 2000s outfit generator games, myspace and old pinterest back in the day.",
-      "context_media": [
-        "work_imgs/preserve_wardrobe/2000sOutfit.jpg",
-        "work_imgs/preserve_wardrobe/myspaceinspo.jpg"
+    "description": {
+      "description_text": "A fashion search engine, digital closet, and community home all in one. Rooted in curation rather than overconsumption, it’s for those who love fashion beyond aesthetics. Inspired by 2000s outfit-generator games, Myspace, and early Pinterest, it brings the play of the old internet into a modern context, with node-based boards and an open sandbox for experimenting with your closet. ",
+      "description_media": [
+        "work_imgs/preserve_wardrobe/node_connections.gif",
+        "work_imgs/preserve_wardrobe/node_hover.gif",
+        "work_imgs/preserve_wardrobe/node_collections.gif",
+        "work_imgs/preserve_wardrobe/profile_interact.gif"
       ]
     },
+
     "process": {
-      "process_text": "hi hello",
-      "process_media": [
-        "work_imgs/preserve_wardrobe/Wireframes1.png",
-        "work_imgs/preserve_wardrobe/Wireframes2.png",
-        "work_imgs/preserve_wardrobe/Wireframes3.png",
-        "work_imgs/preserve_wardrobe/Wireframes4.png",
-        "work_imgs/preserve_wardrobe/Wireframes5.jpg",
-        "work_imgs/preserve_wardrobe/Wireframes6.jpg",
-        "work_imgs/preserve_wardrobe/Wireframes7.jpg"
+      "process_steps": [
+        {
+          "text": "Research: I begin by researching old website design and 2000s outfit-generator games to find which UI/UX elements made the web feel playful.",
+          "media": [
+            "work_imgs/preserve_wardrobe/2000sOutfit.jpg",
+            "work_imgs/preserve_wardrobe/myspaceinspo.jpg"
+          ]
+        },
+        {
+          "text": "Sketch: I work quickly by sketching wireframes, focusing on how the system will look and how its parts will interact.",
+          "media": [
+            "work_imgs/preserve_wardrobe/Wireframes1.png",
+            "work_imgs/preserve_wardrobe/Wireframes2.png",
+            "work_imgs/preserve_wardrobe/Wireframes3.png"
+          ]
+        },
+        {
+          "text": "Iterate: I keep refining these sketches, testing ideas, cutting what doesn’t work, and redrawing until the interactions feel right. Because the sketches are quick, I can go through many versions without getting attached to any one.",
+          "media": [
+            "work_imgs/preserve_wardrobe/Wireframes4.png",
+            "work_imgs/preserve_wardrobe/Wireframes5.jpg",
+            "work_imgs/preserve_wardrobe/Wireframes6.jpg"
+          ]
+        },
+        {
+          "text": "Build: With my technical background, I can turn these sketches into working designs with ease. Building often shows new ideas, so I loop back to sketching as needed.",
+          "media": ["work_imgs/preserve_wardrobe/Wireframes7.jpg"]
+        }
       ]
     },
     "reflection": {
-      "reflection_text": "hi hello",
+      "reflection_text": "Although this was a prototype, watching people test these interactions during our final showcase sparked a lot of joy! There were still issues with web scraping to pull images from websites, which was tedious, so it isn’t yet viable as a large-scale application. Still, the core concepts came across to my audience. People enjoyed how experimental the interface was and felt it clearly communicated the app’s message. Overall, I want to keep iterating on this project and hopefully scale it to a larger context.",
       "reflection_media": [
+        "work_imgs/preserve_wardrobe/reflection_preserve2.jpg",
         "work_imgs/preserve_wardrobe/node_connections.gif",
         "work_imgs/preserve_wardrobe/node_hover.gif",
         "work_imgs/preserve_wardrobe/node_collections.gif",

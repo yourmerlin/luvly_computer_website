@@ -4,6 +4,7 @@ import Cursor from "./components/Cursor.jsx";
 import CursorTrail from "./components/CursorTrail.jsx";
 import PixelRipple from "./components/PixelRipple.jsx";
 import Home from "./pages/Home.jsx";
+import WorkProject from "./pages/WorkProject.jsx";
 import Research from "./pages/Research.jsx";
 import About from "./pages/About.jsx";
 import Play from "./pages/Play.jsx";
@@ -26,6 +27,7 @@ export default function App() {
     <ThemeProvider>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/work/:slug" element={<WorkProject />} />
         <Route path="/about" element={<About />} />
         <Route path="/research" element={<Research />} />
         <Route path="/play" element={<Play />} />

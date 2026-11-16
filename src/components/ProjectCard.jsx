@@ -1,14 +1,22 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import asset from "../asset.js";
 import PopupWindow, { Media, altFor } from "./PopupWindow.jsx";
-import ProjectDetail from "./ProjectDetail.jsx";
+import { readSection } from "./ProjectDetail.jsx";
+import { projectPath, saveListScroll } from "../projectPath.js";
 
+// detailed: the card links to the project's own page (/work/<slug>).
+// otherwise clicking it opens a small pop-up.
 export default function ProjectCard({ project, detailed = false }) {
-  const isVideo = /\.(webm|mp4)$/i.test(project.media);
+  // the card shows "thumbnail" if there is one (needed when "media" is a 3D
+  // model, which can't be a card picture), otherwise "media"
+  const cardMedia = project.thumbnail || project.media;
+  const isVideo = /\.(webm|mp4)$/i.test(cardMedia);
   const [open, setOpen] = useState(false);
 
-  // the description is sometimes a list of paragraphs in the json
-  const paragraphs = [].concat(project.description || []).filter(Boolean);
+  // the description can be a string, a list of paragraphs, or
+  // { description_text, description_media } in the json
+  const paragraphs = readSection(project.description, "description").text;
 
   // keyboard users can open the card with enter or space
   const openOnKey = (event) => {
@@ -18,31 +26,23 @@ export default function ProjectCard({ project, detailed = false }) {
     }
   };
 
-  return (
+  const cardContents = (
     <>
-      <article
-        className="project-card"
-        role="button"
-        tabIndex={0}
-        aria-label={`open ${project.title}`}
-        onClick={() => setOpen(true)}
-        onKeyDown={openOnKey}
-      >
         {/* media is optional: projects without an image yet just skip it */}
-        {project.media && (
+        {cardMedia && (
           <div className="project-card-media">
             {isVideo ? (
               // plays on its own like a gif (muted so browsers allow autoplay)
               <video
-                src={asset(project.media)}
-                aria-label={altFor(project.media)}
+                src={asset(cardMedia)}
+                aria-label={altFor(cardMedia)}
                 autoPlay
                 muted
                 loop
                 playsInline
               />
             ) : (
-              <img src={asset(project.media)} alt={altFor(project.media)} />
+              <img src={asset(cardMedia)} alt={altFor(cardMedia)} />
             )}
           </div>
         )}
@@ -60,19 +60,46 @@ export default function ProjectCard({ project, detailed = false }) {
               ))}
             </ul>
           )}
-          {/* only the first few lines show here; the pop-up has the whole thing */}
+          {/* only the first few lines show here; the full write-up is on
+              the project's page (or in the pop-up) */}
           {paragraphs.length > 0 && (
             <p className="project-card-description">{paragraphs.join(" ")}</p>
           )}
         </div>
+    </>
+  );
+
+  // a real link: opens the project's page, and works with
+  // ctrl/cmd-click (new tab) and right-click "copy link"
+  if (detailed) {
+    return (
+      <Link
+        className="project-card"
+        to={projectPath(project)}
+        aria-label={`open ${project.title}`}
+        onClick={saveListScroll}
+      >
+        {cardContents}
+      </Link>
+    );
+  }
+
+  return (
+    <>
+      <article
+        className="project-card"
+        role="button"
+        tabIndex={0}
+        aria-label={`open ${project.title}`}
+        onClick={() => setOpen(true)}
+        onKeyDown={openOnKey}
+      >
+        {cardContents}
       </article>
 
       {/* kept outside the <article> so clicks inside the pop-up (like ×)
           don't bubble up to the card and open it again */}
-      {open && detailed && (
-        <ProjectDetail project={project} onClose={() => setOpen(false)} />
-      )}
-      {open && !detailed && (
+      {open && (
         <PopupWindow
           title={project.title}
           onClose={() => setOpen(false)}

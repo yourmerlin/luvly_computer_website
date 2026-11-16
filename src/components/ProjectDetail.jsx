@@ -1,18 +1,36 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
-import PopupWindow, { Media, altFor } from "./PopupWindow.jsx";
+import { Media, altFor, useZoom } from "./PopupWindow.jsx";
+import ModelViewer, { isModel } from "./ModelViewer.jsx";
 
 const asList = (value) => [].concat(value || []).filter(Boolean);
 
-// a section is { <name>_text, <name>_media } (plain text also works)
-function readSection(value, name) {
-  if (!value) return { text: [], media: [] };
+// a section is { <name>_text, <name>_media } (plain text also works),
+// or { <name>_steps: [{ text, media }] } where each paragraph goes with
+// its own pieces. stepOf[i] says which step media piece i belongs to.
+export function readSection(value, name) {
+  if (!value) return { text: [], media: [], stepOf: null };
   if (typeof value === "string" || Array.isArray(value)) {
-    return { text: asList(value), media: [] };
+    return { text: asList(value), media: [], stepOf: null };
+  }
+  const steps = value[`${name}_steps`];
+  if (Array.isArray(steps)) {
+    const text = [];
+    const media = [];
+    const stepOf = [];
+    steps.forEach((step, s) => {
+      text.push(step.text || "");
+      asList(step.media).forEach((path) => {
+        media.push(path);
+        stepOf.push(s);
+      });
+    });
+    return { text, media, stepOf };
   }
   return {
     text: asList(value[`${name}_text`]),
     media: asList(value[`${name}_media`]),
+    stepOf: null,
   };
 }
 
@@ -23,6 +41,15 @@ function fullUrl(url) {
 // one clickable piece: hover scales it up with a shadow.
 // group: the pieces the zoom arrows flip through (just this one if left out)
 function Piece({ path, zoom, group = [path] }) {
+  // a 3D model is played with in place (dragging it spins it), so it
+  // doesn't open the zoomed view on click
+  if (isModel(path)) {
+    return (
+      <section className="project-detail-model">
+        <ModelViewer path={path} alt={altFor(path)} />
+      </section>
+    );
+  }
   return (
     <section
       className="project-detail-piece"
@@ -68,12 +95,19 @@ function closestToMiddle(track) {
 // it loops: the pieces are drawn three times in a row and we stay in the
 // middle copy. whenever the scroll stops in the first or last copy, it jumps
 // (instantly, no animation) to the same piece in the middle copy.
-function Carousel({ items, zoom, single = false }) {
+// onChange(i): told which piece (0..n-1) is in the middle whenever it changes
+function Carousel({ items, zoom, single = false, onChange }) {
   const trackRef = useRef(null);
   const settleTimer = useRef(null);
   const touching = useRef(false); // finger on the track (phones)
   const n = items.length;
   const [current, setCurrent] = useState(n); // first piece of the middle copy
+
+  const onChangeRef = useRef(onChange);
+  onChangeRef.current = onChange;
+  useEffect(() => {
+    if (n > 0) onChangeRef.current?.(current % n);
+  }, [current, n]);
 
   // jump without animating (no smooth scroll, no blur fade)
   const jumpTo = (i) => {
@@ -270,10 +304,44 @@ function Carousel({ items, zoom, single = false }) {
   );
 }
 
-export default function ProjectDetail({ project, onClose }) {
+// a section made of steps: only the text for the piece in the middle of the
+// carousel shows, and it swaps as you scroll through the pieces
+function StepSection({ name, section, zoom }) {
+  const [piece, setPiece] = useState(0);
+  const step = section.stepOf[piece] ?? 0;
+  return (
+    <section className="project-detail-section project-detail-stack">
+      {/* same columns as the description row, so the text lines up with it */}
+      <div className="project-detail-box project-detail-step-row">
+        <h3>{name}</h3>
+        {/* every step's text sits in the same spot and only the current one
+            is visible, so the box is always as tall as the longest step and
+            the carousel doesn't jump up and down while you scroll it */}
+        <div className="project-detail-steps" aria-live="polite">
+          {section.text.map((text, s) => (
+            <p
+              key={s}
+              className={
+                s === step ? "project-detail-step is-active" : "project-detail-step"
+              }
+              aria-hidden={s !== step}
+            >
+              {text}
+            </p>
+          ))}
+        </div>
+      </div>
+      <Carousel items={section.media} zoom={zoom} onChange={setPiece} />
+    </section>
+  );
+}
+
+// the write-up for one project, shown on its own page (pages/WorkProject.jsx)
+export default function ProjectDetail({ project }) {
+  const { zoom, zoomLayer } = useZoom([], { page: true });
   const tools = asList(project.tools);
   const link = project.links;
-  const description = asList(project.description);
+  const description = readSection(project.description, "description");
 
   const context = readSection(project.context, "context");
   const process = readSection(project.process, "process");
@@ -283,16 +351,12 @@ export default function ProjectDetail({ project, onClose }) {
   const paragraphs = (list) => list.map((text) => <p key={text}>{text}</p>);
 
   return (
-    <PopupWindow
-      onClose={onClose}
-      className="project-detail-window"
-    >
-      {(zoom) => (
-        <div className="project-detail">
+    <>
+        <article className="project-detail project-page">
           <div className="project-detail-scroll">
             {/* main media, full width on top */}
             {project.media && (
-              <div className="project-detail-media">
+              <div className="project-detail-media project-detail-hero">
                 <Piece path={project.media} zoom={zoom} />
               </div>
             )}
@@ -337,8 +401,13 @@ export default function ProjectDetail({ project, onClose }) {
             <div className="project-detail-row">
               <div className="project-detail-box project-detail-words">
                 <h3>description</h3>
-                {paragraphs(description)}
+                {paragraphs(description.text)}
               </div>
+              {description.media.length > 0 && (
+                <div className="project-detail-media">
+                  <Carousel items={description.media} zoom={zoom} single />
+                </div>
+              )}
             </div>
 
             {/* row 3: context text | context media */}
@@ -362,7 +431,10 @@ export default function ProjectDetail({ project, onClose }) {
               ["reflection", reflection],
             ].map(
               ([name, s]) =>
-                has(s) && (
+                has(s) &&
+                (s.stepOf && s.media.length > 0 ? (
+                  <StepSection key={name} name={name} section={s} zoom={zoom} />
+                ) : (
                   <section
                     key={name}
                     className="project-detail-section project-detail-stack"
@@ -378,11 +450,12 @@ export default function ProjectDetail({ project, onClose }) {
                     {!s.text.length && <h3>{name}</h3>}
                     <Carousel items={s.media} zoom={zoom} />
                   </section>
-                ),
+                )),
             )}
           </div>
-        </div>
-      )}
-    </PopupWindow>
+        </article>
+        {/* click a piece to see it big, click around it to go back */}
+        {zoomLayer}
+    </>
   );
 }
