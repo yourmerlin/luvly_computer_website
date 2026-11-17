@@ -1,4 +1,8 @@
-// each project in work.json gets its own page at /work/<slug>.
+import { useLayoutEffect } from "react";
+import { useNavigationType } from "react-router";
+
+// each project gets its own page at <base>/<slug>: work.json projects live
+// under /work, experiments.json under /experiments (see App.jsx).
 // the slug comes from the title ("computers.json" -> "computers-json"),
 // unless the project sets its own "slug" in the json.
 export function slugFor(project) {
@@ -9,16 +13,24 @@ export function slugFor(project) {
     .replace(/^-+|-+$/g, "");
 }
 
-export const projectPath = (project) => `/work/${slugFor(project)}`;
+export const projectPath = (project, base = "/work") =>
+  `${base}/${slugFor(project)}`;
 
-// where the home page was scrolled to when a project was opened, so the
-// back button returns to the same spot in the list (Home.jsx reads it)
+// where a list page was scrolled to when a project was opened, so the
+// back button returns to the same spot in the list
 let savedListScroll = null;
 export const saveListScroll = () => {
   savedListScroll = window.scrollY;
 };
-export const takeListScroll = () => {
-  const y = savedListScroll;
-  savedListScroll = null;
-  return y;
-};
+
+// call on a list page (Home, Experiments): coming back from a project page
+// jumps to where the list was
+export function useRestoreListScroll() {
+  const navigationType = useNavigationType();
+  useLayoutEffect(() => {
+    const y = savedListScroll;
+    savedListScroll = null;
+    if (navigationType === "POP" && y !== null) window.scrollTo(0, y);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+}

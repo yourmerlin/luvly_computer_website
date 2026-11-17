@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import { Link } from "react-router";
 import Page from "../components/Page.jsx";
 import AsciiProfile from "../components/AsciiProfile.jsx";
 import asset from "../asset.js";
@@ -140,9 +141,28 @@ export default function About() {
           </p>
           <br />
           <p>
-            In my free time, I run a wearable art show called Haute Glue🡥, where
-            I teach free, open-source workshops in fashion and wearable
-            technology🡥 (e-textiles). I was a Booth🡥 chair for two years, where
+            In my free time, I run a wearable art show called{" "}
+            <a
+              href="https://www.instagram.com/haute.glue.pgh?utm_source=ig_web_button_share_sheet&vrfl=ZDNlZDc0MzIxNw=="
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Haute Glue🡥
+            </a>
+            , where
+            I teach free, open-source workshops in fashion and{" "}
+            <Link to="/research/turning-play-into-neuroplasticity">
+              wearable technology🡥
+            </Link>{" "}
+            (e-textiles). I was a{" "}
+            <a
+              href="https://www.springcarnival.org/booth.shtml"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Booth🡥
+            </a>{" "}
+            chair for two years, where
             we built a temporary interactive house in our school’s parking lot.
             I’m always finding ways to get involved in my community and give
             back :-)

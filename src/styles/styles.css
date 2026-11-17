@@ -256,12 +256,16 @@ main.about-main {
   padding-left: 1.5rem; /* indents the links in from the bio text */
 }
 
-.about-bio ul a {
+/* links in the link list and in the bio paragraphs: plain text,
+   underlined on hover */
+.about-bio ul a,
+.about-bio p a {
   color: var(--text-color);
   text-decoration: none;
 }
 
-.about-bio ul a:hover {
+.about-bio ul a:hover,
+.about-bio p a:hover {
   text-decoration: underline;
 }
 

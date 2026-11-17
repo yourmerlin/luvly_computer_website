@@ -2,7 +2,7 @@
   {
     "title": "computers.json",
     "media": "work_imgs/luvcomputer_imgs/merlin/low.glb",
-    "thumbnail": "work_imgs/luvcomputer_imgs/computer_gif.gif",
+    "thumbnail": "work_imgs/luvcomputer_imgs/computerarchive.gif",
     "links": "iluvmy.computer",
     "timeline": "2 weeks(October 2026)",
     "tools": [
@@ -40,8 +40,8 @@
       ]
     },
     "reflection": {
-      "reflection_text": "hi hello",
-      "reflection_media": []
+      "reflection_text": "This project taught me a lot about optimizing 3D models and sparked my interest in computer graphics. People loved it, especially the community aspect. Although it started as a quick class project, I want to keep developing the website. I’ve made an open-source tutorial of my process so others can scan and submit their own computers, and I’m working to grow the archive. A good archive should be as full as possible, and I especially want to collect more weird, funky computers. That feels especially timely now that cyberdecks are back and computers are being hidden inside everyday products. I’m interested in how computing keeps changing in this new technological world, and in how a computer can be a far more personal, intimate object than the standard flat rectangle. This project was my attempt to bridge that gap by showing how people personalize their computers and the relationships they have with them.",
+      "reflection_media": ["work_imgs/luvcomputer_imgs/computer_reflection.png"]
     }
   },
   {
@@ -102,26 +102,7 @@
       ]
     }
   },
-  {
-    "title": "luvlycomputer",
-    "media": "work_imgs/personal_web/digital_home.png",
-    "links": "",
-    "timeline": "8 Months (March 2026-Current)",
-    "tools": ["web dev", "react.js", "vite", "ui/ux", "web design", "webGL"],
-    "description": ["the labor of love that went into my digital home <3 "],
-    "context": {
-      "context_text": "",
-      "context_media": []
-    },
-    "process": {
-      "process_text": "",
-      "process_media": []
-    },
-    "reflection": {
-      "reflection_text": "",
-      "reflection_media": []
-    }
-  },
+
   {
     "title": "please, verify your identity",
     "media": "work_imgs/please_verify.gif",
@@ -135,9 +116,9 @@
       "figma",
       "ui/ux"
     ],
-    "description": "",
+    "description": "please, verify your identity is an interactive installation that performs consent theater. its “no” button flees your cursor until only “yes” remains, and the face you surrender is shredded byte by byte into colored noise that facial recognition can’t read. the piece mimics the rituals of digital trust (accept, scan, encrypt) to show how interfaces manufacture compliance, and asks what happens when the machine becomes the being and we become the interface.",
     "context": {
-      "context_text": "hi hello",
+      "context_text": "",
       "context_media": [
         "work_imgs/please_verify/figma_moodboard.png",
         "work_imgs/please_verify/figma_interfaces.png",
@@ -147,11 +128,11 @@
       ]
     },
     "process": {
-      "process_text": "hi hello",
+      "process_text": "",
       "process_media": []
     },
     "reflection": {
-      "reflection_text": "hi hello",
+      "reflection_text": "",
       "reflection_media": []
     }
   },

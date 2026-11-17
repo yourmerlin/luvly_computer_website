@@ -339,13 +339,23 @@ function StepSection({ name, section, zoom }) {
 // the write-up for one project, shown on its own page (pages/WorkProject.jsx)
 export default function ProjectDetail({ project }) {
   const { zoom, zoomLayer } = useZoom([], { page: true });
-  const tools = asList(project.tools);
-  const link = project.links;
+  // work.json calls them "tools", experiments.json calls them "tags"
+  const tools = asList(project.tools || project.tags);
+  // work.json calls it "links", research.json calls it "link"
+  const link = project.links || project.link;
   const description = readSection(project.description, "description");
 
   const context = readSection(project.context, "context");
   const process = readSection(project.process, "process");
   const reflection = readSection(project.reflection, "reflection");
+  // "gallery": a plain list of pieces, shown as one more carousel.
+  // "galleries": several, each { title, media, text (optional) }, and each
+  // gets its own section with the title as its heading
+  const gallery = { text: [], media: asList(project.gallery), stepOf: null };
+  const galleries = asList(project.galleries).map((g) => [
+    g.title || "gallery",
+    { text: asList(g.text), media: asList(g.media), stepOf: null },
+  ]);
   const has = (s) => s.text.length > 0 || s.media.length > 0;
 
   const paragraphs = (list) => list.map((text) => <p key={text}>{text}</p>);
@@ -377,10 +387,19 @@ export default function ProjectDetail({ project }) {
                   </a>
                 )}
               </div>
-              <div className="project-detail-box">
-                <span className="project-detail-label">timeline</span>
-                <p>{project.timeline || "—"}</p>
-              </div>
+              {/* experiments have a status ("in-progress", "done")
+                  instead of a timeline */}
+              {!project.timeline && project.status ? (
+                <div className="project-detail-box">
+                  <span className="project-detail-label">status</span>
+                  <p>{project.status}</p>
+                </div>
+              ) : (
+                <div className="project-detail-box">
+                  <span className="project-detail-label">timeline</span>
+                  <p>{project.timeline || "—"}</p>
+                </div>
+              )}
               <div className="project-detail-box">
                 <span className="project-detail-label">tools</span>
                 {tools.length > 0 ? (
@@ -425,10 +444,13 @@ export default function ProjectDetail({ project }) {
               </section>
             )}
 
-            {/* process + reflection: text on top, carousel underneath */}
+            {/* process + reflection (+ an experiment's "gallery"): text on
+                top, carousel underneath */}
             {[
               ["process", process],
               ["reflection", reflection],
+              ["gallery", gallery],
+              ...galleries,
             ].map(
               ([name, s]) =>
                 has(s) &&

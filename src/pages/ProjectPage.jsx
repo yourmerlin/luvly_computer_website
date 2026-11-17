@@ -2,11 +2,12 @@ import { useEffect } from "react";
 import { Link, Navigate, useNavigate, useParams, useLocation } from "react-router";
 import Page from "../components/Page.jsx";
 import ProjectDetail from "../components/ProjectDetail.jsx";
-import projects from "../data/work.json";
 import { slugFor } from "../projectPath.js";
 
-// one project's page: /work/<slug> (see projectPath.js)
-export default function WorkProject() {
+// one project's own page, e.g. /work/<slug> or /experiments/<slug>
+// (routes in App.jsx). projects: the json list to look the slug up in.
+// backTo / backLabel: the list page the "back" link returns to.
+export default function ProjectPage({ projects, backTo, backLabel }) {
   const { slug } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -17,10 +18,10 @@ export default function WorkProject() {
     window.scrollTo(0, 0);
   }, [slug]);
 
-  if (!project) return <Navigate to="/" replace />;
+  if (!project) return <Navigate to={backTo} replace />;
 
-  // came here from the home page? going back returns to the same spot in
-  // the list. opened straight from a link? there's no "back", so go home.
+  // came here from the list? going back returns to the same spot in it.
+  // opened straight from a link? there's no "back", so go to the list.
   const cameFromSite = location.key !== "default";
   const goBack = (event) => {
     if (cameFromSite) {
@@ -32,8 +33,8 @@ export default function WorkProject() {
   return (
     <Page title={`${project.title} · Merlin Enriquez`}>
       <main className="project-page-wrap">
-        <Link className="project-page-back" to="/" onClick={goBack}>
-          ← back to work
+        <Link className="project-page-back" to={backTo} onClick={goBack}>
+          ← {backLabel}
         </Link>
         <ProjectDetail key={slug} project={project} />
       </main>

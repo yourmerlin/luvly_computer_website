@@ -1,11 +1,31 @@
 [
   {
     "title": "turning play into neuroplasticity",
-    "media": "research_imgs/ewaste_img.webp",
+    "media": "research_imgs/e_waste_cropped.jpg",
     "link": "https://github.com/yourmerlin/turning-play-into-neuroplasticity-",
     "status": "in-progress",
     "tags": ["research", "wearable technology", "e-textiles"],
-    "description": "An open-source repository that uses play as an educational tool for learning e-textiles and wearable technology through mini art-based projects. Each project breaks down core technical and mathematical concepts into approachable, hands-on steps."
+    "description": "An open-source repository that uses play as an educational tool for learning e-textiles and wearable technology through mini art-based projects. Each project breaks down core technical and mathematical concepts into approachable, hands-on steps.",
+    "galleries": [
+      {
+        "title": "workshop 1: electronic wizard hats & nfc wands",
+        "media": [
+          "research_imgs/wizard_etextile1.webp",
+          "research_imgs/wizard_etextile2.webp",
+          "research_imgs/wizard_etextile3.webp"
+        ]
+      },
+      {
+        "title": "workshop 2: e-waste jewelry (intro to soldering)",
+        "media": [
+          "research_imgs/e_waste_ws1.webp",
+          "research_imgs/e_waste_ws2.webp",
+          "research_imgs/ewaste_ws3.webp",
+          "research_imgs/ewaste_ws4.webp",
+          "research_imgs/ewaste_ws5.webp"
+        ]
+      }
+    ]
   },
   {
     "title": "how to archive your computer",
@@ -17,9 +37,9 @@
   },
   {
     "title": "Cyblocks",
-    "media": "research_imgs/example_img.webp",
-    "status": "in-progress",
-    "link": "https://github.com/yourmerlin/example-research-project",
+    "media": "research_imgs/cylab.webp",
+    "status": "in-progress (private)",
+    "link": "",
     "tags": ["ui/ux", "cybersecurity", "educational tool"],
     "description": "Lead UI/UX Researcher & Developer for Cyblocks, a project under CyLab (cybersecurity lab @ CMU). Designing an educational, block-based visual IDE that helps people learn and visualize how agentic multi-host red-teaming (AMR) systems are built. Modeling the tool on popular existing AMR systems, including ARTEMIS, Incalmo, CAI, and PentestGPT. I am building a clearer visualization tool for cybersecurity researchers while lowering the barrier to entry for newcomers learning about AMR systems."
   },

@@ -5,9 +5,9 @@ import PopupWindow, { Media, altFor } from "./PopupWindow.jsx";
 import { readSection } from "./ProjectDetail.jsx";
 import { projectPath, saveListScroll } from "../projectPath.js";
 
-// detailed: the card links to the project's own page (/work/<slug>).
-// otherwise clicking it opens a small pop-up.
-export default function ProjectCard({ project, detailed = false }) {
+// detailed: the card links to the project's own page (<base>/<slug>, e.g.
+// /work/computers-json). otherwise clicking it opens a small pop-up.
+export default function ProjectCard({ project, detailed = false, base = "/work" }) {
   // the card shows "thumbnail" if there is one (needed when "media" is a 3D
   // model, which can't be a card picture), otherwise "media"
   const cardMedia = project.thumbnail || project.media;
@@ -75,7 +75,7 @@ export default function ProjectCard({ project, detailed = false }) {
     return (
       <Link
         className="project-card"
-        to={projectPath(project)}
+        to={projectPath(project, base)}
         aria-label={`open ${project.title}`}
         onClick={saveListScroll}
       >
