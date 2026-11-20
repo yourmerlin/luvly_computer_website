@@ -12,7 +12,7 @@ const LINKS = [
   { label: "linkedin", href: "https://www.linkedin.com/in/senrique/" },
   {
     label: "resume",
-    href: asset("enriquez_merlin_RESUME.pdf"),
+    href: asset("enriquez_resume_2027.pdf"),
   },
   { label: "github", href: "https://github.com/yourmerlin" },
   { label: "instagram", href: "https://www.instagram.com/luvlycomputer/" },
@@ -149,8 +149,7 @@ export default function About() {
             >
               Haute Glue🡥
             </a>
-            , where
-            I teach free, open-source workshops in fashion and{" "}
+            , where I teach free, open-source workshops in fashion and{" "}
             <Link to="/research/turning-play-into-neuroplasticity">
               wearable technology🡥
             </Link>{" "}
@@ -162,10 +161,9 @@ export default function About() {
             >
               Booth🡥
             </a>{" "}
-            chair for two years, where
-            we built a temporary interactive house in our school’s parking lot.
-            I’m always finding ways to get involved in my community and give
-            back :-)
+            chair for two years, where we built a temporary interactive house in
+            our school’s parking lot. I’m always finding ways to get involved in
+            my community and give back :-)
           </p>
           <br />
 
